@@ -7,6 +7,7 @@ function* registerUser(action) {
     yield put({ type: 'CLEAR_REGISTRATION_ERROR' });
 
     const body = {
+      email: action.payload.email,
       username: action.payload.username,
       password: action.payload.password,
     };
