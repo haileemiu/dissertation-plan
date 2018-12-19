@@ -9,7 +9,7 @@ const Nav = (props) => (
   <div className="nav">
     <Link to="/home">
     {/* Best to not have this NOT as an h1, because then it will the be the h1 on every page */}
-      <h2 className="nav-title">Prime Solo Project</h2>
+      <h2 className="nav-title">Taina App</h2>
     </Link>
     <div className="nav-right">
       <Link className="nav-link" to="/home">
