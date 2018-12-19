@@ -8,13 +8,13 @@ import './Nav.css';
 const Nav = (props) => (
   <div className="nav">
     <Link to="/home">
-    {/* Best to not have this NOT as an h1, because then it will the be the h1 on every page */}
+      {/* Best to not have this NOT as an h1, because then it will the be the h1 on every page */}
       <h2 className="nav-title">Taina App</h2>
     </Link>
     <div className="nav-right">
       <Link className="nav-link" to="/home">
-      {/* Ternary auto returns */}
-      {/* Link is always on the page, just depends on what the user can see (logged in or not) */}
+        {/* Ternary auto returns */}
+        {/* Link is always on the page, just depends on what the user can see (logged in or not) */}
         {props.user.id ? 'Home' : 'Login / Register'}
       </Link>
       {/* Will not show if the user is not logged in */}
@@ -24,7 +24,7 @@ const Nav = (props) => (
           <Link className="nav-link" to="/info">
             Info Page
           </Link>
-          <LogOutButton className="nav-link"/>
+          <LogOutButton className="nav-link" />
         </>
       )}
       <Link className="nav-link" to="/about">

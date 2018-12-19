@@ -17,8 +17,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // is that the password gets encrypted before being inserted
 router.post('/register', (req, res, next) => {
   console.log('req: ', req.body);
-  
-  const username = req.body.username;
+  const { username } = req.body;
   const password = encryptLib.encryptPassword(req.body.password);
 
   const queryText = 'INSERT INTO person (username, password) VALUES ($1, $2) RETURNING id';
