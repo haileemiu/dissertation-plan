@@ -15,7 +15,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
 import AboutPage from '../About/About';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import GoalPage from '../GoalPage/GoalPage';
 
 import './App.css';
 
@@ -46,8 +46,8 @@ class App extends Component {
             />
             <ProtectedRoute
               exact
-              path="/info"
-              component={InfoPage}
+              path="/goal"
+              component={GoalPage}
             />
             {/* OTHERWISE (no path!) */}
             <Route render={() => <h1>404</h1>} />

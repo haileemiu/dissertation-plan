@@ -1,12 +1,12 @@
 import React from 'react';
 
-const InfoPage = () => (
+const GoalPage = () => (
   <div>
     <p>
-      Info Page
+      Goal Page
     </p>
   </div>
 );
 
 // this allows us to use <App /> in index.js
-export default InfoPage;
+export default GoalPage;
