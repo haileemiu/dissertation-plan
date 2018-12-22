@@ -1,12 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 
-const GoalPage = () => (
-  <div>
-    <p>
-      Goal Page
-    </p>
-  </div>
-);
+class GoalPage extends Component {
 
-// this allows us to use <App /> in index.js
+  state = {
+    title: ''
+  }
+
+  // Save the input
+  handleChangeTitle = (event) => {
+    this.setState({title: event.target.value})
+  }
+
+  // Send the input to the router query
+  handleSubmit = (event) => {
+    event.preventDefault();
+    axios.post('/api/goal', {title: this.state.title})
+      .then(res => {
+        // WIP
+        console.log(res.data);
+      })
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Goal Page</h1>
+        {/* Add Goal */}
+        <form onSubmit={this.handleSubmit}>
+          <input type='text' onChange={this.handleChangeTitle}></input>
+          <input type='submit'></input>
+        </form>
+
+        {/* View Goals */}
+        <ul>
+          {/* <input type='radio'></input> */}
+          <li>test</li>
+        </ul>
+      </div>
+    )
+  }
+
+}
+
 export default GoalPage;
