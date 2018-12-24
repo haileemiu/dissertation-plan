@@ -1,5 +1,6 @@
 const express = require('express');
 const pool = require('../modules/pool');
+
 const router = express.Router();
 
 // Handles POST request for new goal item
@@ -13,19 +14,19 @@ router.post('/', (req, res) => {
     .catch((error) => {
       console.log('Error in posting goal:', error);
       res.sendStatus(500);
-    })
-})
+    });
+});
 
 // Handles retrieving goal list
 router.get('/', (req, res) => {
-  const queryText = 'SELECT goal.title, goal.completed FROM person LEFT JOIN goal ON person.id = goal.user_id WHERE goal.user_id = $1;';
+  const queryText = 'SELECT goal.id, goal.title, goal.completed FROM person LEFT JOIN goal ON person.id = goal.user_id WHERE goal.user_id = $1;';
 
   pool.query(queryText, [req.user.id])
-    .then((results) => { res.send(results.rows) })
+    .then((results) => { res.send(results.rows); })
     .catch((error) => {
       console.log('Error in getting goals:', error);
       res.sendStatus(500);
-    })
-})
+    });
+});
 
 module.exports = router;

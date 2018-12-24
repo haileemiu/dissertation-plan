@@ -5,6 +5,7 @@ class GoalPage extends Component {
   /* Global Variables */
   state = {
     title: '',
+    goalsList: [],
   }
 
   /* Life Cycle Events */
@@ -33,7 +34,6 @@ class GoalPage extends Component {
   // handleSubmit goal Error
   handleSubmitError = error => console.log('Error in adding goal:', error);
 
-
   // Retrieve goals
   getGoals = () => {
     axios.get('/api/goal')
@@ -42,7 +42,10 @@ class GoalPage extends Component {
   }
 
   // Retrieve goals Success
-  getGoalsSuccess = (response) => { console.log(response.data) }
+  getGoalsSuccess = (response) => {
+    console.log(response.data)
+    this.setState({ goalsList: response.data });
+  }
 
   // Retrieve goals Error
   getGoalsError = (error) => {
@@ -63,7 +66,11 @@ class GoalPage extends Component {
 
         {/* View Goals */}
         {/* <input type='radio'></input> */}
-        <ul></ul>
+        <ul>
+          {this.state.goalsList.map(goal => (
+            <li key={goal.id}>{goal.title}</li>
+          ))}
+        </ul>
       </div>
     );
   }
