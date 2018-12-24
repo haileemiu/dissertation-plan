@@ -3,9 +3,17 @@ import axios from 'axios';
 
 class GoalPage extends Component {
 
+  /* Global Variables */
   state = {
     title: ''
   }
+
+  /* Life Cycle Events */
+  componentDidMount = () => {
+    this.getGoals();
+  }
+
+  /* Custom Events */
 
   // Save the input
   handleChangeTitle = (event) => {
@@ -21,6 +29,16 @@ class GoalPage extends Component {
         console.log(res.data);
       })
   }
+
+  // Retrieve goals
+  getGoals = () => {
+    axios.get('/api/goal')
+      .then(res => {
+        console.log(res);
+      })
+  }
+
+  /* Render Page Content*/
 
   render() {
     return (
