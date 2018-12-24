@@ -20,7 +20,7 @@ class GoalPage extends Component {
     this.setState({ title: event.target.value });
   }
 
-  // Send the input to the router query
+  // Send the input to the database
   handleSubmit = (event) => {
     event.preventDefault();
     axios.post('/api/goal', { title: this.state.title })
@@ -29,7 +29,7 @@ class GoalPage extends Component {
   }
 
   // handleSubmit goal Success
-  handleSubmitSuccess = response => console.log(response.data); // WIP
+  handleSubmitSuccess = () => { this.getGoals(); }
 
   // handleSubmit goal Error
   handleSubmitError = error => console.log('Error in adding goal:', error);
@@ -43,7 +43,6 @@ class GoalPage extends Component {
 
   // Retrieve goals Success
   getGoalsSuccess = (response) => {
-    console.log(response.data)
     this.setState({ goalsList: response.data });
   }
 
