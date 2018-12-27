@@ -1,3 +1,6 @@
+// TO DO: make local state for form an object
+// TO DO: make instances anything but an input box
+
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -5,6 +8,7 @@ class GoalPage extends Component {
   /* Global Variables */
   state = {
     title: '',
+    instances: '',
     goalsList: [],
   }
 
@@ -20,19 +24,24 @@ class GoalPage extends Component {
     this.setState({ title: event.target.value });
   }
 
+  handleChangeInstances = (event) => {
+    this.setState({ instances: event.target.value });
+  }
+
   // Send the input to the database
   handleSubmit = (event) => {
     event.preventDefault();
-    
-    axios.post('/api/goal', { title: this.state.title })
+
+    axios.post('/api/goal', { title: this.state.title, instances: this.state.instances })
       .then(this.handleSubmitSuccess)
       .catch(this.handleSubmitError);
   }
 
   // handleSubmit goal Success
-  handleSubmitSuccess = () => { 
-    this.setState({ title: ' ' });
-    this.getGoals(); }
+  handleSubmitSuccess = () => {
+    this.setState({ title: '', instances: '' });
+    this.getGoals();
+  }
 
   // handleSubmit goal Error
   handleSubmitError = error => console.log('Error in adding goal:', error);
@@ -62,7 +71,8 @@ class GoalPage extends Component {
         <h1>Goal Page</h1>
         {/* Add Goal */}
         <form onSubmit={this.handleSubmit}>
-          <input type="text" onChange={this.handleChangeTitle} value={this.state.title} />
+          <input type="text" placeholder="goal" onChange={this.handleChangeTitle} value={this.state.title} />
+          <input type="text" placeholder="instances per week" onChange={this.handleChangeInstances} value={this.state.instances} />
           <input type="submit" />
         </form>
 
@@ -70,7 +80,7 @@ class GoalPage extends Component {
         {/* <input type='radio'></input> */}
         <ul>
           {this.state.goalsList.map(goal => (
-            <li key={goal.id}>{goal.title}</li>
+            <li key={goal.id}>{goal.name}: {goal.instances} per week</li>
           ))}
         </ul>
       </div>
