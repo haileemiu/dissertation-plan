@@ -21,8 +21,8 @@ const Nav = (props) => (
       {/* Like a ternary, but with no else */}
       {props.user.id && (
         <>
-          <Link className="nav-link" to="/info">
-            Info Page
+          <Link className="nav-link" to="/goal">
+            Goal Page
           </Link>
           <LogOutButton className="nav-link" />
         </>
