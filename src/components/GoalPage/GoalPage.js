@@ -23,13 +23,16 @@ class GoalPage extends Component {
   // Send the input to the database
   handleSubmit = (event) => {
     event.preventDefault();
+    
     axios.post('/api/goal', { title: this.state.title })
       .then(this.handleSubmitSuccess)
       .catch(this.handleSubmitError);
   }
 
   // handleSubmit goal Success
-  handleSubmitSuccess = () => { this.getGoals(); }
+  handleSubmitSuccess = () => { 
+    this.setState({ title: ' ' });
+    this.getGoals(); }
 
   // handleSubmit goal Error
   handleSubmitError = error => console.log('Error in adding goal:', error);
@@ -59,7 +62,7 @@ class GoalPage extends Component {
         <h1>Goal Page</h1>
         {/* Add Goal */}
         <form onSubmit={this.handleSubmit}>
-          <input type="text" onChange={this.handleChangeTitle} />
+          <input type="text" onChange={this.handleChangeTitle} value={this.state.title} />
           <input type="submit" />
         </form>
 
