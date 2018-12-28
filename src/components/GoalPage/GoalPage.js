@@ -7,8 +7,8 @@ import axios from 'axios';
 class GoalPage extends Component {
   /* Global Variables */
   state = {
-    title: '',
-    instances: '',
+    goal: '',
+    instancesPerWeek: '',
     goalsList: [],
   }
 
@@ -20,26 +20,26 @@ class GoalPage extends Component {
   /* Custom Events */
 
   // Save the input
-  handleChangeTitle = (event) => {
-    this.setState({ title: event.target.value });
+  handleChangeGoal = (event) => {
+    this.setState({ goal: event.target.value });
   }
 
   handleChangeInstances = (event) => {
-    this.setState({ instances: event.target.value });
+    this.setState({ instancesPerWeek: event.target.value });
   }
 
   // Send the input to the database
   handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post('/api/goal', { title: this.state.title, instances: this.state.instances })
+    axios.post('/api/goal', { goal: this.state.goal, instancesPerWeek: this.state.instancesPerWeek })
       .then(this.handleSubmitSuccess)
       .catch(this.handleSubmitError);
   }
 
   // handleSubmit goal Success
   handleSubmitSuccess = () => {
-    this.setState({ title: '', instances: '' });
+    this.setState({ goal: '', instancesPerWeek: '' });
     this.getGoals();
   }
 
@@ -71,8 +71,8 @@ class GoalPage extends Component {
         <h1>Goal Page</h1>
         {/* Add Goal */}
         <form onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="goal" onChange={this.handleChangeTitle} value={this.state.title} />
-          <input type="text" placeholder="instances per week" onChange={this.handleChangeInstances} value={this.state.instances} />
+          <input type="text" placeholder="goal" onChange={this.handleChangeGoal} value={this.state.goal} />
+          <input type="text" placeholder="instances per week" onChange={this.handleChangeInstances} value={this.state.instancesPerWeek} />
           <input type="submit" />
         </form>
 
@@ -80,7 +80,7 @@ class GoalPage extends Component {
         {/* <input type='radio'></input> */}
         <ul>
           {this.state.goalsList.map(goal => (
-            <li key={goal.id}>{goal.name}: {goal.instances} per week</li>
+            <li key={goal.id}>{goal.goal}: {goal.instances_per_week} per week</li>
           ))}
         </ul>
       </div>
