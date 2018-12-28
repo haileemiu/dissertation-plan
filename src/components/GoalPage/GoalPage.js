@@ -7,7 +7,7 @@ import axios from 'axios';
 class GoalPage extends Component {
   /* Global Variables */
   state = {
-    title: '',
+    name: '',
     instances: '',
     goalsList: [],
   }
@@ -20,8 +20,8 @@ class GoalPage extends Component {
   /* Custom Events */
 
   // Save the input
-  handleChangeTitle = (event) => {
-    this.setState({ title: event.target.value });
+  handleChangeName = (event) => {
+    this.setState({ name: event.target.value });
   }
 
   handleChangeInstances = (event) => {
@@ -32,14 +32,14 @@ class GoalPage extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post('/api/goal', { title: this.state.title, instances: this.state.instances })
+    axios.post('/api/goal', { name: this.state.name, instances: this.state.instances })
       .then(this.handleSubmitSuccess)
       .catch(this.handleSubmitError);
   }
 
   // handleSubmit goal Success
   handleSubmitSuccess = () => {
-    this.setState({ title: '', instances: '' });
+    this.setState({ name: '', instances: '' });
     this.getGoals();
   }
 
@@ -71,7 +71,7 @@ class GoalPage extends Component {
         <h1>Goal Page</h1>
         {/* Add Goal */}
         <form onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="goal" onChange={this.handleChangeTitle} value={this.state.title} />
+          <input type="text" placeholder="goal" onChange={this.handleChangeName} value={this.state.name} />
           <input type="text" placeholder="instances per week" onChange={this.handleChangeInstances} value={this.state.instances} />
           <input type="submit" />
         </form>

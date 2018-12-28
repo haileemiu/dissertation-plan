@@ -5,12 +5,11 @@ const router = express.Router();
 
 // Handles POST request for new goal item
 router.post('/', (req, res) => {
-  const { title } = req.body;
-  const { instances } = req.body;
+  const { name } = req.body;
 
-  const queryText = 'INSERT INTO goal (user_id, name, instances) VALUES ($1, $2, $3) RETURNING id;';
+  const queryText = 'INSERT INTO goals (user_id, name) VALUES ($1, $2) RETURNING id;';
 
-  pool.query(queryText, [req.user.id, title, instances])
+  pool.query(queryText, [req.user.id, name])
     .then(() => { res.sendStatus(201); })
     .catch((error) => {
       console.log('Error in posting goal:', error);
@@ -20,7 +19,7 @@ router.post('/', (req, res) => {
 
 // Handles retrieving goal list
 router.get('/', (req, res) => {
-  const queryText = 'SELECT goal.id, goal.name, goal.instances FROM person LEFT JOIN goal ON person.id = goal.user_id WHERE goal.user_id = $1;';
+  const queryText = 'SELECT goals.id, goals.user_id, goals.name FROM person LEFT JOIN goals ON person.id = goals.user_id WHERE goal.user_id = $1;';
 
   pool.query(queryText, [req.user.id])
     .then((results) => { res.send(results.rows); })

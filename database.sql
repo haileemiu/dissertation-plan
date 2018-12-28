@@ -9,12 +9,12 @@ CREATE TABLE person (
 CREATE TABLE goals (
 	id SERIAL PRIMARY KEY,
 	user_id INT NOT NULL REFERENCES person, 
-	name VARCHAR NOT NULL	
+	goal VARCHAR NOT NULL,
+	instances_per_week INT NOT NULL
 );
 
 CREATE TABLE history (
 	id SERIAL PRIMARY KEY,
 	goal_id INT NOT NULL REFERENCES goals, 
-	completed_at TIMESTAMP,
-	instances_per_week INT NOT NULL
+	completed_at TIMESTAMP
 );
