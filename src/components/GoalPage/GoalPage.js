@@ -3,7 +3,6 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
-import moment from 'moment';
 
 class GoalPage extends Component {
   /* Global Variables */
@@ -11,8 +10,6 @@ class GoalPage extends Component {
     title: '',
     instances: '',
     goalsList: [],
-    // WIP
-    didIt: ''
   }
 
   /* Life Cycle Events */
@@ -66,27 +63,6 @@ class GoalPage extends Component {
     console.log('Error in retrieving goals from server:', error);
   }
 
-  // handleClickCompleted on a specific goal
-  // WIP
-  handleClickCompleted = () => {
-    console.log(moment().format('LLLL'));
-    // on click of button: save current timestamp, then send to database
-    this.setState({ didIt: moment().format('LLLL') });
-    axios.post('/api/goal', { didIt: this.state.didIt })
-      .then(this.handleClickCompletedSuccess)
-      .catch(this.handleClickCompletedError);
-  }
-
-  // handleClickCompleted Success
-  // WIP
-  handleClickCompletedSuccess = (response) => { console.log(response); }
-
-  // handleClickCompleted Error
-  // WIP
-  handleClickCompletedError = (error) => {
-    console.log(error);
-  }
-
   /* Render Page Content */
 
   render() {
@@ -101,13 +77,10 @@ class GoalPage extends Component {
         </form>
 
         {/* View Goals */}
+        {/* <input type='radio'></input> */}
         <ul>
           {this.state.goalsList.map(goal => (
-            <li key={goal.id}>
-              {goal.name}: {goal.instances} per week
-              <button type="button" onClick={this.handleClickCompleted}>Did it!</button>
-            </li>
-
+            <li key={goal.id}>{goal.name}: {goal.instances} per week</li>
           ))}
         </ul>
       </div>

@@ -1,0 +1,14 @@
+CREATE TABLE person (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR (1000),
+    username VARCHAR (80) UNIQUE NOT NULL,
+    password VARCHAR (1000) NOT NULL
+);
+
+CREATE TABLE goal (
+	id SERIAL PRIMARY KEY,
+	user_id INT NOT NULL REFERENCES person,
+	title VARCHAR NOT NULL,
+	completed BOOL DEFAULT FALSE NOT NULL
+ 
+);

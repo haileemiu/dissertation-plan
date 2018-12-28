@@ -20,7 +20,7 @@ router.post('/', (req, res) => {
 
 // Handles retrieving goal list
 router.get('/', (req, res) => {
-  const queryText = 'SELECT goal.id, goal.name, goal.instances FROM user LEFT JOIN goal ON user.id = goal.user_id WHERE goal.user_id = $1;';
+  const queryText = 'SELECT goal.id, goal.name, goal.instances FROM person LEFT JOIN goal ON person.id = goal.user_id WHERE goal.user_id = $1;';
 
   pool.query(queryText, [req.user.id])
     .then((results) => { res.send(results.rows); })
@@ -29,9 +29,5 @@ router.get('/', (req, res) => {
       res.sendStatus(500);
     });
 });
-
-// Handles adding new instances
-// WIP
-router.post('/');
 
 module.exports = router;
