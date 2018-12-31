@@ -5,7 +5,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 
 // These props simply come from mapStateToProps below. (not being passed from App.js)
-const Nav = (props) => (
+const Nav = props => (
   <div className="nav">
     <Link to="/home">
       {/* Best to not have this NOT as an h1, because then it will the be the h1 on every page */}
@@ -24,12 +24,19 @@ const Nav = (props) => (
           <Link className="nav-link" to="/goal">
             Goal Page
           </Link>
+
+          <Link className="nav-link" to="/about">
+            About
+          </Link>
+
+          <Link className="nav-link" to="/dissertation">
+            My Dissertation Plan
+          </Link>
+
           <LogOutButton className="nav-link" />
         </>
       )}
-      <Link className="nav-link" to="/about">
-        About
-      </Link>
+
     </div>
   </div>
 );
