@@ -9,13 +9,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
+import Checkbox from '@material-ui/core/Checkbox';
 
+/* Material UI styling */
 const styles = theme => ({
   root: {
     width: '100%',
@@ -27,15 +26,33 @@ const styles = theme => ({
   },
 });
 
+/* Class Component */
 class DissertationPlan extends Component {
+  /* Global Variables */
   state = {
-    open: true,
+    open: false, // default all sections closed
+    checkedA: false, // default all boxes unchecked
+    checkedB: false,
   };
 
+  /* Life Cycle Events */
+  componentDidMount = () => {
+    
+  }
+
+  /* Custom Events */
+
+  // Open and close each section
   handleClick = () => {
     this.setState(state => ({ open: !state.open }));
   };
 
+  // Check and uncheck boxes
+  handleChange = name => (event) => {
+    this.setState({ [name]: event.target.checked });
+  };
+
+  /* Render Page Content */
   render() {
     const { classes } = this.props;
 
@@ -44,38 +61,48 @@ class DissertationPlan extends Component {
         <h1>Dissertation Plan</h1>
         <List
           component="nav"
-          subheader={<ListSubheader component="div">Nested List Items</ListSubheader>}
+          subheader={<ListSubheader component="div">My Plan</ListSubheader>}
         >
-          <ListItem button>
-            <ListItemIcon>
-              <SendIcon />
-            </ListItemIcon>
-            <ListItemText inset primary="Sent mail" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <DraftsIcon />
-            </ListItemIcon>
-            <ListItemText inset primary="Drafts" />
-          </ListItem>
+
           <ListItem button onClick={this.handleClick}>
             <ListItemIcon>
-              <InboxIcon />
+              <StarBorder />
             </ListItemIcon>
-            <ListItemText inset primary="Inbox" />
+            <ListItemText inset primary="Section 1" />
             {this.state.open ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
+
           <Collapse in={this.state.open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItem button className={classes.nested}>
                 <ListItemIcon>
-                  <StarBorder />
+
+                  <Checkbox
+                    checked={this.state.checkedA}
+                    onChange={this.handleChange('checkedA')}
+                    value="checkedA"
+                  />
+
                 </ListItemIcon>
-                <ListItemText inset primary="Starred" />
+                <ListItemText inset primary="Part 1" />
+              </ListItem>
+
+              <ListItem button className={classes.nested}>
+                <ListItemIcon>
+
+                  <Checkbox
+                    checked={this.state.checkedB}
+                    onChange={this.handleChange('checkedB')}
+                    value="checkedB"
+                  />
+
+                </ListItemIcon>
+                <ListItemText inset primary="Part 2" />
               </ListItem>
             </List>
           </Collapse>
-        </List>
+
+        </List> {/* END of entire list */}
       </div>
     );
   }
