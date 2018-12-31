@@ -79,7 +79,7 @@ class GoalPage extends Component {
   // On Success of completedGoal
   completedGoalSuccess = (response) => {
     console.log('completedGoalSuccess:', response);
-    alert('Saved completed goal')
+    alert('Saved completed goal');
     // TO DO:
     // Update the DOM to show number of instances
   }
