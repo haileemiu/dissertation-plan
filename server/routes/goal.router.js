@@ -3,11 +3,12 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
-// Handles POST request for new goal item
+// Handles POST request for new goal created
 router.post('/', (req, res) => {
   const { goal } = req.body;
   const { instancesPerWeek } = req.body;
 
+  // Uses the user_id to save new goal
   const queryText = 'INSERT INTO goals (user_id, goal, instances_per_week) VALUES ($1, $2, $3) RETURNING id;';
 
   pool.query(queryText, [req.user.id, goal, instancesPerWeek])
@@ -18,8 +19,9 @@ router.post('/', (req, res) => {
     });
 });
 
-// Handles retrieving goal list
+// Handles retrieving the list of goals that the user previously created
 router.get('/', (req, res) => {
+  // Joins the goals and person table
   const queryText = 'SELECT goals.id, goals.user_id, goals.goal, instances_per_week FROM person LEFT JOIN goals ON person.id = goals.user_id WHERE goals.user_id = $1;';
 
   pool.query(queryText, [req.user.id])
