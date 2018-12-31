@@ -63,12 +63,26 @@ class GoalPage extends Component {
     console.log('Error in retrieving goals from server:', error);
   }
 
+  // onClick save completed goal time/date
+  completedGoal = goalId => () => {
+    axios.post(`/api/history?goalId=${goalId}`)
+      .then(this.completedGoalSuccess)
+      .catch(this.completedGoalError);
+  }
+
+  // Completed goal Success
+  completedGoalSuccess = (response) => { console.log('completedGoalSuccess:', response); }
+
+  // Completed goal Error
+  completedGoalError = (error) => { console.log('completedGoalError:', error); }
+
   /* Render Page Content */
 
   render() {
     return (
       <div>
         <h1>Goal Page</h1>
+
         {/* Add Goal */}
         <form onSubmit={this.handleSubmit}>
           <input type="text" placeholder="goal" onChange={this.handleChangeGoal} value={this.state.goal} />
@@ -77,10 +91,12 @@ class GoalPage extends Component {
         </form>
 
         {/* View Goals */}
-        {/* <input type='radio'></input> */}
         <ul>
           {this.state.goalsList.map(goal => (
-            <li key={goal.id}>{goal.goal}: {goal.instances_per_week} per week</li>
+            <li key={goal.id}>
+              {goal.goal}: {goal.instances_per_week} times per week
+              <button type="button" onClick={this.completedGoal(goal.id)}>Did it!</button>
+            </li>
           ))}
         </ul>
       </div>

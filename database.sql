@@ -13,8 +13,8 @@ CREATE TABLE goals (
 	instances_per_week INT NOT NULL
 );
 
-CREATE TABLE history (
+CREATE TABLE goals_history (
 	id SERIAL PRIMARY KEY,
 	goal_id INT NOT NULL REFERENCES goals, 
-	completed_at TIMESTAMP
+	completed_on DATE DEFAULT NOW()
 );
