@@ -16,19 +16,36 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // The only thing different from this and every other post we've seen
 // is that the password gets encrypted before being inserted
 router.post('/register', (req, res, next) => {
-  console.log('req: ', req.body);
   const { email } = req.body;
   const { username } = req.body;
   const password = encryptLib.encryptPassword(req.body.password);
 
   const queryText = 'INSERT INTO person (email, username, password) VALUES ($1, $2, $3) RETURNING id';
+
+  // WIP
+  // TODO: add real section headings
+  // Create the default dissertation_plan data for the new user
+  // No need for data sterilization because this is not based on user input
   pool.query(queryText, [email, username, password])
-    .then(() => {
+    .then((results) => {
+      console.log('results.rows[0].id', results.rows[0].id);
+      const querySections = `INSERT INTO dissertation_sections (user_id, name) VALUES (${results.rows[0].id}, 'Temporary Section 1'), (${results.rows[0].id}, 'Temporary Section 2') RETURNING id;`;
+      pool.query(querySections)
+        .then((result) => {
+          const querySteps = `INSERT INTO dissertation_steps (name, section_id) VALUES ('temp step 1' ${result.rows[0].id}), ('temp step 2' ${result.rows[0].id});`;
+
+          pool.query(querySteps)
+            .then(() => { res.sendStatus(201); })
+            .catch(() => { res.sendStatus(500); });
+
+          res.sendStatus(201);
+        })
+        .catch((err) => {
+          console.log(err);
+          res.sendStatus(500);
+        });
+
       res.sendStatus(201);
-      
-      // WIP
-      // Create the default dissertation_plan data for the new user
-      // const query 
     })
     .catch((err) => { next(err); });
 });

@@ -72,6 +72,7 @@ class DissertationPlan extends Component {
           </ListItem>
 
           <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+                 
             <List component="div" disablePadding>
               <ListItem button className={classes.nested}>
                 <ListItemIcon>
@@ -86,6 +87,7 @@ class DissertationPlan extends Component {
                 <ListItemText inset primary="Part 1" />
               </ListItem>
             </List>
+          <button>test</button>
           </Collapse>
 
         </List> {/* END of entire list */}

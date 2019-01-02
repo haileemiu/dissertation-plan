@@ -4,25 +4,36 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
-// Handles retrieving dissertation plan
+// // Handles retrieving dissertation plan
 // router.get('/', (req, res) => {
+//   // Join the dissertation plan tables with the person table
+//   const queryText = 'SELECT from ;';
 
-// Join the dissertation plan tables with the person table
-// const queryText = 'SELECT from ;';
-
-// pool.query(queryText, [req.user.id])
-//   .then((results) => { res.send(results.rows); })
-//   .catch((error) => {
-//     console.log('Error in getting dissertation plan:', error);
-//     res.sendStatus(500);
-//   });
+//   pool.query(queryText, [req.user.id])
+//     .then((results) => { res.send(results.rows); })
+//     .catch((error) => {
+//       console.log('Error in getting dissertation plan:', error);
+//       res.sendStatus(500);
+//     });
 // });
 
-// ?? Handles adding new section heading to disseration plan??
+// WIP TEST
+router.get('/', (req, res) => {
+  const queryText = 'SELECT * from dissertation_sections WHERE user_id = $1;';
+
+  pool.query(queryText, [req.user.id])
+    .then((results) => { res.send(results.rows); })
+    .catch((error) => {
+      console.log('Error in getting dissertation plan:', error);
+      res.sendStatus(500);
+    });
+});
+
+// ?? Handles adding new section heading to dissertation plan??
 
 // Handles adding new steps to dissertation plan
 // router.post('/', (req, res) => {
-  // Adds for individual user_id and section heading
+// Adds for individual user_id and section heading
 //   const queryText = 'INSERT INTO ;';
 
 //   pool.query(queryText, [req.user.id])

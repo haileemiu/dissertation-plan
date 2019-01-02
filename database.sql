@@ -31,3 +31,18 @@ CREATE TABLE dissertation_plan (
 	name VARCHAR NOT NULL,
 	completed BOOLEAN DEFAULT false
 );
+
+-- For the section headings
+CREATE TABLE dissertation_sections (
+	id SERIAL PRIMARY KEY,
+	user_id INT NOT NULL REFERENCES person,
+	name VARCHAR NOT NULL
+);
+
+-- For the steps within the sections
+CREATE TABLE dissertation_steps (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR NOT NULL,
+	section_id INT REFERENCES dissertation_sections,
+	completed BOOLEAN DEFAULT false
+);
