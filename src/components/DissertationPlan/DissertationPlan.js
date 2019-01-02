@@ -32,12 +32,12 @@ class DissertationPlan extends Component {
   state = {
     open: false, // default all sections closed
     checkedA: false, // default all boxes unchecked
-    sectionList: [],
+    dissertationPlanList: [],
   };
 
   /* Life Cycle Events */
   componentDidMount = () => {
-    this.getSections();
+    this.getDissertationPlan();
   }
 
   /* Custom Events */
@@ -52,20 +52,20 @@ class DissertationPlan extends Component {
     this.setState({ [name]: event.target.checked });
   };
 
-  // Handle retrieving section headings from database
-  getSections = () => {
+  // Handle retrieving dissertation plan
+  getDissertationPlan = () => {
     axios.get('/api/dissertation')
-      .then(this.getSectionsSuccess)
-      .catch(this.getSectionsError);
+      .then(this.getDissertationPlanSuccess)
+      .catch(this.getDissertationPlanError);
   }
 
-  // On Success of getSections
-  getSectionsSuccess = (response) => {
-    this.setState({ sectionList: response.data });
+  // On Success of getDissertationPlan
+  getDissertationPlanSuccess = (response) => {
+    this.setState({ dissertationPlanList: response.data });
   }
 
-  // On Error of getSections
-  getSectionsError = (err) => {
+  // On Error of getDissertationPlan
+  getDissertationPlanError = (err) => {
     console.log('Error in retrieving sections from api:', err);
     alert('Error in getting your saved sections');
   }
@@ -78,20 +78,20 @@ class DissertationPlan extends Component {
       <div className={classes.root}>
         <h1>Dissertation Plan</h1>
         {/* TEST WIP */}
-        <pre>{JSON.stringify(this.state.sectionList)}</pre>
+        <pre>{JSON.stringify(this.state.dissertationPlanList)}</pre>
 
         <List
           component="nav"
           subheader={<ListSubheader component="div">My Plan</ListSubheader>}
         >
           {/* List out all the sections from the database */}
-          {this.state.sectionList.map(section => (
+          {this.state.dissertationPlanList.map(section => (
             <ListItem button onClick={this.handleClick}>
               <ListItemIcon>
                 <StarBorder />
               </ListItemIcon>
               {/* <ListItemText inset primary="Primary 1" /> */}
-              <ListItemText inset primary={section.name} />
+              <ListItemText inset primary={section.sections} />
               {this.state.open ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
           ))}
@@ -99,19 +99,24 @@ class DissertationPlan extends Component {
           <Collapse in={this.state.open} timeout="auto" unmountOnExit>
 
             <List component="div" disablePadding>
-              <ListItem button className={classes.nested}>
-                <ListItemIcon>
+              {this.state.dissertationPlanList.map(step => (
+                <ListItem button className={classes.nested}>
+                  <ListItemIcon>
 
-                  <Checkbox
-                    checked={this.state.checkedA}
-                    onChange={this.handleChange('checkedA')}
-                    value="checkedA"
-                  />
+                    <Checkbox
+                      checked={this.state.checkedA}
+                      onChange={this.handleChange('checkedA')}
+                      value={step.steps}
+                    />
 
-                </ListItemIcon>
-                <ListItemText inset primary="Part 1" />
-              </ListItem>
+                  </ListItemIcon>
+                  <ListItemText inset primary={step.steps} />
+                </ListItem>
+
+              ))}
             </List>
+
+
             <button>test</button>
           </Collapse>
 
