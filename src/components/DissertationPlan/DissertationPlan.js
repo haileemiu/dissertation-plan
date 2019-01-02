@@ -32,11 +32,12 @@ class DissertationPlan extends Component {
   state = {
     open: false, // default all sections closed
     checkedA: false, // default all boxes unchecked
+    sectionList: [],
   };
 
   /* Life Cycle Events */
   componentDidMount = () => {
-
+    this.getSections();
   }
 
   /* Custom Events */
@@ -51,6 +52,24 @@ class DissertationPlan extends Component {
     this.setState({ [name]: event.target.checked });
   };
 
+  // Handle retrieving section headings from database
+  getSections = () => {
+    axios.get('/api/dissertation')
+      .then(this.getSectionsSuccess)
+      .catch(this.getSectionsError);
+  }
+
+  // On Success of getSections
+  getSectionsSuccess = (response) => {
+    this.setState({ sectionList: response.data });
+  }
+
+  // On Error of getSections
+  getSectionsError = (err) => {
+    console.log('Error in retrieving sections from api:', err);
+    alert('Error in getting your saved sections');
+  }
+
   /* Render Page Content */
   render() {
     const { classes } = this.props;
@@ -58,21 +77,27 @@ class DissertationPlan extends Component {
     return (
       <div className={classes.root}>
         <h1>Dissertation Plan</h1>
+        {/* TEST WIP */}
+        <pre>{JSON.stringify(this.state.sectionList)}</pre>
+
         <List
           component="nav"
           subheader={<ListSubheader component="div">My Plan</ListSubheader>}
         >
-
-          <ListItem button onClick={this.handleClick}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText inset primary="Section 1" />
-            {this.state.open ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
+          {/* List out all the sections from the database */}
+          {this.state.sectionList.map(section => (
+            <ListItem button onClick={this.handleClick}>
+              <ListItemIcon>
+                <StarBorder />
+              </ListItemIcon>
+              {/* <ListItemText inset primary="Primary 1" /> */}
+              <ListItemText inset primary={section.name} />
+              {this.state.open ? <ExpandLess /> : <ExpandMore />}
+            </ListItem>
+          ))}
 
           <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-                 
+
             <List component="div" disablePadding>
               <ListItem button className={classes.nested}>
                 <ListItemIcon>
@@ -87,7 +112,7 @@ class DissertationPlan extends Component {
                 <ListItemText inset primary="Part 1" />
               </ListItem>
             </List>
-          <button>test</button>
+            <button>test</button>
           </Collapse>
 
         </List> {/* END of entire list */}

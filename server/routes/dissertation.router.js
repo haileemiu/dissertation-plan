@@ -18,8 +18,9 @@ const router = express.Router();
 // });
 
 // WIP TEST
+// Get just the section name
 router.get('/', (req, res) => {
-  const queryText = 'SELECT * from dissertation_sections WHERE user_id = $1;';
+  const queryText = 'SELECT name from dissertation_sections WHERE user_id = $1;';
 
   pool.query(queryText, [req.user.id])
     .then((results) => { res.send(results.rows); })

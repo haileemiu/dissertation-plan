@@ -65,7 +65,7 @@ class GoalPage extends Component {
 
   // On Error of getGoals
   getGoalsError = (error) => {
-    console.log('Error in retrieving goals from server:', error);
+    console.log('Error in retrieving goals from api:', error);
     alert('Error in getting your saved goals');
   }
 
