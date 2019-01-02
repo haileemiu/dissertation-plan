@@ -32,12 +32,11 @@ class DissertationPlan extends Component {
   state = {
     open: false, // default all sections closed
     checkedA: false, // default all boxes unchecked
-    checkedB: false,
   };
 
   /* Life Cycle Events */
   componentDidMount = () => {
-    
+
   }
 
   /* Custom Events */
@@ -85,19 +84,6 @@ class DissertationPlan extends Component {
 
                 </ListItemIcon>
                 <ListItemText inset primary="Part 1" />
-              </ListItem>
-
-              <ListItem button className={classes.nested}>
-                <ListItemIcon>
-
-                  <Checkbox
-                    checked={this.state.checkedB}
-                    onChange={this.handleChange('checkedB')}
-                    value="checkedB"
-                  />
-
-                </ListItemIcon>
-                <ListItemText inset primary="Part 2" />
               </ListItem>
             </List>
           </Collapse>

@@ -29,7 +29,7 @@ class GoalPage extends Component {
     this.setState({ instancesPerWeek: event.target.value });
   }
 
-  // Handles sending the form information to the api to be stored in the databse
+  // Handles sending the form information to the api to be stored in the database
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -47,7 +47,7 @@ class GoalPage extends Component {
 
   // On Error of handleSubmit
   handleSubmitError = (error) => {
-    console.log('Error in adding goal:', error)
+    console.log('Error in adding goal:', error);
     alert('Error in adding goal');
   };
 

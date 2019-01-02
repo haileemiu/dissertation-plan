@@ -23,7 +23,13 @@ router.post('/register', (req, res, next) => {
 
   const queryText = 'INSERT INTO person (email, username, password) VALUES ($1, $2, $3) RETURNING id';
   pool.query(queryText, [email, username, password])
-    .then(() => { res.sendStatus(201); })
+    .then(() => {
+      res.sendStatus(201);
+      
+      // WIP
+      // Create the default dissertation_plan data for the new user
+      // const query 
+    })
     .catch((err) => { next(err); });
 });
 
