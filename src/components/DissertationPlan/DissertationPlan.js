@@ -77,9 +77,7 @@ class DissertationPlan extends Component {
     return (
       <div className={classes.root}>
         <h1>Dissertation Plan</h1>
-        {/* TEST WIP */}
         <pre>{JSON.stringify(this.state.dissertationPlanList)}</pre>
-
         <List
           component="nav"
           subheader={<ListSubheader component="div">My Plan</ListSubheader>}
