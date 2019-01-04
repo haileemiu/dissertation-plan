@@ -77,19 +77,21 @@ class DissertationPlan extends Component {
     return (
       <div className={classes.root}>
         <h1>Dissertation Plan</h1>
-        <pre>{JSON.stringify(this.state.dissertationPlanList)}</pre>
-        <List
+        <pre>{JSON.stringify(this.state.dissertationPlanList, null, 2)}</pre>
+        {/* <div>{this.state.dissertationPlanList[0].id}</div> */}
+        {/* <div>{this.state.dissertationPlanList[0].step.rows[0].name}</div> */}
+        {/* <List
           component="nav"
           subheader={<ListSubheader component="div">My Plan</ListSubheader>}
         >
-          {/* List out all the sections from the database */}
+          
           {this.state.dissertationPlanList.map(section => (
             <ListItem button onClick={this.handleClick}>
               <ListItemIcon>
                 <StarBorder />
               </ListItemIcon>
-              {/* <ListItemText inset primary="Primary 1" /> */}
-              <ListItemText inset primary={section.sections} />
+              
+              <ListItemText inset primary={section.sectionName} />
               {this.state.open ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
           ))}
@@ -104,11 +106,11 @@ class DissertationPlan extends Component {
                     <Checkbox
                       checked={this.state.checkedA}
                       onChange={this.handleChange('checkedA')}
-                      value={step.steps}
+                      value={step.stepName}
                     />
 
                   </ListItemIcon>
-                  <ListItemText inset primary={step.steps} />
+                  <ListItemText inset primary={step.stepName} />
                 </ListItem>
 
               ))}
@@ -118,7 +120,8 @@ class DissertationPlan extends Component {
             <button>test</button>
           </Collapse>
 
-        </List> {/* END of entire list */}
+        </List>  */}
+        
       </div>
     );
   }
