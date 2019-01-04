@@ -77,51 +77,48 @@ class DissertationPlan extends Component {
     return (
       <div className={classes.root}>
         <h1>Dissertation Plan</h1>
-        <pre>{JSON.stringify(this.state.dissertationPlanList, null, 2)}</pre>
-        {/* <div>{this.state.dissertationPlanList[0].id}</div> */}
-        {/* <div>{this.state.dissertationPlanList[0].step.rows[0].name}</div> */}
-        {/* <List
+        {/* <pre>{JSON.stringify(this.state.dissertationPlanList, null, 2)}</pre> */}
+
+        <List
           component="nav"
           subheader={<ListSubheader component="div">My Plan</ListSubheader>}
         >
-          
+
+
           {this.state.dissertationPlanList.map(section => (
-            <ListItem button onClick={this.handleClick}>
-              <ListItemIcon>
-                <StarBorder />
-              </ListItemIcon>
-              
-              <ListItemText inset primary={section.sectionName} />
-              {this.state.open ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-          ))}
+            <div>
+              <ListItem button onClick={this.handleClick}>
+                <ListItemIcon>
+                  <StarBorder />
+                </ListItemIcon>
 
-          <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+                {/* Section Name */}
+                <ListItemText inset primary={section.name} />
+                {this.state.open ? <ExpandLess /> : <ExpandMore />}
+              </ListItem>
 
-            <List component="div" disablePadding>
-              {this.state.dissertationPlanList.map(step => (
-                <ListItem button className={classes.nested}>
-                  <ListItemIcon>
+              {/* Steps listed out */}
+              {section.step.map(step => (
+                <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <ListItem button className={classes.nested}>
+                      <ListItemIcon>
 
-                    <Checkbox
-                      checked={this.state.checkedA}
-                      onChange={this.handleChange('checkedA')}
-                      value={step.stepName}
-                    />
+                        <Checkbox
+                          checked={this.state.checkedA}
+                          onChange={this.handleChange('checkedA')}
+                          value={step.name}
+                        />
 
-                  </ListItemIcon>
-                  <ListItemText inset primary={step.stepName} />
-                </ListItem>
-
+                      </ListItemIcon>
+                      <ListItemText inset primary={step.name} />
+                    </ListItem>
+                  </List>
+                </Collapse>
               ))}
-            </List>
-
-
-            <button>test</button>
-          </Collapse>
-
-        </List>  */}
-        
+            </div>
+          ))}
+        </List>
       </div>
     );
   }
