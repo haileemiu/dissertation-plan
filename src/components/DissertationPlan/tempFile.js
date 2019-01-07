@@ -14,7 +14,6 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 import Checkbox from '@material-ui/core/Checkbox';
 
-
 /* Material UI styling */
 const styles = theme => ({
   root: {
@@ -54,11 +53,10 @@ class DissertationPlan extends Component {
 
     this.setState({ dissertationPlanList: newList });
   };
-
-  // Check and uncheck boxes
-  handleChange = name => (event) => {
-    this.setState({ [name]: event.target.checked });
-  };
+  // // Check and uncheck boxes
+  // handleChange = name => (event) => {
+  //   this.setState({ [name]: event.target.checked });
+  // };
 
   // Handle retrieving dissertation plan
   getDissertationPlan = () => {
@@ -69,11 +67,6 @@ class DissertationPlan extends Component {
 
   // On Success of getDissertationPlan
   getDissertationPlanSuccess = (response) => {
-    // const collapseDissertationPlanList = {
-    //   dissertationPlanList: response.data,
-    //   open: false,
-    // };
-    
     this.setState({ dissertationPlanList: response.data });
   }
 
@@ -96,22 +89,17 @@ class DissertationPlan extends Component {
           component="nav"
           subheader={<ListSubheader component="div">My Plan</ListSubheader>}
         >
-
-
           {this.state.dissertationPlanList.map(section => (
-            <div>
+            <>
               <ListItem button onClick={this.handleClick(section.id, section.open)}>
-    
                 <ListItemIcon>
                   <StarBorder />
                 </ListItemIcon>
 
-                {/* Section Name */}
                 <ListItemText inset primary={section.name} />
                 {section.open ? <ExpandLess /> : <ExpandMore />}
               </ListItem>
-
-              {/* Steps listed out */}
+              
               <Collapse in={section.open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   {section.step.map(step => (
@@ -130,8 +118,9 @@ class DissertationPlan extends Component {
                   ))}
                 </List>
               </Collapse>
-            </div>
+            </>
           ))}
+
         </List>
       </div>
     );
