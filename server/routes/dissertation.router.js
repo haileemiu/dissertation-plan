@@ -48,7 +48,6 @@ router.put('/:id', (req, res) => {
     });
 });
 
-// WIP
 // Handles adding new steps to dissertation plan
 router.post('/', (req, res) => {
   // Adds for individual user_id and section heading

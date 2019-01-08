@@ -1,5 +1,17 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"';
+      
+    /* 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
     margin: 0px;
 }
 
@@ -8,7 +20,7 @@ body {
     margin: 50px;
 }
 
-form {
+.customForm {
     background-color: #dbd5d5;
     width: 30%;
     height: 250px;
