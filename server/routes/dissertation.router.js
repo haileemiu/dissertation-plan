@@ -38,8 +38,6 @@ router.get('/', async (req, res) => {
 
 // Handles marking steps complete or not complete
 router.put('/:id', (req, res) => {
-  console.log('req.params:', req.params.id);
-  console.log('req.body.completed:', req.body.completed);
   const queryText = 'UPDATE dissertation_steps SET completed = $1 WHERE id=$2;';
 
   pool.query(queryText, [req.body.completed, req.params.id])
@@ -50,21 +48,24 @@ router.put('/:id', (req, res) => {
     });
 });
 
-
+// WIP
 // Handles adding new steps to dissertation plan
-// router.post('/', (req, res) => {
-// Adds for individual user_id and section heading
-//   const queryText = 'INSERT INTO ;';
+router.post('/:id', (req, res) => {
+  console.log('req.body.name:', req.body.name);
+  console.log('req.params.id:', req.params.id);
+  // Adds for individual user_id and section heading
+  const queryText = 'INSERT INTO dissertation_steps (name, section_id) VALUES ($1, $2);';
 
-//   pool.query(queryText, [req.user.id])
-//     .then(() => { res.sendStatus(201); })
-//     .catch((error) => {
-//       console.log('Error in adding step:', error);
-//       res.sendStatus(500);
-//     });
-// });
+  pool.query(queryText, [req.body.name, req.params.id])
+    .then(() => { res.sendStatus(201); })
+    .catch((error) => {
+      console.log('Error in adding step:', error);
+      res.sendStatus(500);
+    });
+});
 
 // Handles editing steps in dissertation plan
+// NOTE: remember there is another put in this router
 // router.put(('/', (req, res) => {
 //   const queryText = 'UPDATE -- SET -- = $1 where id=$2;';
 
