@@ -9,6 +9,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
@@ -38,6 +42,10 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit,
+  },
+  icon: {
+    margin: theme.spacing.unit,
+    fontSize: 25,
   },
 });
 
@@ -187,10 +195,12 @@ class DissertationPlan extends Component {
 
                         </ListItemIcon>
                         <ListItemText inset primary={step.name} />
+                        <DeleteIcon className={classes.icon} />
+                        <EditIcon className={classes.icon} />
                       </ListItem>
                     ))}
 
-                    {/* WIP */}
+                    {/* Add new TO DO: make look like design */}
                     <ListItem className={classes.nested}>
                       <form onSubmit={this.handleAddNewStep} className={classes.container}>
                         <TextField
@@ -209,9 +219,10 @@ class DissertationPlan extends Component {
                           type="submit"
                           value="Add New"
                         >
-                        Add
+                          Add
                         </Button>
                       </form>
+                      <AddCircleIcon className={classes.icon} />
                     </ListItem>
 
                   </List>
