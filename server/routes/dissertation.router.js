@@ -4,31 +4,6 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
-
-// router.get('/', (req, res) => {
-//   // Handles retrieving dissertation sections
-//   const querySections = `
-//   SELECT 
-//   dissertation_sections.name as sectionName, 
-//   dissertation_sections.id as sectionsId,
-//   dissertation_steps.id as stepsId,
-//   dissertation_steps.name as stepName,
-//   dissertation_steps.completed as completed
-//   FROM 
-//   dissertation_sections 
-//   JOIN dissertation_steps 
-//   ON dissertation_sections.id = dissertation_steps.section_id
-//   WHERE user_id=$1;`;
-
-//   pool.query(querySections, [req.user.id])
-//     .then((results) => { res.send(results.rows); })
-//     .catch((error) => {
-//       console.log('Error in getting goals:', error);
-//       res.sendStatus(500);
-//     });
-// });
-
-
 router.get('/', async (req, res) => {
   try {
     const querySectionHeadings = 'SELECT * FROM dissertation_sections WHERE user_id=$1;';
