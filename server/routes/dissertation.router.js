@@ -44,7 +44,7 @@ router.get('/', async (req, res) => {
     const sectionIds = sectionHeadingsIds.join(',');
     // console.log(sectionIds);
 
-    const stepsBySection = await pool.query(`SELECT * FROM dissertation_steps WHERE section_id IN (${sectionIds});`);
+    const stepsBySection = await pool.query(`SELECT * FROM dissertation_steps WHERE section_id IN (${sectionIds}) ORDER BY id;`);
     // console.log(stepsBySection.rows);
 
     const rowsOfStepsBySection = stepsBySection.rows;
@@ -54,7 +54,6 @@ router.get('/', async (req, res) => {
       step: Array.from(rowsOfStepsBySection).filter(step => step.section_id === section.id),
     }));
 
-  
     res.send(responseArray);
   } catch (err) {
     console.log(err);
@@ -62,6 +61,19 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Handles marking steps complete or not complete
+router.put('/:id', (req, res) => {
+  console.log('req.params:', req.params.id);
+  console.log('req.body.completed:', req.body.completed);
+  const queryText = 'UPDATE dissertation_steps SET completed = $1 WHERE id=$2;';
+
+  pool.query(queryText, [req.body.completed, req.params.id])
+    .then(() => { res.sendStatus(200); })
+    .catch((error) => {
+      console.log('Error in adding goal:', error);
+      res.sendStatus(500);
+    });
+});
 
 
 // Handles adding new steps to dissertation plan

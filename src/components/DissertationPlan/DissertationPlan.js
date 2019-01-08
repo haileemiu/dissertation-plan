@@ -31,8 +31,8 @@ const styles = theme => ({
 class DissertationPlan extends Component {
   /* Global Variables */
   state = {
-    open: false, // default all sections closed
-    checkedA: false, // default all boxes unchecked
+    // open: false, // default all sections closed
+    // checkedA: false, // default all boxes unchecked
     dissertationPlanList: [],
   };
 
@@ -43,7 +43,7 @@ class DissertationPlan extends Component {
 
   /* Custom Events */
 
-  // Open and close each section
+  // Open and close each section collapsable heading
   handleClick = (id, open) => () => {
     const newList = this.state.dissertationPlanList.map((plan) => {
       if (plan.id === id) {
@@ -56,9 +56,28 @@ class DissertationPlan extends Component {
   };
 
   // Check and uncheck boxes
-  handleChange = name => (event) => {
-    this.setState({ [name]: event.target.checked });
+  handleCheckBoxChange = stepId => (event) => {
+    this.markAsComplete(stepId, event.target.checked);
   };
+
+  // Handle updating completed status
+  markAsComplete = (stepId, stepCompleted) => {
+    axios.put(`/api/dissertation/${stepId}`, { completed: stepCompleted })
+      .then(this.handleCheckBoxChangeSuccess)
+      .catch(this.handleCheckBoxChangeError(stepCompleted));
+  }
+
+  // On Success of handleCheckBoxChangeSuccess
+  handleCheckBoxChangeSuccess = (response) => {
+    console.log('Success marked completed:', response);
+  }
+
+  // On Error of handleCheckBoxChangeError
+  handleCheckBoxChangeError = (err) => {
+    console.log('Error in marking complete:', err);
+    // TO DO
+    // Set visual state back to unchecked if update fails
+  }
 
   // Handle retrieving dissertation plan
   getDissertationPlan = () => {
@@ -69,11 +88,6 @@ class DissertationPlan extends Component {
 
   // On Success of getDissertationPlan
   getDissertationPlanSuccess = (response) => {
-    // const collapseDissertationPlanList = {
-    //   dissertationPlanList: response.data,
-    //   open: false,
-    // };
-    
     this.setState({ dissertationPlanList: response.data });
   }
 
@@ -90,18 +104,17 @@ class DissertationPlan extends Component {
     return (
       <div className={classes.root}>
         <h1>Dissertation Plan</h1>
-        {/* <pre>{JSON.stringify(this.state.dissertationPlanList, null, 2)}</pre> */}
 
         <List
           component="nav"
           subheader={<ListSubheader component="div">My Plan</ListSubheader>}
         >
 
-
           {this.state.dissertationPlanList.map(section => (
             <div>
+
               <ListItem button onClick={this.handleClick(section.id, section.open)}>
-    
+
                 <ListItemIcon>
                   <StarBorder />
                 </ListItemIcon>
@@ -114,15 +127,21 @@ class DissertationPlan extends Component {
               {/* Steps listed out */}
               <Collapse in={section.open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
+
+                  {/* List steps */}
                   {section.step.map(step => (
                     <ListItem button className={classes.nested}>
                       <ListItemIcon>
 
+                        {/* WIP */}
+                        {/* Checkbox */}
                         <Checkbox
-                          checked={this.state.checkedA}
-                          onChange={this.handleChange('checkedA')}
-                          value={step.name}
+                          type="checkbox"
+                          defaultChecked={step.completed}
+                          onChange={this.handleCheckBoxChange(step.id)}
+                          value={step.completed}
                         />
+
 
                       </ListItemIcon>
                       <ListItemText inset primary={step.name} />
@@ -133,6 +152,7 @@ class DissertationPlan extends Component {
             </div>
           ))}
         </List>
+        <pre>{JSON.stringify(this.state.dissertationPlanList, null, 2)}</pre>
       </div>
     );
   }
