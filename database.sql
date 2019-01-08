@@ -22,3 +22,27 @@ CREATE TABLE goals_history (
 	goal_id INT NOT NULL REFERENCES goals, 
 	completed_on DATE DEFAULT NOW()
 );
+
+-- dissertation_plan table that saves each users dissertation plan
+-- a default list will be created and added to this table when a user creates an account
+CREATE TABLE dissertation_plan (
+	id SERIAL PRIMARY KEY,
+	user_id INT NOT NULL REFERENCES person,
+	name VARCHAR NOT NULL,
+	completed BOOLEAN DEFAULT false
+);
+
+-- For the section headings
+CREATE TABLE dissertation_sections (
+	id SERIAL PRIMARY KEY,
+	user_id INT NOT NULL REFERENCES person,
+	name VARCHAR NOT NULL
+);
+
+-- For the steps within the sections
+CREATE TABLE dissertation_steps (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR NOT NULL,
+	section_id INT REFERENCES dissertation_sections,
+	completed BOOLEAN DEFAULT false
+);

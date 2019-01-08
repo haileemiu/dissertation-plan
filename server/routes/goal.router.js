@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
   pool.query(queryText, [req.user.id, goal, instancesPerWeek])
     .then(() => { res.sendStatus(201); })
     .catch((error) => {
-      console.log('Error in posting goal:', error);
+      console.log('Error in adding goal:', error);
       res.sendStatus(500);
     });
 });
