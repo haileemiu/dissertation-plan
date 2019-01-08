@@ -19,8 +19,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 const styles = theme => ({
   root: {
     width: '100%',
-    maxWidth: 360,
+    maxWidth: 1400,
     backgroundColor: theme.palette.background.paper,
+    padding: 20,
+    margin: 'auto',
   },
   nested: {
     paddingLeft: theme.spacing.unit * 4,
@@ -104,55 +106,55 @@ class DissertationPlan extends Component {
     return (
       <div className={classes.root}>
         <h1>Dissertation Plan</h1>
+        <div>
+          <List
+            component="nav"
+            subheader={<ListSubheader component="div">My Plan</ListSubheader>}
+          >
 
-        <List
-          component="nav"
-          subheader={<ListSubheader component="div">My Plan</ListSubheader>}
-        >
+            {this.state.dissertationPlanList.map(section => (
+              <div>
 
-          {this.state.dissertationPlanList.map(section => (
-            <div>
+                <ListItem button onClick={this.handleClick(section.id, section.open)}>
 
-              <ListItem button onClick={this.handleClick(section.id, section.open)}>
+                  <ListItemIcon>
+                    <StarBorder />
+                  </ListItemIcon>
 
-                <ListItemIcon>
-                  <StarBorder />
-                </ListItemIcon>
+                  {/* Section Name */}
+                  <ListItemText inset primary={section.name} />
+                  {section.open ? <ExpandLess /> : <ExpandMore />}
+                </ListItem>
 
-                {/* Section Name */}
-                <ListItemText inset primary={section.name} />
-                {section.open ? <ExpandLess /> : <ExpandMore />}
-              </ListItem>
+                {/* Steps listed out */}
+                <Collapse in={section.open} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
 
-              {/* Steps listed out */}
-              <Collapse in={section.open} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
+                    {/* List steps */}
+                    {section.step.map(step => (
+                      <ListItem button className={classes.nested}>
+                        <ListItemIcon>
 
-                  {/* List steps */}
-                  {section.step.map(step => (
-                    <ListItem button className={classes.nested}>
-                      <ListItemIcon>
-
-                        {/* WIP */}
-                        {/* Checkbox */}
-                        <Checkbox
-                          type="checkbox"
-                          defaultChecked={step.completed}
-                          onChange={this.handleCheckBoxChange(step.id)}
-                          value={step.completed}
-                        />
+                          {/* Checkbox */}
+                          <Checkbox
+                            type="checkbox"
+                            defaultChecked={step.completed}
+                            onChange={this.handleCheckBoxChange(step.id)}
+                            value={step.completed}
+                          />
 
 
-                      </ListItemIcon>
-                      <ListItemText inset primary={step.name} />
-                    </ListItem>
-                  ))}
-                </List>
-              </Collapse>
-            </div>
-          ))}
-        </List>
-        <pre>{JSON.stringify(this.state.dissertationPlanList, null, 2)}</pre>
+                        </ListItemIcon>
+                        <ListItemText inset primary={step.name} />
+                      </ListItem>
+                    ))}
+                  </List>
+                </Collapse>
+              </div>
+            ))}
+          </List>
+          {/* <pre>{JSON.stringify(this.state.dissertationPlanList, null, 2)}</pre> */}
+        </div>
       </div>
     );
   }
