@@ -42,7 +42,7 @@ class RegisterPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
-        <form onSubmit={this.registerUser}>
+        <form onSubmit={this.registerUser} className="customForm">
           <h1>Register User</h1>
 
           <div>

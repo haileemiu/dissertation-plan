@@ -13,6 +13,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 import Checkbox from '@material-ui/core/Checkbox';
+import { TextField, Button } from '@material-ui/core';
 
 
 /* Material UI styling */
@@ -27,6 +28,17 @@ const styles = theme => ({
   nested: {
     paddingLeft: theme.spacing.unit * 4,
   },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
 });
 
 /* Class Component */
@@ -34,7 +46,6 @@ class DissertationPlan extends Component {
   /* Global Variables */
   state = {
     dissertationPlanList: [],
-    // WIP
     addNewStep: {
       sectionId: null,
       value: '',
@@ -104,7 +115,7 @@ class DissertationPlan extends Component {
   }
   // END updating completed status //
 
-  // WIP
+
   // handleInputChangeAddNew
   handleInputChangeAddNew = sectionId => (event) => {
     this.setState({ addNewStep: { sectionId, value: event.target.value } });
@@ -180,18 +191,26 @@ class DissertationPlan extends Component {
                     ))}
 
                     {/* WIP */}
-                    <ListItem>
-                      <form onSubmit={this.handleAddNewStep}>
-                        <input
+                    <ListItem className={classes.nested}>
+                      <form onSubmit={this.handleAddNewStep} className={classes.container}>
+                        <TextField
+                          label="New Step"
+                          className={classes.textField}
+                          margin="normal"
+                          variant="outlined"
                           type="text"
                           name="addNew"
-                          // value={}
                           onChange={this.handleInputChangeAddNew(section.id)}
                         />
-                        <input
+                        <Button
+                          size="small"
+                          variant="contained"
+                          className={classes.button}
                           type="submit"
                           value="Add New"
-                        />
+                        >
+                        Add
+                        </Button>
                       </form>
                     </ListItem>
 
