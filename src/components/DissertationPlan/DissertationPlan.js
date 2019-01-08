@@ -34,6 +34,11 @@ class DissertationPlan extends Component {
   /* Global Variables */
   state = {
     dissertationPlanList: [],
+    // WIP
+    addNewStep: {
+      sectionId: null,
+      value: '',
+    },
   };
 
   /* Life Cycle Events */
@@ -101,14 +106,14 @@ class DissertationPlan extends Component {
 
   // WIP
   // handleInputChangeAddNew
-  handleInputChangeAddNew = (event) => {
-    console.log(event.target.value);
+  handleInputChangeAddNew = sectionId => (event) => {
+    this.setState({ addNewStep: { sectionId, value: event.target.value } });
   }
-  //  
 
   // Handle add new step //
-  handleAddNewStep = (sectionId, newStepValue) => {
-    axios.put(`/api/dissertation${sectionId}`, { name: newStepValue })
+  handleAddNewStep = (event) => {
+    event.preventDefault();
+    axios.post('/api/dissertation', { id: this.state.addNewStep.sectionId, name: this.state.addNewStep.value })
       .then(this.handleAddNewStepSuccess)
       .catch(this.handleAddNewStepError);
   }
@@ -116,6 +121,7 @@ class DissertationPlan extends Component {
   // On Success of handleAddNewStep
   handleAddNewStepSuccess = (response) => {
     console.log('Success step added:', response);
+    this.getDissertationPlan();
   }
 
   // On Error of handleAddNewStep
@@ -180,7 +186,7 @@ class DissertationPlan extends Component {
                           type="text"
                           name="addNew"
                           // value={}
-                          onChange={this.handleInputChangeAddNew}
+                          onChange={this.handleInputChangeAddNew(section.id)}
                         />
                         <input
                           type="submit"

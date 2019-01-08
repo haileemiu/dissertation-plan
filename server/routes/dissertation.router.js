@@ -50,13 +50,11 @@ router.put('/:id', (req, res) => {
 
 // WIP
 // Handles adding new steps to dissertation plan
-router.post('/:id', (req, res) => {
-  console.log('req.body.name:', req.body.name);
-  console.log('req.params.id:', req.params.id);
+router.post('/', (req, res) => {
   // Adds for individual user_id and section heading
   const queryText = 'INSERT INTO dissertation_steps (name, section_id) VALUES ($1, $2);';
 
-  pool.query(queryText, [req.body.name, req.params.id])
+  pool.query(queryText, [req.body.name, req.body.id])
     .then(() => { res.sendStatus(201); })
     .catch((error) => {
       console.log('Error in adding step:', error);
