@@ -33,8 +33,6 @@ const styles = theme => ({
 class DissertationPlan extends Component {
   /* Global Variables */
   state = {
-    // open: false, // default all sections closed
-    // checkedA: false, // default all boxes unchecked
     dissertationPlanList: [],
   };
 
@@ -111,7 +109,6 @@ class DissertationPlan extends Component {
             component="nav"
             subheader={<ListSubheader component="div">My Plan</ListSubheader>}
           >
-
             {this.state.dissertationPlanList.map(section => (
               <div>
 
