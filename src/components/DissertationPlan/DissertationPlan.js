@@ -100,6 +100,12 @@ class DissertationPlan extends Component {
   // END updating completed status //
 
   // WIP
+  // handleInputChangeAddNew
+  handleInputChangeAddNew = (event) => {
+    console.log(event.target.value);
+  }
+  //  
+
   // Handle add new step //
   handleAddNewStep = (sectionId, newStepValue) => {
     axios.put(`/api/dissertation${sectionId}`, { name: newStepValue })
@@ -162,11 +168,27 @@ class DissertationPlan extends Component {
                             value={step.completed}
                           />
 
-
                         </ListItemIcon>
                         <ListItemText inset primary={step.name} />
                       </ListItem>
                     ))}
+
+                    {/* WIP */}
+                    <ListItem>
+                      <form onSubmit={this.handleAddNewStep}>
+                        <input
+                          type="text"
+                          name="addNew"
+                          // value={}
+                          onChange={this.handleInputChangeAddNew}
+                        />
+                        <input
+                          type="submit"
+                          value="Add New"
+                        />
+                      </form>
+                    </ListItem>
+
                   </List>
                 </Collapse>
               </div>
