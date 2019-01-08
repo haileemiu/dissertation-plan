@@ -34,6 +34,11 @@ class DissertationPlan extends Component {
   /* Global Variables */
   state = {
     dissertationPlanList: [],
+    // WIP
+    addNewStep: {
+      sectionId: null,
+      value: '',
+    },
   };
 
   /* Life Cycle Events */
@@ -42,6 +47,25 @@ class DissertationPlan extends Component {
   }
 
   /* Custom Events */
+
+  // Handle retrieving dissertation plan //
+  getDissertationPlan = () => {
+    axios.get('/api/dissertation')
+      .then(this.getDissertationPlanSuccess)
+      .catch(this.getDissertationPlanError);
+  }
+
+  // On Success of getDissertationPlan
+  getDissertationPlanSuccess = (response) => {
+    this.setState({ dissertationPlanList: response.data });
+  }
+
+  // On Error of getDissertationPlan
+  getDissertationPlanError = (err) => {
+    console.log('Error in retrieving sections from api:', err);
+    alert('Error in getting your saved sections');
+  }
+  // END retrieving dissertation plan //
 
   // Open and close each section collapsable heading
   handleClick = (id, open) => () => {
@@ -60,42 +84,52 @@ class DissertationPlan extends Component {
     this.markAsComplete(stepId, event.target.checked);
   };
 
-  // Handle updating completed status
+  // Handle updating completed status //
   markAsComplete = (stepId, stepCompleted) => {
     axios.put(`/api/dissertation/${stepId}`, { completed: stepCompleted })
       .then(this.handleCheckBoxChangeSuccess)
       .catch(this.handleCheckBoxChangeError(stepCompleted));
   }
 
-  // On Success of handleCheckBoxChangeSuccess
+  // On Success of handleCheckBoxChange
   handleCheckBoxChangeSuccess = (response) => {
     console.log('Success marked completed:', response);
   }
 
-  // On Error of handleCheckBoxChangeError
+  // On Error of handleCheckBoxChange
   handleCheckBoxChangeError = (err) => {
     console.log('Error in marking complete:', err);
     // TO DO
     // Set visual state back to unchecked if update fails
   }
+  // END updating completed status //
 
-  // Handle retrieving dissertation plan
-  getDissertationPlan = () => {
-    axios.get('/api/dissertation')
-      .then(this.getDissertationPlanSuccess)
-      .catch(this.getDissertationPlanError);
+  // WIP
+  // handleInputChangeAddNew
+  handleInputChangeAddNew = sectionId => (event) => {
+    this.setState({ addNewStep: { sectionId, value: event.target.value } });
   }
 
-  // On Success of getDissertationPlan
-  getDissertationPlanSuccess = (response) => {
-    this.setState({ dissertationPlanList: response.data });
+  // Handle add new step //
+  handleAddNewStep = (event) => {
+    event.preventDefault();
+    axios.post('/api/dissertation', { id: this.state.addNewStep.sectionId, name: this.state.addNewStep.value })
+      .then(this.handleAddNewStepSuccess)
+      .catch(this.handleAddNewStepError);
   }
 
-  // On Error of getDissertationPlan
-  getDissertationPlanError = (err) => {
-    console.log('Error in retrieving sections from api:', err);
-    alert('Error in getting your saved sections');
+  // On Success of handleAddNewStep
+  handleAddNewStepSuccess = (response) => {
+    console.log('Success step added:', response);
+    this.getDissertationPlan();
   }
+
+  // On Error of handleAddNewStep
+  handleCheckBoxChangeEhandleAddNewStepErrorrror = (err) => {
+    console.log('Error in adding step:', err);
+  }
+  // END add new step //
+
 
   /* Render Page Content */
   render() {
@@ -140,11 +174,27 @@ class DissertationPlan extends Component {
                             value={step.completed}
                           />
 
-
                         </ListItemIcon>
                         <ListItemText inset primary={step.name} />
                       </ListItem>
                     ))}
+
+                    {/* WIP */}
+                    <ListItem>
+                      <form onSubmit={this.handleAddNewStep}>
+                        <input
+                          type="text"
+                          name="addNew"
+                          // value={}
+                          onChange={this.handleInputChangeAddNew(section.id)}
+                        />
+                        <input
+                          type="submit"
+                          value="Add New"
+                        />
+                      </form>
+                    </ListItem>
+
                   </List>
                 </Collapse>
               </div>
