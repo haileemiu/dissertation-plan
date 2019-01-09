@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import axios from 'axios';
 
 import ListItem from '@material-ui/core/ListItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
-/* Material UI styling */
 const styles = theme => ({
   nested: {
     paddingLeft: theme.spacing.unit * 4,
@@ -30,11 +29,7 @@ const styles = theme => ({
   },
 });
 
-/*
-This is the child component of Section
-And sibling component of SectionStep
-*/
-class NewSectionStep extends Component {
+class StepEdit extends Component {
   state = {
     name: '', // name is for the step text content
   }
@@ -44,36 +39,37 @@ class NewSectionStep extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  // On click, handles sending new step
-  addNewStep = (event) => {
+  // On click, handles editing step
+  editStep = (event) => {
     event.preventDefault();
-    // this.props.sectionId is being passed from the Section component
-    axios.post('/api/dissertation/', { id: this.props.sectionId, name: this.state.name })
-      .then(this.addNewStepSuccess)
-      .catch(this.addNewStepError);
+
+    axios.put(`/api/dissertation/${this.props.step.id}/edit`, { name: this.state.name })
+      .then(this.editStepSuccess)
+      .catch(this.editStepError);
   }
 
-  // On Success of addNewStep
-  addNewStepSuccess = (response) => {
+  // On Success of editStep
+  editStepSuccess = (response) => {
     console.log('Success step added:', response);
-    this.props.getDissertationPlan(); // Reload the page with new step
+    // this.props.getDissertationPlan(); // Reload the page with new step
     this.setState({ name: '' }); // Empty the input box
   }
 
-  // On Error of addNewStep
-  addNewStepError = (err) => {
+  // On Error of editStep
+  editStepError = (err) => {
     console.log('Error in adding step:', err);
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, step } = this.props;
 
     return (
       // Renders a list item with a form and button inside
       <ListItem className={classes.nested}>
-        <form onSubmit={this.addNewStep} className={classes.container}>
+        <form onSubmit={this.editStep} className={classes.container}>
           <TextField
-            label="New Step"
+            // label="Edit"
+            placeholder={step.name}
             className={classes.textField}
             margin="normal"
             variant="outlined"
@@ -84,24 +80,22 @@ class NewSectionStep extends Component {
           />
           <Button
             size="small"
-            variant="contained"
+            // variant="contained"
             className={classes.button}
             type="submit"
             value="Add New"
           >
-            Add
+            Submit
           </Button>
         </form>
-        <AddCircleIcon className={classes.icon} />
+        
       </ListItem>
     );
   }
 }
-
-NewSectionStep.propTypes = {
+StepEdit.propTypes = {
   classes: PropTypes.shape().isRequired,
-  sectionId: PropTypes.number.isRequired,
-  getDissertationPlan: PropTypes.func.isRequired,
+  step: PropTypes.shape().isRequired,
 };
 
-export default withStyles(styles)(NewSectionStep);
+export default withStyles(styles)(StepEdit);
