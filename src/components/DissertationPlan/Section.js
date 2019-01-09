@@ -46,9 +46,10 @@ class Section extends Component {
         {/* Area inside the nested list where steps will be listed out */}
         <Collapse in={this.state.isOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            
+
             {/* List each step */}
-            {section.step.map(step => <SectionStep step={step} />)}
+            {/* WIP ? ternary to render one or the other? */}
+            {section.step.map(step => <SectionStep step={step} key={step.id} />)}
 
             {/* Add a new step */}
             <NewSectionStep sectionId={section.id} getDissertationPlan={this.props.getDissertationPlan} />

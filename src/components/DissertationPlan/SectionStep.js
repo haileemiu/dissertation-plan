@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+
+import StepText from './StepText';
+import StepEdit from './StepEdit';
+
 
 /* Material UI styling */
 const styles = theme => ({
   nested: {
     paddingLeft: theme.spacing.unit * 4,
-  },
-  icon: {
-    margin: theme.spacing.unit,
-    fontSize: 25,
   },
 });
 
@@ -26,20 +20,13 @@ This is the child component of Section
 And sibling component of NewSectionStep
 */
 class SectionStep extends Component {
-  // Handles checkbox sending to the api
-  onChange = (event) => {
-    // Note: checked is an html attribute on inputs
-    axios.put(`/api/dissertation/${this.props.step.id}/completed`, { completed: event.target.checked }) 
-      .then(this.handleChangeSuccess)
-      .catch(this.handleChangeError);
+  state = {
+    isEditing: false,
   }
 
-  onChangeSuccess = (response) => {
-    console.log('Success marked completed:', response);
-  }
-
-  onChangeError = (err) => {
-    console.log('Error in marking complete:', err);
+  toggleIsEditing = () => {
+    console.log('toggle');
+    this.setState(prevState => ({ isEditing: !prevState.isEditing }));
   }
 
   render() {
@@ -48,21 +35,10 @@ class SectionStep extends Component {
     return (
       // Holds the individual step
       <ListItem button className={classes.nested}>
-        <ListItemIcon>
+        {/* If isEditing is false render StepText */}
+        {/* If isEditing is true render EditStep */}
+        {this.state.isEditing ? <StepEdit step={step} toggleIsEditing={this.toggleIsEditing} /> : <StepText step={step} toggleIsEditing={this.toggleIsEditing} />}
 
-          {/* Checkbox */}
-          <Checkbox
-            type="checkbox"
-            defaultChecked={step.completed} // defaultChecked is necessary
-            onChange={this.onChange}
-            value={step.completed}
-          />
-        </ListItemIcon>
-
-        {/* Text of step */}
-        <ListItemText inset primary={step.name} />
-        <DeleteIcon className={classes.icon} />
-        <EditIcon className={classes.icon} />
       </ListItem>
     );
   }
@@ -71,6 +47,7 @@ class SectionStep extends Component {
 SectionStep.propTypes = {
   step: PropTypes.shape().isRequired,
   classes: PropTypes.shape().isRequired,
+  // getDissertationPlan: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(SectionStep);
