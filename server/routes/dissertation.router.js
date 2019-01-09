@@ -36,18 +36,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Handles marking steps complete or not complete
-router.put('/:id', (req, res) => {
-  const queryText = 'UPDATE dissertation_steps SET completed = $1 WHERE id=$2;';
-
-  pool.query(queryText, [req.body.completed, req.params.id])
-    .then(() => { res.sendStatus(200); })
-    .catch((error) => {
-      console.log('Error in adding goal:', error);
-      res.sendStatus(500);
-    });
-});
-
 // Handles adding new steps to dissertation plan
 router.post('/', (req, res) => {
   // Adds for individual user_id and section heading
@@ -61,18 +49,30 @@ router.post('/', (req, res) => {
     });
 });
 
-// Handles editing steps in dissertation plan
-// NOTE: remember there is another put in this router
-// router.put(('/', (req, res) => {
-//   const queryText = 'UPDATE -- SET -- = $1 where id=$2;';
+// Handles marking steps complete or not complete
+router.put('/:id/completed', (req, res) => {
+  const queryText = 'UPDATE dissertation_steps SET completed = $1 WHERE id=$2;';
 
-//   pool.query(queryText, [req.user.id])
-//     .then(() => { res.sendStatus(201); })
-//     .catch((error) => {
-//       console.log('Error in adding goal:', error);
-//       res.sendStatus(500);
-//     });
-// }));
+  pool.query(queryText, [req.body.completed, req.params.id])
+    .then(() => { res.sendStatus(200); })
+    .catch((error) => {
+      console.log('Error in adding goal:', error);
+      res.sendStatus(500);
+    });
+});
+
+// Handles editing steps in dissertation plan
+router.put('/:id/edit', (req, res) => {
+  const queryText = 'UPDATE dissertation_steps SET name=$1 where id=$2;';
+
+  pool.query(queryText, [req.body.name, req.params.id])
+    .then(() => { res.sendStatus(201); })
+    .catch((error) => {
+      console.log('Error in editing goal:', error);
+      res.sendStatus(500);
+    });
+});
+
 
 // Handles deleting steps in dissertation plan
 // router.delete(('/', (req, res) => {

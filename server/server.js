@@ -30,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/api/goal', goalRouter);
 app.use('/api/history', historyRouter);
 app.use('/api/dissertation', dissertationRouter);
+// app.use('/api/tests', require('./routes/test.router'));
 
 // Serve static files
 app.use(express.static('build'));

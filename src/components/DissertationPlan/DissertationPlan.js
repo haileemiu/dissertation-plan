@@ -58,6 +58,10 @@ class DissertationPlan extends Component {
       sectionId: null,
       value: '',
     },
+    editStep: {
+      stepId: null,
+      value: '',
+    },
   };
 
   /* Life Cycle Events */
@@ -105,7 +109,7 @@ class DissertationPlan extends Component {
 
   // Handle updating completed status //
   markAsComplete = (stepId, stepCompleted) => {
-    axios.put(`/api/dissertation/${stepId}`, { completed: stepCompleted })
+    axios.put(`/api/dissertation/${stepId}/completed`, { completed: stepCompleted })
       .then(this.handleCheckBoxChangeSuccess)
       .catch(this.handleCheckBoxChangeError(stepCompleted));
   }
@@ -149,6 +153,30 @@ class DissertationPlan extends Component {
   }
   // END add new step //
 
+
+  // WIP
+
+  handleChangeEdit = stepId => (event) => {
+    this.setState({ editStep: { stepId, value: event.target.value } });
+  }
+
+  // Handle edit step //
+  handleEditStep = (stepId, stepEdit) => {
+    axios.put(`/api/dissertation/${stepId}/edit`, { name: stepEdit })
+      .then(this.handleEditStepSuccess)
+      .catch(this.handleEditStepError);
+  }
+
+  // On Success of handleEditStepSuccess
+  handleEditStepSuccess = (response) => {
+    console.log('Success editing step:', response);
+  }
+
+  // On Error of handleEditStepError
+  handleEditStepError = (err) => {
+    console.log('Error in editing step:', err);
+  }
+  // END edit step //
 
   /* Render Page Content */
   render() {
