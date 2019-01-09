@@ -17,7 +17,7 @@ const styles = theme => ({
 
 /*
 This is the child component of Section
-And sibling component of NewSectionStep
+And a parent component of StepEdit and StepText
 */
 class SectionStep extends Component {
   state = {
@@ -35,8 +35,8 @@ class SectionStep extends Component {
     return (
       // Holds the individual step
       <ListItem button className={classes.nested}>
-        {/* If isEditing is false render StepText */}
-        {/* If isEditing is true render EditStep */}
+        {/* If isEditing is false, render StepText */}
+        {/* If isEditing is true, render EditStep */}
         {this.state.isEditing ? <StepEdit step={step} toggleIsEditing={this.toggleIsEditing} /> : <StepText step={step} toggleIsEditing={this.toggleIsEditing} />}
 
       </ListItem>
@@ -47,7 +47,7 @@ class SectionStep extends Component {
 SectionStep.propTypes = {
   step: PropTypes.shape().isRequired,
   classes: PropTypes.shape().isRequired,
-  // getDissertationPlan: PropTypes.func.isRequired,
+  // getDissertationPlan: PropTypes.shape().isRequired,
 };
 
 export default withStyles(styles)(SectionStep);

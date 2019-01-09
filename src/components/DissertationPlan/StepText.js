@@ -24,8 +24,8 @@ const styles = theme => ({
 });
 
 /*
-This is the child component of Section
-And sibling component of NewSectionStep
+This is the child component of SectionStep
+And sibling component of StepEdit
 */
 class StepText extends Component {
   // Handles checkbox sending to the api
@@ -46,14 +46,32 @@ class StepText extends Component {
 
   // Edit click
   handleEditClick = () => {
+    // State handled in SectionStep
     this.props.toggleIsEditing();
   }
+
+  // Delete click
+  handleDeleteClick = () => {
+    console.log(this.props.step.id);
+    axios.delete(`/api/dissertation/${this.props.step.id}`)
+      .then(this.handleDeleteClickSuccess)
+      .catch(this.handleDeleteClickError);
+  }
+
+  handleDeleteClickSuccess = (response) => {
+    console.log('Success deleting step:', response);
+  }
+
+  handleDeleteClickError = (err) => {
+    console.log('Error in deleting:', err);
+  }
+
 
   render() {
     const { classes, step } = this.props;
 
     return (
-      // Holds the individual step
+      // Holds the individual step with edit icon and delete icon
       <>
         <ListItemIcon>
 
@@ -72,7 +90,10 @@ class StepText extends Component {
           className={classes.icon}
           onClick={this.handleEditClick}
         />
-        <DeleteIcon className={classes.icon} />
+        <DeleteIcon
+          className={classes.icon}
+          onClick={this.handleDeleteClick}
+        />
     </>
     );
   }
