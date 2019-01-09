@@ -25,7 +25,6 @@ class SectionStep extends Component {
   }
 
   toggleIsEditing = () => {
-    console.log('toggle');
     this.setState(prevState => ({ isEditing: !prevState.isEditing }));
   }
 

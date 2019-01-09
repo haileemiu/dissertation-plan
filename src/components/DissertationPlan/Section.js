@@ -58,7 +58,6 @@ class Section extends Component {
             {section.step.map(step => <SectionStep step={step} key={step.id} />)}
 
             {/* Add a new step */}
-            {/* WIP */}
             {/* If isAdding is true, render NewSectionStep */}
             {/* If isAdding is false, render AddNewButton */}
             {this.state.isAdding ? <NewSectionStep onAddClick={this.onAddClick} sectionId={section.id} getDissertationPlan={this.props.getDissertationPlan} /> : <AddNewButton onAddClick={this.onAddClick} />}
