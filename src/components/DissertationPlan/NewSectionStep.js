@@ -6,7 +6,7 @@ import axios from 'axios';
 import ListItem from '@material-ui/core/ListItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
+
 
 /* Material UI styling */
 const styles = theme => ({
@@ -57,7 +57,8 @@ class NewSectionStep extends Component {
   addNewStepSuccess = (response) => {
     console.log('Success step added:', response);
     this.props.getDissertationPlan(); // Reload the page with new step
-    this.setState({ name: '' }); // Empty the input box
+    // this.setState({ name: '' }); // Empty the input box
+    this.props.onAddClick();
   }
 
   // On Error of addNewStep
@@ -92,7 +93,6 @@ class NewSectionStep extends Component {
             Add
           </Button>
         </form>
-        <AddCircleIcon className={classes.icon} />
       </ListItem>
     );
   }
@@ -102,6 +102,7 @@ NewSectionStep.propTypes = {
   classes: PropTypes.shape().isRequired,
   sectionId: PropTypes.number.isRequired,
   getDissertationPlan: PropTypes.func.isRequired,
+  onAddClick: PropTypes.shape().isRequired,
 };
 
 export default withStyles(styles)(NewSectionStep);

@@ -12,6 +12,7 @@ import StarBorder from '@material-ui/icons/StarBorder';
 
 import SectionStep from './SectionStep';
 import NewSectionStep from './NewSectionStep';
+import AddNewButton from './AddNewButton';
 
 /*
 This is the child component of DissertationList
@@ -20,11 +21,17 @@ And the parent component of SectionStep and NewSectionStep
 class Section extends Component {
   state = {
     isOpen: false, // Variable for collapsing all sections nested list
+    isAdding: false, // Variable for toggling add new step
   };
 
   // Handles collapse on click of any where in the heading
   onHeadingClick = () => {
     this.setState(prevState => ({ isOpen: !prevState.isOpen }));
+  }
+
+  // Toggle isAdding
+  onAddClick = () => {
+    this.setState(prevState => ({ isAdding: !prevState.isAdding }));
   }
 
   render() {
@@ -51,7 +58,11 @@ class Section extends Component {
             {section.step.map(step => <SectionStep step={step} key={step.id} />)}
 
             {/* Add a new step */}
-            <NewSectionStep sectionId={section.id} getDissertationPlan={this.props.getDissertationPlan} />
+            {/* WIP */}
+            {/* If isAdding is true, render NewSectionStep */}
+            {/* If isAdding is false, render AddNewButton */}
+            {this.state.isAdding ? <NewSectionStep onAddClick={this.onAddClick} sectionId={section.id} getDissertationPlan={this.props.getDissertationPlan} /> : <AddNewButton onAddClick={this.onAddClick} />}
+            {/* <NewSectionStep sectionId={section.id} getDissertationPlan={this.props.getDissertationPlan} /> */}
           </List>
         </Collapse>
       </>

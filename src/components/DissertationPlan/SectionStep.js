@@ -38,7 +38,6 @@ class SectionStep extends Component {
         {/* If isEditing is false, render StepText */}
         {/* If isEditing is true, render EditStep */}
         {this.state.isEditing ? <StepEdit step={step} toggleIsEditing={this.toggleIsEditing} /> : <StepText step={step} toggleIsEditing={this.toggleIsEditing} />}
-
       </ListItem>
     );
   }
