@@ -49,7 +49,7 @@ class Section extends Component {
 
             {/* List each step */}
             {/* WIP ? ternary to render one or the other? */}
-            {section.step.map(step => <SectionStep step={step} />)}
+            {section.step.map(step => <SectionStep step={step} key={step.id} />)}
 
             {/* Add a new step */}
             <NewSectionStep sectionId={section.id} getDissertationPlan={this.props.getDissertationPlan} />

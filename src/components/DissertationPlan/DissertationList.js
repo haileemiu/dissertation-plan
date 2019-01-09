@@ -47,7 +47,7 @@ class DissertationList extends Component {
           component="nav"
           subheader={<ListSubheader component="div">My Plan</ListSubheader>}
         >
-          {this.state.dissertationPlanList.map(section => <Section section={section} getDissertationPlan={this.getDissertationPlan} />)}
+          {this.state.dissertationPlanList.map(section => <Section section={section} getDissertationPlan={this.getDissertationPlan} key={section.id} />)}
         </List>
       </div>
     );
