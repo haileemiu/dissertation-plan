@@ -51,14 +51,16 @@ class StepEdit extends Component {
   // On Success of editStep
   editStepSuccess = (response) => {
     console.log('Success step added:', response);
+    this.props.toggleIsEditing();
     // this.props.getDissertationPlan(); // Reload the page with new step
     this.setState({ name: '' }); // Empty the input box
   }
 
   // On Error of editStep
   editStepError = (err) => {
-    console.log('Error in adding step:', err);
+    console.log('Error in editing step:', err);
   }
+
 
   render() {
     const { classes, step } = this.props;
@@ -96,6 +98,8 @@ class StepEdit extends Component {
 StepEdit.propTypes = {
   classes: PropTypes.shape().isRequired,
   step: PropTypes.shape().isRequired,
+  toggleIsEditing: PropTypes.shape().isRequired,
+  // getDissertationPlan: PropTypes.shape().isRequired,
 };
 
 export default withStyles(styles)(StepEdit);

@@ -21,7 +21,12 @@ And sibling component of NewSectionStep
 */
 class SectionStep extends Component {
   state = {
-    // isEditing: false,
+    isEditing: false,
+  }
+
+  toggleIsEditing = () => {
+    console.log('toggle');
+    this.setState(prevState => ({ isEditing: !prevState.isEditing }));
   }
 
   render() {
@@ -31,9 +36,9 @@ class SectionStep extends Component {
       // Holds the individual step
       <ListItem button className={classes.nested}>
         {/* If isEditing is false render StepText */}
-        {/* <StepText step={step} /> */}
         {/* If isEditing is true render EditStep */}
-        <StepEdit step={step} />
+        {this.state.isEditing ? <StepEdit step={step} toggleIsEditing={this.toggleIsEditing} /> : <StepText step={step} toggleIsEditing={this.toggleIsEditing} />}
+
       </ListItem>
     );
   }
@@ -42,6 +47,7 @@ class SectionStep extends Component {
 SectionStep.propTypes = {
   step: PropTypes.shape().isRequired,
   classes: PropTypes.shape().isRequired,
+  // getDissertationPlan: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(SectionStep);

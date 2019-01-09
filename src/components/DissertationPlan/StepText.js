@@ -44,6 +44,11 @@ class StepText extends Component {
     console.log('Error in marking complete:', err);
   }
 
+  // Edit click
+  handleEditClick = () => {
+    this.props.toggleIsEditing();
+  }
+
   render() {
     const { classes, step } = this.props;
 
@@ -63,7 +68,10 @@ class StepText extends Component {
 
         {/* Text of step */}
         <ListItemText inset primary={step.name} />
-        <EditIcon className={classes.icon} />
+        <EditIcon
+          className={classes.icon}
+          onClick={this.handleEditClick}
+        />
         <DeleteIcon className={classes.icon} />
     </>
     );
@@ -73,6 +81,7 @@ class StepText extends Component {
 StepText.propTypes = {
   step: PropTypes.shape().isRequired,
   classes: PropTypes.shape().isRequired,
+  toggleIsEditing: PropTypes.shape().isRequired,
 };
 
 export default withStyles(styles)(StepText);
