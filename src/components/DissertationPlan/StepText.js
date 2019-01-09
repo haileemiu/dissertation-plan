@@ -49,6 +49,23 @@ class StepText extends Component {
     this.props.toggleIsEditing();
   }
 
+  // Delete click
+  handleDeleteClick = () => {
+    console.log(this.props.step.id);
+    axios.delete(`/api/dissertation/${this.props.step.id}`)
+      .then(this.handleDeleteClickSuccess)
+      .catch(this.handleDeleteClickError);
+  }
+
+  handleDeleteClickSuccess = (response) => {
+    console.log('Success deleting step:', response);
+  }
+  
+  handleDeleteClickError = (err) => {
+    console.log('Error in deleting:', err);
+  }
+
+
   render() {
     const { classes, step } = this.props;
 
@@ -72,7 +89,10 @@ class StepText extends Component {
           className={classes.icon}
           onClick={this.handleEditClick}
         />
-        <DeleteIcon className={classes.icon} />
+        <DeleteIcon
+          className={classes.icon}
+          onClick={this.handleDeleteClick}
+        />
     </>
     );
   }

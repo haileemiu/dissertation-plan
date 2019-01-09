@@ -48,7 +48,6 @@ class Section extends Component {
           <List component="div" disablePadding>
 
             {/* List each step */}
-            {/* WIP ? ternary to render one or the other? */}
             {section.step.map(step => <SectionStep step={step} key={step.id} />)}
 
             {/* Add a new step */}

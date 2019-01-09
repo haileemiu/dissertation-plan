@@ -47,7 +47,7 @@ class SectionStep extends Component {
 SectionStep.propTypes = {
   step: PropTypes.shape().isRequired,
   classes: PropTypes.shape().isRequired,
-  // getDissertationPlan: PropTypes.func.isRequired,
+  getDissertationPlan: PropTypes.shape().isRequired,
 };
 
 export default withStyles(styles)(SectionStep);

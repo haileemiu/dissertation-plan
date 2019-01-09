@@ -1,4 +1,3 @@
-// WIP
 const express = require('express');
 const pool = require('../modules/pool');
 
@@ -75,15 +74,15 @@ router.put('/:id/edit', (req, res) => {
 
 
 // Handles deleting steps in dissertation plan
-// router.delete(('/', (req, res) => {
-//   const queryText = 'DELETE FROM -- WHERE id=$;';
+router.delete('/:id', (req, res) => {
+  const queryText = 'DELETE FROM dissertation_steps WHERE id=$1;';
 
-//   pool.query(queryText, [req.user.id])
-//     .then(() => { res.sendStatus(201); })
-//     .catch((error) => {
-//       console.log('Error in adding goal:', error);
-//       res.sendStatus(500);
-//     });
-// }));
+  pool.query(queryText, [req.params.id])
+    .then(() => { res.sendStatus(200); })
+    .catch((error) => {
+      console.log('Error in adding goal:', error);
+      res.sendStatus(500);
+    });
+});
 
 module.exports = router;
