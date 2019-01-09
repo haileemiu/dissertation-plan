@@ -29,6 +29,10 @@ const styles = theme => ({
   },
 });
 
+/*
+This is a child component of SectionStep
+And a sibling component of StepText
+*/
 class StepEdit extends Component {
   state = {
     name: '', // name is for the step text content
