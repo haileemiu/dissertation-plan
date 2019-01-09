@@ -15,6 +15,7 @@ const styles = theme => ({
   },
 });
 
+/* This is the parent component for the dissertation plan list */
 const DissertationPlan = props => (
   <div className={props.classes.root}>
     <h1>Dissertation Plan</h1>

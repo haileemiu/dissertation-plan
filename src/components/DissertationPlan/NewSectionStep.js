@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
-import { withStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
+/* Material UI styling */
 const styles = theme => ({
   nested: {
     paddingLeft: theme.spacing.unit * 4,
@@ -29,31 +30,38 @@ const styles = theme => ({
   },
 });
 
+/*
+This is the child component of Section
+And sibling component of SectionStep
+*/
 class NewSectionStep extends Component {
   state = {
-    name: '',
+    name: '', // name is for the step text content
   }
 
+  // Handles storing the input text
   onInputChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  handleAddNewStep = (event) => {
+  // On click, handles sending new step
+  addNewStep = (event) => {
     event.preventDefault();
+    // this.props.sectionId is being passed from the Section component
     axios.post('/api/dissertation', { id: this.props.sectionId, name: this.state.name })
-      .then(this.handleAddNewStepSuccess)
-      .catch(this.handleAddNewStepError);
+      .then(this.addNewStepSuccess)
+      .catch(this.addNewStepError);
   }
 
-  // On Success of handleAddNewStep
-  handleAddNewStepSuccess = (response) => {
+  // On Success of addNewStep
+  addNewStepSuccess = (response) => {
     console.log('Success step added:', response);
-    this.props.getDissertationPlan();
-    this.setState({ name: '' });
+    this.props.getDissertationPlan(); // Reload the page with new step
+    this.setState({ name: '' }); // Empty the input box
   }
 
-  // On Error of handleAddNewStep
-  handleAddNewStepError = (err) => {
+  // On Error of addNewStep
+  addNewStepError = (err) => {
     console.log('Error in adding step:', err);
   }
 
@@ -61,8 +69,9 @@ class NewSectionStep extends Component {
     const { classes } = this.props;
 
     return (
+      // Renders a list item with a form and button inside
       <ListItem className={classes.nested}>
-        <form onSubmit={this.handleAddNewStep} className={classes.container}>
+        <form onSubmit={this.addNewStep} className={classes.container}>
           <TextField
             label="New Step"
             className={classes.textField}

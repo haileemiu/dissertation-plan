@@ -3,22 +3,25 @@ import axios from 'axios';
 
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
+
 import Section from './Section';
 
+/*
+This is the child component of DissertationPlan
+And the parent component of Section
+*/
 class DissertationList extends Component {
-  /* Global Variables */
   state = {
-    dissertationPlanList: [],
+    dissertationPlanList: [], // Holds all the sections and steps
   };
 
-  /* Life Cycle Events */
   componentDidMount = () => {
     this.getDissertationPlan();
   }
 
   /* Custom Events */
 
-  // Handle retrieving dissertation plan //
+  // Handles retrieving dissertation plan //
   getDissertationPlan = () => {
     axios.get('/api/dissertation')
       .then(this.getDissertationPlanSuccess)
@@ -35,11 +38,11 @@ class DissertationList extends Component {
     console.log('Error in retrieving sections from api:', err);
     alert('Error in getting your saved sections');
   }
-  // END retrieving dissertation plan //
 
   render() {
     return (
       <div>
+        {/* List is a Material UI component type */}
         <List
           component="nav"
           subheader={<ListSubheader component="div">My Plan</ListSubheader>}
