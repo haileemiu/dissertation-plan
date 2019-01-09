@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+
+import EditStep from './EditStep';
 
 /* Material UI styling */
 const styles = theme => ({
@@ -61,8 +62,10 @@ class SectionStep extends Component {
 
         {/* Text of step */}
         <ListItemText inset primary={step.name} />
-        <DeleteIcon className={classes.icon} />
-        <EditIcon className={classes.icon} />
+        {/* WIP new component */}
+        <EditStep /> 
+        
+        {/* <DeleteIcon className={classes.icon} /> */}
       </ListItem>
     );
   }

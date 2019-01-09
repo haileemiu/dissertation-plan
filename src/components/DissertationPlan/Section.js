@@ -46,8 +46,9 @@ class Section extends Component {
         {/* Area inside the nested list where steps will be listed out */}
         <Collapse in={this.state.isOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            
+
             {/* List each step */}
+            {/* WIP ? ternary to render one or the other? */}
             {section.step.map(step => <SectionStep step={step} />)}
 
             {/* Add a new step */}
