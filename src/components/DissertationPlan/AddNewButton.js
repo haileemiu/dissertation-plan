@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
+import { ListItem, Button } from '@material-ui/core';
 
 /* Material UI styling */
 const styles = theme => ({
-  icon: {
+  addButton: {
     margin: theme.spacing.unit,
-    fontSize: 25,
-    marginRight: 60,
-    color: 'primary',
+    marginLeft: 75,
+  },
+  nested: {
+    paddingLeft: theme.spacing.unit * 4,
   },
 
 });
@@ -28,12 +29,17 @@ class AddNewButton extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div style={{ textAlign: 'right' }}>
-        <AddCircleIcon
-          color="primary"
-          className={classes.icon}
-          onClick={this.handleAddClick}
-        />
+      <div>
+        <ListItem className={classes.nested}>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={this.handleAddClick}
+            className={classes.addButton}
+          >
+            Add
+          </Button>
+        </ListItem>
       </div>
     );
   }

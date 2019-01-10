@@ -9,6 +9,7 @@ import List from '@material-ui/core/List';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
+import Divider from '@material-ui/core/Divider';
 
 import SectionStep from './SectionStep';
 import NewSectionStep from './NewSectionStep';
@@ -40,6 +41,7 @@ class Section extends Component {
     return (
       <>
         {/* Section Headings */}
+        <Divider />
         <ListItem button onClick={this.onHeadingClick}>
           <ListItemIcon>
             <StarBorder />
@@ -64,6 +66,7 @@ class Section extends Component {
             {/* <NewSectionStep sectionId={section.id} getDissertationPlan={this.props.getDissertationPlan} /> */}
           </List>
         </Collapse>
+
       </>
     );
   }
