@@ -7,7 +7,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 
 
@@ -80,7 +79,7 @@ class StepText extends Component {
             type="checkbox"
             defaultChecked={step.completed} // defaultChecked is necessary
             onChange={this.onChange}
-            value={step.completed}
+            value="true"
           />
         </ListItemIcon>
 

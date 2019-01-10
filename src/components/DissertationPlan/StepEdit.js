@@ -6,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 const styles = theme => ({
   nested: {
@@ -38,10 +37,6 @@ class StepEdit extends Component {
     name: '', // name is for the step text content,
   }
 
-  componentDidMount = () => {
-    this.props.getDissertationPlan();
-  }
-
   // Handles storing the input text
   onInputChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -57,18 +52,15 @@ class StepEdit extends Component {
   }
 
   // On Success of editStep
-  editStepSuccess = (response) => {
-    console.log('Success step added:', response);
+  editStepSuccess = () => {
     this.props.getDissertationPlan(); // Reload the page with new step
     this.props.toggleIsEditing(); // Visually switch back to StepText
-    this.setState({ name: '' }); // Empty the input box
   }
 
   // On Error of editStep
   editStepError = (err) => {
     console.log('Error in editing step:', err);
   }
-
 
   render() {
     const { classes, step } = this.props;
@@ -114,7 +106,7 @@ class StepEdit extends Component {
 StepEdit.propTypes = {
   classes: PropTypes.shape().isRequired,
   step: PropTypes.shape().isRequired,
-  toggleIsEditing: PropTypes.shape().isRequired,
+  toggleIsEditing: PropTypes.func.isRequired,
   getDissertationPlan: PropTypes.func.isRequired,
 };
 
