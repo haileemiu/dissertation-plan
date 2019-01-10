@@ -63,26 +63,25 @@ class StepEdit extends Component {
   }
 
   render() {
-    const { classes, step } = this.props;
+    const { classes } = this.props;
 
     return (
       // Renders a list item with a form and button inside
       <ListItem className={classes.nested}>
         <form onSubmit={this.editStep} className={classes.container}>
           <TextField
-            // label="Edit"
-            // type="text"
-            
+            fullWidth
             className={classes.textField}
             margin="normal"
-            variant="outlined"
+            // variant="outlined"
             name="name" // needed for state change
             value={this.state.name} // needed for event.target.value
             onChange={this.onInputChange}
           />
           <Button
             size="small"
-            // variant="contained"
+            variant="contained"
+            color="primary"
             className={classes.button}
             type="submit"
             value="Add New"
@@ -91,6 +90,8 @@ class StepEdit extends Component {
           </Button>
           <Button
             size="small"
+            variant="contained"
+            color="secondary"
             className={classes.button}
             type="button"
             onClick={this.props.toggleIsEditing}

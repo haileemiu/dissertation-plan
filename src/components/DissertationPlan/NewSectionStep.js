@@ -20,7 +20,7 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 1000,
+    maxWidth: 1000,
   },
   button: {
     margin: theme.spacing.unit,
@@ -75,10 +75,11 @@ class NewSectionStep extends Component {
       <ListItem className={classes.nested}>
         <form onSubmit={this.addNewStep} className={classes.container}>
           <TextField
+            fullWidth
             label="New Step"
             className={classes.textField}
             margin="normal"
-            variant="outlined"
+            // variant="outlined"
             type="text"
             name="name"
             value={this.state.name}
