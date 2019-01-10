@@ -34,7 +34,7 @@ And a sibling component of StepText
 */
 class StepEdit extends Component {
   state = {
-    name: '', // name is for the step text content,
+    name: this.props.step.name, // displays the current value to be edited
   }
 
   // Handles storing the input text
@@ -71,13 +71,13 @@ class StepEdit extends Component {
         <form onSubmit={this.editStep} className={classes.container}>
           <TextField
             // label="Edit"
-            placeholder={step.name}
+            // type="text"
+            
             className={classes.textField}
             margin="normal"
             variant="outlined"
-            type="text"
-            name="name"
-            value={this.state.name}
+            name="name" // needed for state change
+            value={this.state.name} // needed for event.target.value
             onChange={this.onInputChange}
           />
           <Button
