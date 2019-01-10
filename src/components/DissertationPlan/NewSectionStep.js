@@ -104,7 +104,7 @@ NewSectionStep.propTypes = {
   classes: PropTypes.shape().isRequired,
   sectionId: PropTypes.number.isRequired,
   getDissertationPlan: PropTypes.func.isRequired,
-  onAddClick: PropTypes.shape().isRequired,
+  onAddClick: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(NewSectionStep);
