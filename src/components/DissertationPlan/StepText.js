@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Swal from 'sweetalert2';
 
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -51,9 +52,20 @@ class StepText extends Component {
 
   // Delete click
   handleDeleteClick = () => {
-    axios.delete(`/api/dissertation/${this.props.step.id}`)
-      .then(this.handleDeleteClickSuccess)
-      .catch(this.handleDeleteClickError);
+    Swal({
+      title: 'Are you sure you want to delete this?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Delete',
+    }).then((result) => {
+      if (result.value) {
+        axios.delete(`/api/dissertation/${this.props.step.id}`)
+          .then(this.handleDeleteClickSuccess)
+          .catch(this.handleDeleteClickError);
+      }
+    });
   }
 
   handleDeleteClickSuccess = (response) => {
