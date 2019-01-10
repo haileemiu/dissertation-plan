@@ -102,7 +102,7 @@ class StepText extends Component {
 StepText.propTypes = {
   step: PropTypes.shape().isRequired,
   classes: PropTypes.shape().isRequired,
-  toggleIsEditing: PropTypes.shape().isRequired,
+  toggleIsEditing: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(StepText);

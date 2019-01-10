@@ -43,7 +43,7 @@ class AddNewButton extends Component {
 
 AddNewButton.propTypes = {
   classes: PropTypes.shape().isRequired,
-  onAddClick: PropTypes.shape().isRequired,
+  onAddClick: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(AddNewButton);
