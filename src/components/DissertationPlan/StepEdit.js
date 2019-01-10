@@ -6,7 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 const styles = theme => ({
   nested: {
@@ -53,18 +52,15 @@ class StepEdit extends Component {
   }
 
   // On Success of editStep
-  editStepSuccess = (response) => {
-    console.log('Success step added:', response);
-    this.props.toggleIsEditing();
-    // this.props.getDissertationPlan(); // Reload the page with new step
-    this.setState({ name: '' }); // Empty the input box
+  editStepSuccess = () => {
+    this.props.getDissertationPlan(); // Reload the page with new step
+    this.props.toggleIsEditing(); // Visually switch back to StepText
   }
 
   // On Error of editStep
   editStepError = (err) => {
     console.log('Error in editing step:', err);
   }
-
 
   render() {
     const { classes, step } = this.props;
@@ -110,8 +106,8 @@ class StepEdit extends Component {
 StepEdit.propTypes = {
   classes: PropTypes.shape().isRequired,
   step: PropTypes.shape().isRequired,
-  toggleIsEditing: PropTypes.shape().isRequired,
-  // getDissertationPlan: PropTypes.shape().isRequired,
+  toggleIsEditing: PropTypes.func.isRequired,
+  getDissertationPlan: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(StepEdit);

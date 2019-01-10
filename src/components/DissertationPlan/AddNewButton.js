@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { FormHelperText } from '@material-ui/core';
 
 /* Material UI styling */
 const styles = theme => ({
