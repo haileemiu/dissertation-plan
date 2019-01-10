@@ -48,6 +48,7 @@ class NewSectionStep extends Component {
   // On click, handles sending new step
   addNewStep = (event) => {
     event.preventDefault();
+    this.setState({ isAdding: true });
     // this.props.sectionId is being passed from the Section component
     axios.post('/api/dissertation/', { id: this.props.sectionId, name: this.state.name })
       .then(this.addNewStepSuccess)
@@ -65,6 +66,10 @@ class NewSectionStep extends Component {
   // On Error of addNewStep
   addNewStepError = (err) => {
     console.log('Error in adding step:', err);
+  }
+
+  cancelAdding = () => {
+    this.props.onAddClick(); // calls the function in parent (Section) that toggles views
   }
 
   render() {
@@ -93,6 +98,17 @@ class NewSectionStep extends Component {
             value="Add New"
           >
             Add
+          </Button>
+
+          <Button
+            size="small"
+            variant="contained"
+            className={classes.button}
+            type="button"
+            value="Cancel"
+            onClick={this.cancelAdding}
+          >
+            Cancel
           </Button>
         </form>
       </ListItem>
