@@ -94,6 +94,7 @@ class StepEdit extends Component {
             Submit
           </Button>
           <Button
+            size="small"
             className={classes.button}
             type="button"
             onClick={this.props.toggleIsEditing}
@@ -101,7 +102,7 @@ class StepEdit extends Component {
             Cancel
           </Button>
         </form>
-        
+
       </ListItem>
     );
   }
