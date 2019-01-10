@@ -36,7 +36,7 @@ class SectionStep extends Component {
       <ListItem button className={classes.nested}>
         {/* If isEditing is false, render StepText */}
         {/* If isEditing is true, render EditStep */}
-        {this.state.isEditing ? <StepEdit step={step} toggleIsEditing={this.toggleIsEditing} /> : <StepText step={step} toggleIsEditing={this.toggleIsEditing} />}
+        {this.state.isEditing ? <StepEdit step={step} toggleIsEditing={this.toggleIsEditing} getDissertationPlan={this.props.getDissertationPlan} /> : <StepText step={step} toggleIsEditing={this.toggleIsEditing} />}
       </ListItem>
     );
   }
@@ -45,7 +45,7 @@ class SectionStep extends Component {
 SectionStep.propTypes = {
   step: PropTypes.shape().isRequired,
   classes: PropTypes.shape().isRequired,
-  // getDissertationPlan: PropTypes.shape().isRequired,
+  getDissertationPlan: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(SectionStep);

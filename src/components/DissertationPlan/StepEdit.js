@@ -38,6 +38,10 @@ class StepEdit extends Component {
     name: '', // name is for the step text content,
   }
 
+  componentDidMount = () => {
+    this.props.getDissertationPlan();
+  }
+
   // Handles storing the input text
   onInputChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -55,8 +59,8 @@ class StepEdit extends Component {
   // On Success of editStep
   editStepSuccess = (response) => {
     console.log('Success step added:', response);
-    this.props.toggleIsEditing();
-    // this.props.getDissertationPlan(); // Reload the page with new step
+    this.props.getDissertationPlan(); // Reload the page with new step
+    this.props.toggleIsEditing(); // Visually switch back to StepText
     this.setState({ name: '' }); // Empty the input box
   }
 
@@ -111,7 +115,7 @@ StepEdit.propTypes = {
   classes: PropTypes.shape().isRequired,
   step: PropTypes.shape().isRequired,
   toggleIsEditing: PropTypes.shape().isRequired,
-  // getDissertationPlan: PropTypes.shape().isRequired,
+  getDissertationPlan: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(StepEdit);

@@ -55,7 +55,7 @@ class Section extends Component {
           <List component="div" disablePadding>
 
             {/* List each step */}
-            {section.step.map(step => <SectionStep step={step} key={step.id} />)}
+            {section.step.map(step => <SectionStep step={step} key={step.id} getDissertationPlan={this.props.getDissertationPlan} />)}
 
             {/* Add a new step */}
             {/* If isAdding is true, render NewSectionStep */}
