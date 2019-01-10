@@ -10,7 +10,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 
 
-
 /* Material UI styling */
 const styles = theme => ({
   nested: {
@@ -36,6 +35,7 @@ class StepText extends Component {
   }
 
   onChangeSuccess = (response) => {
+    this.props.getDissertationPlan();
     console.log('Success marked completed:', response);
   }
 
@@ -51,7 +51,6 @@ class StepText extends Component {
 
   // Delete click
   handleDeleteClick = () => {
-    console.log(this.props.step.id);
     axios.delete(`/api/dissertation/${this.props.step.id}`)
       .then(this.handleDeleteClickSuccess)
       .catch(this.handleDeleteClickError);
@@ -59,6 +58,7 @@ class StepText extends Component {
 
   handleDeleteClickSuccess = (response) => {
     console.log('Success deleting step:', response);
+    this.props.getDissertationPlan();
   }
 
   handleDeleteClickError = (err) => {
@@ -102,6 +102,7 @@ StepText.propTypes = {
   step: PropTypes.shape().isRequired,
   classes: PropTypes.shape().isRequired,
   toggleIsEditing: PropTypes.func.isRequired,
+  getDissertationPlan: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(StepText);
