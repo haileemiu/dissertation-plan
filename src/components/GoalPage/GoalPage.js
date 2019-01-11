@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
+import GoalsList from './GoalList';
+
 const styles = theme => ({
   root: {
     width: '100%',
@@ -15,7 +17,7 @@ const styles = theme => ({
 const GoalPage = props => (
   <div className={props.classes.root}>
     <h1>GoalPage</h1>
-    {/* <DissertationList /> */}
+    <GoalsList />
   </div>
 );
 
