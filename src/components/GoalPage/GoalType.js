@@ -11,15 +11,15 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 import Divider from '@material-ui/core/Divider';
 
-import SectionStep from './SectionStep';
-import NewSectionStep from './NewSectionStep';
-import AddNewButton from './AddNewButton';
+import TaskItem from './TaskItem';
+import NewTaskItem from './NewTaskItem';
+import AddNewTaskButton from './AddNewTaskButton';
 
 /*
-This is the child component of DissertationList
-And the parent component of SectionStep and NewSectionStep
+This is the child component of GoalList
+And the parent component of TaskItem and NewTaskItem
 */
-class Section extends Component {
+class GoalType extends Component {
   state = {
     isOpen: false, // Variable for collapsing all sections nested list
     isAdding: false, // Variable for toggling add new step
@@ -36,11 +36,11 @@ class Section extends Component {
   }
 
   render() {
-    const { section } = this.props;
+    const { type } = this.props;
 
     return (
       <>
-        {/* Section Headings */}
+        {/* Goal Types */}
         <Divider />
         <ListItem button onClick={this.onHeadingClick}>
           <ListItemIcon>
@@ -48,21 +48,20 @@ class Section extends Component {
           </ListItemIcon>
 
           {/* Section Name Text */}
-          <ListItemText inset primary={section.name} />
-          {section.open ? <ExpandLess /> : <ExpandMore />}
+          <ListItemText inset primary={type.title} />
+          {type.open ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
 
         {/* Area inside the nested list where steps will be listed out */}
         <Collapse in={this.state.isOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
 
-            {/* List each step */}
-            {section.step.map(step => <SectionStep step={step} key={step.id} getDissertationPlan={this.props.getDissertationPlan} />)}
+            {/* List each task */}
+            {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)}
 
-            {/* Add a new step */}
-            {/* If isAdding is true, render NewSectionStep */}
-            {/* If isAdding is false, render AddNewButton */}
-            {this.state.isAdding ? <NewSectionStep onAddClick={this.onAddClick} sectionId={section.id} getDissertationPlan={this.props.getDissertationPlan} /> : <AddNewButton onAddClick={this.onAddClick} />}
+            {/* Add a new task */}
+            {this.state.isAdding ? <NewTaskItem onAddClick={this.onAddClick} typeId={type.id} getGoalList={this.props.getGoalList} /> : <AddNewTaskButton onAddClick={this.onAddClick} />}
+      
           </List>
         </Collapse>
 
@@ -71,9 +70,9 @@ class Section extends Component {
   }
 }
 
-Section.propTypes = {
-  section: PropTypes.shape().isRequired,
-  getDissertationPlan: PropTypes.func.isRequired,
+GoalType.propTypes = {
+  type: PropTypes.shape().isRequired,
+  getGoalList: PropTypes.func.isRequired,
 };
 
-export default Section;
+export default GoalType;

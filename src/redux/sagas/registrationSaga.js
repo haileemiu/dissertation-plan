@@ -13,12 +13,12 @@ function* registerUser(action) {
     };
 
     yield axios.post('api/user/register', body);
-    
-    yield put({type: 'FETCH_USER'});
-    yield put({type: 'SET_TO_LOGIN_MODE'});
+
+    yield put({ type: 'FETCH_USER' });
+    yield put({ type: 'SET_TO_LOGIN_MODE' });
   } catch (error) {
-      console.log('Error with user registration:', error);
-      yield put({type: 'REGISTRATION_FAILED'});
+    console.log('Error with user registration:', error);
+    yield put({ type: 'REGISTRATION_FAILED' });
   }
 }
 

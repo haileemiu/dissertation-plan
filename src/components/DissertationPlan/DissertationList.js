@@ -36,7 +36,7 @@ class DissertationList extends Component {
   // On Error of getDissertationPlan
   getDissertationPlanError = (err) => {
     console.log('Error in retrieving sections from api:', err);
-    alert('Error in getting your saved sections');
+    // alert('Error in getting your saved sections'); // TO DO: make as user alert
   }
 
   render() {

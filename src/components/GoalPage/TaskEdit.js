@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import axios from 'axios';
 
 import ListItem from '@material-ui/core/ListItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-
-/* Material UI styling */
 const styles = theme => ({
   nested: {
     paddingLeft: theme.spacing.unit * 4,
@@ -20,7 +18,6 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    maxWidth: 1000,
   },
   button: {
     margin: theme.spacing.unit,
@@ -32,12 +29,12 @@ const styles = theme => ({
 });
 
 /*
-This is the child component of Section
-And sibling component of SectionStep
+This is a child component of TaskItem
+And a sibling component of TaskText
 */
-class NewSectionStep extends Component {
+class TaskEdit extends Component {
   state = {
-    name: '', // name is for the step text content
+    name: this.props.task.title, // displays the current value to be edited
   }
 
   // Handles storing the input text
@@ -45,29 +42,24 @@ class NewSectionStep extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  // On click, handles sending new step
-  addNewStep = (event) => {
+  // On click, handles editing task
+  editTask = (event) => {
     event.preventDefault();
-    this.setState({ isAdding: true });
-    // this.props.sectionId is being passed from the Section component
-    axios.post('/api/dissertation/', { id: this.props.sectionId, name: this.state.name })
-      .then(this.addNewStepSuccess)
-      .catch(this.addNewStepError);
+
+    axios.put(`/api/goals/${this.props.task.id}/edit`, { name: this.state.name })
+      .then(this.editTaskSuccess)
+      .catch(this.editTaskError);
   }
 
-  // On Success of addNewStep
-  addNewStepSuccess = () => {
-    this.props.getDissertationPlan(); // Reload the page with new step
-    this.props.onAddClick();
+  // On Success of editTask
+  editTaskSuccess = () => {
+    this.props.getGoalList(); // Reload the page with new step
+    this.props.toggleIsEditing(); // Visually switch back to StepText
   }
 
-  // On Error of addNewStep
-  addNewStepError = (err) => {
-    console.log('Error in adding step:', err); // TO DO: alert the user
-  }
-
-  cancelAdding = () => {
-    this.props.onAddClick(); // calls the function in parent (Section) that toggles views
+  // On Error of editTask
+  editTaskError = (err) => {
+    console.log('Error in editing task:', err); // TO DO: alert user
   }
 
   render() {
@@ -76,49 +68,47 @@ class NewSectionStep extends Component {
     return (
       // Renders a list item with a form and button inside
       <ListItem className={classes.nested}>
-        <form onSubmit={this.addNewStep} className={classes.container}>
+        <form onSubmit={this.editTask} className={classes.container}>
           <TextField
             fullWidth
-            label="New Step"
             className={classes.textField}
             margin="normal"
             // variant="outlined"
-            type="text"
-            name="name"
-            value={this.state.name}
+            name="name" // needed for state change
+            value={this.state.name} // needed for event.target.value
             onChange={this.onInputChange}
           />
           <Button
             size="small"
             variant="contained"
+            color="primary"
             className={classes.button}
             type="submit"
             value="Add New"
           >
-            Add
+            Submit
           </Button>
-
           <Button
             size="small"
             variant="contained"
+            color="secondary"
             className={classes.button}
             type="button"
-            value="Cancel"
-            onClick={this.cancelAdding}
+            onClick={this.props.toggleIsEditing}
           >
             Cancel
           </Button>
         </form>
+
       </ListItem>
     );
   }
 }
-
-NewSectionStep.propTypes = {
+TaskEdit.propTypes = {
   classes: PropTypes.shape().isRequired,
-  sectionId: PropTypes.number.isRequired,
-  getDissertationPlan: PropTypes.func.isRequired,
-  onAddClick: PropTypes.func.isRequired,
+  task: PropTypes.shape().isRequired,
+  toggleIsEditing: PropTypes.func.isRequired,
+  getGoalList: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(NewSectionStep);
+export default withStyles(styles)(TaskEdit);

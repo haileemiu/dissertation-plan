@@ -21,9 +21,24 @@ router.post('/register', async (req, res) => {
     // Registers user
     const queryText = 'INSERT INTO person (email, username, password) VALUES ($1, $2, $3) RETURNING id';
 
-    const results = await pool.query(queryText, [email, username, encryptedPassword]);
+    const results = await pool.query(queryText, [email, username, encryptedPassword]); // holds the user's id
 
-    // Creates the default dissertation_plan data for the new user
+    // console.log(results);
+
+    await pool.query(
+      `INSERT INTO goal_types (user_id, title) VALUES 
+      (${results.rows[0].id}, 'Coursework'),
+      (${results.rows[0].id}, 'Research'), 
+      (${results.rows[0].id}, 'Writing'),
+      (${results.rows[0].id}, 'Fitness'),  
+      (${results.rows[0].id}, 'Self-care'),
+      (${results.rows[0].id}, 'Family and friends'),
+      (${results.rows[0].id}, 'Chores'),
+      (${results.rows[0].id}, 'Other');`,
+    );
+
+
+    // Creates the default dissertation_plan data for the new user by holding the id's the sections to be used in the creation of steps
     // No need for data sterilization because this is not based on user input
     const insertResult = await pool.query(`
         INSERT INTO dissertation_sections (user_id, name) VALUES 
@@ -35,7 +50,8 @@ router.post('/register', async (req, res) => {
         (${results.rows[0].id}, 'Dissertation Defense')
         RETURNING id;`);
 
-    // Creates the default dissertation_steps
+    // console.log(insertResult);
+    // // Creates the default dissertation_steps
     await pool.query(`
       INSERT INTO dissertation_steps (name, section_id) VALUES
       ('Become acquainted with library and librarian', ${insertResult.rows[0].id}),
@@ -85,6 +101,7 @@ router.post('/register', async (req, res) => {
     res.sendStatus(500);
   }
 });
+
 
 // Handles login form authenticate/login POST
 // userStrategy.authenticate('local') is middleware that we run on this route

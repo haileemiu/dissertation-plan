@@ -10,7 +10,7 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
-const goalRouter = require('./routes/goal.router');
+const goalsRouter = require('./routes/goals.router');
 const historyRouter = require('./routes/history.router');
 const dissertationRouter = require('./routes/dissertation.router');
 
@@ -27,7 +27,7 @@ app.use(passport.session());
 
 // Routes
 app.use('/api/user', userRouter);
-app.use('/api/goal', goalRouter);
+app.use('/api/goals', goalsRouter);
 app.use('/api/history', historyRouter);
 app.use('/api/dissertation', dissertationRouter);
 // app.use('/api/tests', require('./routes/test.router'));

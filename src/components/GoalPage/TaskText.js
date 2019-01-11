@@ -23,20 +23,20 @@ const styles = theme => ({
 });
 
 /*
-This is the child component of SectionStep
-And sibling component of StepEdit
+This is the child component of TaskItem
+And sibling component of TaskEdit
 */
-class StepText extends Component {
+class TaskText extends Component {
   // Handles checkbox sending to the api
   onChange = (event) => {
     // Note: checked is an html attribute on inputs
-    axios.put(`/api/dissertation/${this.props.step.id}/completed`, { completed: event.target.checked })
+    axios.put(`/api/goals/${this.props.task.id}/completed`, { completed: event.target.checked })
       .then(this.handleChangeSuccess)
       .catch(this.handleChangeError);
   }
 
   onChangeSuccess = () => {
-    this.props.getDissertationPlan();
+    this.props.getGoalList();
   }
 
   onChangeError = (err) => {
@@ -45,7 +45,7 @@ class StepText extends Component {
 
   // Edit click
   handleEditClick = () => {
-    // State handled in SectionStep
+    // State handled in TaskItem
     this.props.toggleIsEditing();
   }
 
@@ -60,7 +60,7 @@ class StepText extends Component {
       confirmButtonText: 'Delete',
     }).then((result) => {
       if (result.value) {
-        axios.delete(`/api/dissertation/${this.props.step.id}`)
+        axios.delete(`/api/goals/${this.props.task.id}`)
           .then(this.handleDeleteClickSuccess)
           .catch(this.handleDeleteClickError);
       }
@@ -68,7 +68,7 @@ class StepText extends Component {
   }
 
   handleDeleteClickSuccess = () => {
-    this.props.getDissertationPlan();
+    this.props.getGoalList();
   }
 
   handleDeleteClickError = (err) => {
@@ -77,24 +77,24 @@ class StepText extends Component {
 
 
   render() {
-    const { classes, step } = this.props;
+    const { classes, task } = this.props;
 
     return (
-      // Holds the individual step with edit icon and delete icon
+      // Holds the individual task with edit icon and delete icon
       <>
         <ListItemIcon>
 
           {/* Checkbox */}
           <Checkbox
             type="checkbox"
-            defaultChecked={step.completed} // defaultChecked is necessary
+            defaultChecked={task.completed} // defaultChecked is necessary
             onChange={this.onChange}
             value="true"
           />
         </ListItemIcon>
 
-        {/* Text of step */}
-        <ListItemText inset primary={step.name} />
+        {/* Text of task */}
+        <ListItemText inset primary={task.title} />
         <EditIcon
           className={classes.icon}
           onClick={this.handleEditClick}
@@ -108,11 +108,11 @@ class StepText extends Component {
   }
 }
 
-StepText.propTypes = {
-  step: PropTypes.shape().isRequired,
+TaskText.propTypes = {
+  task: PropTypes.shape().isRequired,
   classes: PropTypes.shape().isRequired,
   toggleIsEditing: PropTypes.func.isRequired,
-  getDissertationPlan: PropTypes.func.isRequired,
+  getGoalList: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(StepText);
+export default withStyles(styles)(TaskText);

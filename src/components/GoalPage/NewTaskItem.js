@@ -32,12 +32,12 @@ const styles = theme => ({
 });
 
 /*
-This is the child component of Section
-And sibling component of SectionStep
+This is the child component of GoalType
+And sibling component of TaskItem
 */
-class NewSectionStep extends Component {
+class NewTaskItem extends Component {
   state = {
-    name: '', // name is for the step text content
+    name: '', // name is for the item text content
   }
 
   // Handles storing the input text
@@ -45,29 +45,29 @@ class NewSectionStep extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  // On click, handles sending new step
-  addNewStep = (event) => {
+  // On click, handles sending new task
+  addNewTask = (event) => {
     event.preventDefault();
     this.setState({ isAdding: true });
-    // this.props.sectionId is being passed from the Section component
-    axios.post('/api/dissertation/', { id: this.props.sectionId, name: this.state.name })
-      .then(this.addNewStepSuccess)
-      .catch(this.addNewStepError);
+    // this.props.typeId is being passed from the GoalType component
+    axios.post('/api/goals/', { id: this.props.typeId, name: this.state.name })
+      .then(this.addNewTaskSuccess)
+      .catch(this.addNewTaskError);
   }
 
-  // On Success of addNewStep
-  addNewStepSuccess = () => {
-    this.props.getDissertationPlan(); // Reload the page with new step
+  // On Success of addNewTask
+  addNewTaskSuccess = () => {
+    this.props.getGoalList(); // Reload the page with new step
     this.props.onAddClick();
   }
 
-  // On Error of addNewStep
-  addNewStepError = (err) => {
+  // On Error of addNewTask
+  addNewTaskError = (err) => {
     console.log('Error in adding step:', err); // TO DO: alert the user
   }
 
   cancelAdding = () => {
-    this.props.onAddClick(); // calls the function in parent (Section) that toggles views
+    this.props.onAddClick(); // calls the function in parent (GoalType) that toggles views
   }
 
   render() {
@@ -76,10 +76,10 @@ class NewSectionStep extends Component {
     return (
       // Renders a list item with a form and button inside
       <ListItem className={classes.nested}>
-        <form onSubmit={this.addNewStep} className={classes.container}>
+        <form onSubmit={this.addNewTask} className={classes.container}>
           <TextField
             fullWidth
-            label="New Step"
+            label="New Task"
             className={classes.textField}
             margin="normal"
             // variant="outlined"
@@ -114,11 +114,11 @@ class NewSectionStep extends Component {
   }
 }
 
-NewSectionStep.propTypes = {
+NewTaskItem.propTypes = {
   classes: PropTypes.shape().isRequired,
-  sectionId: PropTypes.number.isRequired,
-  getDissertationPlan: PropTypes.func.isRequired,
+  typeId: PropTypes.number.isRequired,
+  getGoalList: PropTypes.func.isRequired,
   onAddClick: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(NewSectionStep);
+export default withStyles(styles)(NewTaskItem);
