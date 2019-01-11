@@ -34,32 +34,32 @@ const router = express.Router();
 // });
 */
 
-// router.get('/', async (req, res) => {
-//   try {
-//     const queryGoalTypes = 'SELECT * FROM goal_types WHERE user_id=$1;';
-//     const types = await pool.query(queryGoalTypes, [req.user.id]);
+router.get('/', async (req, res) => {
+  try {
+    const queryGoalTypes = 'SELECT * FROM goal_types WHERE user_id=$1;';
+    const types = await pool.query(queryGoalTypes, [req.user.id]);
 
-//     const typesRows = types.rows;
+    const typesRows = types.rows;
 
-//     const typeHeadingsIds = typesRows.map(type => type.id);
+    const typeHeadingsIds = typesRows.map(type => type.id);
 
-//     const typesIds = typeHeadingsIds.join(',');
+    const typesIds = typeHeadingsIds.join(',');
 
-//     const tasksByType = await pool.query(`SELECT * FROM goal_tasks WHERE type_id IN (${typesIds}) ORDER BY id;`);
+    const tasksByType = await pool.query(`SELECT * FROM goal_tasks WHERE type_id IN (${typesIds}) ORDER BY id;`);
 
-//     const rowsOfStepsByType = tasksByType.rows;
+    const rowsOfStepsByType = tasksByType.rows;
 
-//     const responseArray = typesRows.map(type => ({
-//       ...type,
-//       task: Array.from(rowsOfStepsByType).filter(task => task.section_id === type.id),
-//     }));
+    const responseArray = typesRows.map(type => ({
+      ...type,
+      task: Array.from(rowsOfStepsByType).filter(task => task.section_id === type.id),
+    }));
 
-//     res.send(responseArray);
-//   } catch (err) {
-//     console.log(err);
-//     res.sendStatus(500);
-//   }
-// });
+    res.send(responseArray);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+});
 
 
 module.exports = router;
