@@ -12,8 +12,8 @@ import StarBorder from '@material-ui/icons/StarBorder';
 import Divider from '@material-ui/core/Divider';
 
 import TaskItem from './TaskItem';
-// import NewTaskItem from './NewTaskItem';
-// import AddNewTaskButton from './AddNewTaskButton';
+import NewTaskItem from './NewTaskItem';
+import AddNewTaskButton from './AddNewTaskButton';
 
 /*
 This is the child component of GoalList
@@ -60,8 +60,8 @@ class GoalType extends Component {
             {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)}
 
             {/* Add a new task */}
-            {/* {this.state.isAdding ? <NewTaskItem onAddClick={this.onAddClick} sectionId={type.id} getGoalList={this.props.getGoalList} /> : <AddNewTaskButton onAddClick={this.onAddClick} />} */}
-            {/* <NewSectionStep sectionId={section.id} getDissertationPlan={this.props.getDissertationPlan} /> */}
+            {this.state.isAdding ? <NewTaskItem onAddClick={this.onAddClick} typeId={type.id} getGoalList={this.props.getGoalList} /> : <AddNewTaskButton onAddClick={this.onAddClick} />}
+      
           </List>
         </Collapse>
 

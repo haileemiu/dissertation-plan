@@ -63,7 +63,6 @@ class Section extends Component {
             {/* If isAdding is true, render NewSectionStep */}
             {/* If isAdding is false, render AddNewButton */}
             {this.state.isAdding ? <NewSectionStep onAddClick={this.onAddClick} sectionId={section.id} getDissertationPlan={this.props.getDissertationPlan} /> : <AddNewButton onAddClick={this.onAddClick} />}
-            {/* <NewSectionStep sectionId={section.id} getDissertationPlan={this.props.getDissertationPlan} /> */}
           </List>
         </Collapse>
 
