@@ -11,7 +11,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 import Divider from '@material-ui/core/Divider';
 
-// import TaskItem from './TaskItem';
+import TaskItem from './TaskItem';
 // import NewTaskItem from './NewTaskItem';
 // import AddNewTaskButton from './AddNewTaskButton';
 
@@ -57,7 +57,7 @@ class GoalType extends Component {
           <List component="div" disablePadding>
 
             {/* List each task */}
-            {/* {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)} */}
+            {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)}
 
             {/* Add a new task */}
             {/* {this.state.isAdding ? <NewTaskItem onAddClick={this.onAddClick} sectionId={type.id} getGoalList={this.props.getGoalList} /> : <AddNewTaskButton onAddClick={this.onAddClick} />} */}
