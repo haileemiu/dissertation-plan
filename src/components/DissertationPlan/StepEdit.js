@@ -59,7 +59,7 @@ class StepEdit extends Component {
 
   // On Error of editStep
   editStepError = (err) => {
-    console.log('Error in editing step:', err);
+    console.log('Error in editing step:', err); // TO DO: alert user
   }
 
   render() {

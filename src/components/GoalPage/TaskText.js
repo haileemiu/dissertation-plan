@@ -94,7 +94,7 @@ class TaskText extends Component {
         </ListItemIcon>
 
         {/* Text of task */}
-        <ListItemText inset primary={task.name} />
+        <ListItemText inset primary={task.title} />
         <EditIcon
           className={classes.icon}
           onClick={this.handleEditClick}
