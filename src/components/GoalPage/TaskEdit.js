@@ -46,7 +46,7 @@ class TaskEdit extends Component {
   editTask = (event) => {
     event.preventDefault();
 
-    axios.put(`/api/goals/${this.props.task.id}/edit`, { name: this.state.task })
+    axios.put(`/api/goals/${this.props.task.id}/edit`, { name: this.state.name })
       .then(this.editTaskSuccess)
       .catch(this.editTaskError);
   }

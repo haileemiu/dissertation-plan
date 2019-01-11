@@ -57,7 +57,7 @@ class NewTaskItem extends Component {
 
   // On Success of addNewTask
   addNewTaskSuccess = () => {
-    this.props.getDissertationPlan(); // Reload the page with new step
+    this.props.getGoalList(); // Reload the page with new step
     this.props.onAddClick();
   }
 
@@ -117,7 +117,7 @@ class NewTaskItem extends Component {
 NewTaskItem.propTypes = {
   classes: PropTypes.shape().isRequired,
   typeId: PropTypes.number.isRequired,
-  getDissertationPlan: PropTypes.func.isRequired,
+  getGoalList: PropTypes.func.isRequired,
   onAddClick: PropTypes.func.isRequired,
 };
 
