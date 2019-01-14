@@ -1,10 +1,10 @@
--- person table that was included in the code base for login and register
--- I added the email column
 CREATE TABLE person (
     id SERIAL PRIMARY KEY,
     email VARCHAR (1000) UNIQUE NOT NULL,
     username VARCHAR (80) UNIQUE NOT NULL,
-    password VARCHAR (1000) NOT NULL
+    password VARCHAR (1000) NOT NULL,
+    temp_key VARCHAR(1000),
+  	temp_key_timeout TIMESTAMP
 );
 
 -- goals table that references the user_id, save the goal text, and the instances per week

@@ -81,6 +81,9 @@ class LoginPage extends Component {
             Register
           </button>
         </center>
+
+        {/* WIP */}
+        <a href="http://localhost:3000/url#/password-reset">Forgot password?</a>
       </div>
     );
   }
