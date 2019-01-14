@@ -10,8 +10,8 @@ import AddNewSectionInput from './AddNewSectionInput';
 
 
 /*
-This is the child component of GoalPage
-And the parent component of GoalType
+Child component of GoalPage
+Parent component of GoalType, AddNewSectionInput, and AddNewSectionButton
 */
 class GoalList extends Component {
   state = {
