@@ -14,7 +14,7 @@ import Divider from '@material-ui/core/Divider';
 import TaskItem from '../Task/TaskItem';
 import NewTaskItem from '../Task/NewTaskItem';
 import AddNewTaskButton from '../Task/AddNewTaskButton';
-import TypeEdit from '../Task/TaskEdit';
+import TypeEdit from './TypeEdit';
 import TypeEditButton from './TypeEditButton';
 
 /*
@@ -25,6 +25,7 @@ class GoalType extends Component {
   state = {
     isOpen: false, // Variable for collapsing all sections nested list
     isAdding: false, // Variable for toggling add new step
+    isEditingType: false,
   };
 
   // Handles collapse on click of any where in the heading
@@ -66,8 +67,10 @@ class GoalType extends Component {
               ? <NewTaskItem onAddClick={this.onAddClick} typeId={type.id} getGoalList={this.props.getGoalList} />
               : <AddNewTaskButton onAddClick={this.onAddClick} />}
             {/* WIP: edit section */}
-            {/* <TypeEdit /> */}
-            <TypeEditButton />
+            {this.state.isEditingType
+              ? <TypeEdit />
+              : <TypeEditButton />}
+
           </List>
         </Collapse>
 
