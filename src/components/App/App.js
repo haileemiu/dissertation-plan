@@ -16,9 +16,9 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../About/About';
 import UserPage from '../UserPage/UserPage';
 import GoalPage from '../GoalPage/GoalPage';
-
-import './App.css';
 import DissertationPlan from '../DissertationPlan/DissertationPlan';
+import PasswordReset from '../LoginPage/PasswordReset'; // WIP
+import './App.css';
 
 class App extends Component {
   // Can't be a function component because a function can't have a method as a property.
@@ -54,6 +54,12 @@ class App extends Component {
               exact
               path="/dissertation"
               component={DissertationPlan}
+            />
+            {/* WIP */}
+            <Route
+              exact
+              path="/password-reset"
+              component={PasswordReset}
             />
             {/* OTHERWISE (no path!) */}
             <Route render={() => <h1>404</h1>} />
