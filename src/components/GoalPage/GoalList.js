@@ -5,15 +5,18 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 
 import GoalType from './GoalType';
+import AddNewSectionButton from './AddNewSectionButton';
+import AddNewSectionInput from './AddNewSectionInput';
 
 
 /*
-This is the child component of GoalList
+This is the child component of GoalPage
 And the parent component of GoalType
 */
 class GoalList extends Component {
   state = {
     goalList: [],
+    isAdding: false,
   };
 
   componentDidMount = () => {
@@ -21,7 +24,7 @@ class GoalList extends Component {
   }
 
   getGoalList = () => {
-    axios.get('/api/goals')
+    axios.get('/api/goals/types')
       .then(this.getGoalListSuccess)
       .catch(this.getGoalListError);
   }
@@ -37,6 +40,10 @@ class GoalList extends Component {
     // alert('Error in getting your saved sections'); // TO DO: make as user alert
   }
 
+  toggleAddSection = () => {
+    this.setState(prevState => ({ isAdding: !prevState.isAdding }));
+  }
+
   render() {
     return (
       <div>
@@ -44,9 +51,19 @@ class GoalList extends Component {
           component="nav"
           subheader={<ListSubheader component="div">My Goals</ListSubheader>}
         >
-          {/* TEMP */}
-          {/* <pre>{JSON.stringify(this.state.goalList, null, 2)}</pre> */}
-          {this.state.goalList.map(type => <GoalType type={type} getGoalList={this.getGoalList} key={type.id} />)}
+          {/* List out the Goal Type headers */}
+          {this.state.goalList.map(type => (
+            <GoalType
+              type={type}
+              getGoalList={this.getGoalList}
+              key={type.id}
+            />))}
+
+          {/* Add section button bottom of list */}
+          {/* Toggle between Add Section Button & Add Section input */}
+          {this.state.isAdding
+            ? <AddNewSectionInput toggleAddSection={this.toggleAddSection} getGoalList={this.getGoalList} />
+            : <AddNewSectionButton toggleAddSection={this.toggleAddSection} />}
         </List>
       </div>
     );

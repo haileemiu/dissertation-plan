@@ -48,6 +48,7 @@ router.post('/', (req, res) => {
     });
 });
 
+
 // Handles marking steps complete or not complete
 router.put('/:id/completed', (req, res) => {
   const queryText = 'UPDATE dissertation_steps SET completed = $1 WHERE id=$2;';

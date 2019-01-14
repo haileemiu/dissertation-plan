@@ -59,9 +59,11 @@ class GoalType extends Component {
             {/* List each task */}
             {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)}
 
-            {/* Add a new task */}
-            {this.state.isAdding ? <NewTaskItem onAddClick={this.onAddClick} typeId={type.id} getGoalList={this.props.getGoalList} /> : <AddNewTaskButton onAddClick={this.onAddClick} />}
-      
+            {/* Toggle between Add a new task */}
+            {this.state.isAdding
+              ? <NewTaskItem onAddClick={this.onAddClick} typeId={type.id} getGoalList={this.props.getGoalList} />
+              : <AddNewTaskButton onAddClick={this.onAddClick} />}
+
           </List>
         </Collapse>
 

@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
-
-import ListItem from '@material-ui/core/ListItem';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import { ListItem, TextField, Button } from '@material-ui/core';
 
 const styles = theme => ({
   nested: {
@@ -22,19 +19,15 @@ const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
   },
-  icon: {
-    margin: theme.spacing.unit,
-    fontSize: 25,
-  },
 });
 
 /*
-This is a child component of TaskItem
-And a sibling component of TaskText
+Child component of GoalList
+Sibling component of AddNewSectionButton
 */
-class TaskEdit extends Component {
+class AddNewSectionInput extends Component {
   state = {
-    name: this.props.task.title, // displays the current value to be edited
+    newSection: '',
   }
 
   // Handles storing the input text
@@ -42,40 +35,38 @@ class TaskEdit extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  // On click, handles editing task
-  editTask = (event) => {
+  // Sends new section to database
+  addNewSection = (event) => {
     event.preventDefault();
 
-    axios.put(`/api/goals/tasks/${this.props.task.id}/edit`, { name: this.state.name })
-      .then(this.editTaskSuccess)
-      .catch(this.editTaskError);
+    console.log(this.state.newSection);
+    axios.post('/api/goals/types', { title: this.state.newSection })
+      .then(this.addNewSectionSuccess)
+      .catch(this.addNewSectionError);
   }
 
-  // On Success of editTask
-  editTaskSuccess = () => {
+  // On Success of addNewSection
+  addNewSectionSuccess = () => {
     this.props.getGoalList(); // Reload the page with new step
-    this.props.toggleIsEditing(); // Visually switch back to StepText
+    this.props.toggleAddSection(); // Visually switch back to StepText
   }
 
-  // On Error of editTask
-  editTaskError = (err) => {
-    console.log('Error in editing task:', err); // TO DO: alert user
+  // On Error of addNewSection
+  addNewSectionError = (err) => {
+    console.log('Error in adding section:', err); // TO DO: alert user
   }
 
   render() {
     const { classes } = this.props;
-
     return (
-      // Renders a list item with a form and button inside
-      <ListItem className={classes.nested}>
-        <form onSubmit={this.editTask} className={classes.container}>
+      <ListItem>
+        <form onSubmit={this.addNewSection} className={classes.container}>
           <TextField
             fullWidth
             className={classes.textField}
             margin="normal"
-            // variant="outlined"
-            name="name" // needed for state change
-            value={this.state.name} // needed for event.target.value
+            name="newSection" // needed for state change
+            value={this.state.newSection} // needed for event.target.value
             onChange={this.onInputChange}
           />
           <Button
@@ -84,9 +75,9 @@ class TaskEdit extends Component {
             color="primary"
             className={classes.button}
             type="submit"
-            value="Add New"
+            value="addNewSection"
           >
-            Submit
+            Add Section
           </Button>
           <Button
             size="small"
@@ -94,21 +85,21 @@ class TaskEdit extends Component {
             color="secondary"
             className={classes.button}
             type="button"
-            onClick={this.props.toggleIsEditing}
+            onClick={this.props.toggleAddSection}
           >
             Cancel
           </Button>
         </form>
-
       </ListItem>
+
     );
   }
 }
-TaskEdit.propTypes = {
+
+AddNewSectionInput.propTypes = {
   classes: PropTypes.shape().isRequired,
-  task: PropTypes.shape().isRequired,
-  toggleIsEditing: PropTypes.func.isRequired,
+  toggleAddSection: PropTypes.func.isRequired,
   getGoalList: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(TaskEdit);
+export default withStyles(styles)(AddNewSectionInput);

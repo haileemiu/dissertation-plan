@@ -30,7 +30,7 @@ class TaskText extends Component {
   // Handles checkbox sending to the api
   onChange = (event) => {
     // Note: checked is an html attribute on inputs
-    axios.put(`/api/goals/${this.props.task.id}/completed`, { completed: event.target.checked })
+    axios.put(`/api/goals/tasks/${this.props.task.id}/completed`, { completed: event.target.checked })
       .then(this.handleChangeSuccess)
       .catch(this.handleChangeError);
   }
@@ -60,7 +60,7 @@ class TaskText extends Component {
       confirmButtonText: 'Delete',
     }).then((result) => {
       if (result.value) {
-        axios.delete(`/api/goals/${this.props.task.id}`)
+        axios.delete(`/api/goals/tasks/${this.props.task.id}`)
           .then(this.handleDeleteClickSuccess)
           .catch(this.handleDeleteClickError);
       }

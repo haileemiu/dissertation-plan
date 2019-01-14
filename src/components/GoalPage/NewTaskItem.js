@@ -48,9 +48,8 @@ class NewTaskItem extends Component {
   // On click, handles sending new task
   addNewTask = (event) => {
     event.preventDefault();
-    this.setState({ isAdding: true });
     // this.props.typeId is being passed from the GoalType component
-    axios.post('/api/goals/', { id: this.props.typeId, name: this.state.name })
+    axios.post('/api/goals/tasks/', { id: this.props.typeId, name: this.state.name })
       .then(this.addNewTaskSuccess)
       .catch(this.addNewTaskError);
   }
