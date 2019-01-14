@@ -16,8 +16,8 @@ const styles = theme => ({
 });
 
 /*
-This is a child component of GoalType
-And a sibling component of NewTaskItem
+Child component of GoalType
+Sibling component of NewTaskItem
 */
 class AddNewTaskButton extends Component {
   state = {}

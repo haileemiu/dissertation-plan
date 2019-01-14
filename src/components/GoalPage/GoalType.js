@@ -14,10 +14,12 @@ import Divider from '@material-ui/core/Divider';
 import TaskItem from './TaskItem';
 import NewTaskItem from './NewTaskItem';
 import AddNewTaskButton from './AddNewTaskButton';
+import TypeEdit from './TaskEdit';
+import TypeEditButton from './TypeEditButton';
 
 /*
-This is the child component of GoalList
-And the parent component of TaskItem and NewTaskItem
+Child component of GoalList
+Parent component of TaskItem and NewTaskItem
 */
 class GoalType extends Component {
   state = {
@@ -63,7 +65,9 @@ class GoalType extends Component {
             {this.state.isAdding
               ? <NewTaskItem onAddClick={this.onAddClick} typeId={type.id} getGoalList={this.props.getGoalList} />
               : <AddNewTaskButton onAddClick={this.onAddClick} />}
-
+            {/* WIP: edit section */}
+            {/* <TypeEdit /> */}
+            <TypeEditButton />
           </List>
         </Collapse>
 
