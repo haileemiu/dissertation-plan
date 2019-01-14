@@ -11,10 +11,10 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 import Divider from '@material-ui/core/Divider';
 
-import TaskItem from './TaskItem';
-import NewTaskItem from './NewTaskItem';
-import AddNewTaskButton from './AddNewTaskButton';
-import TypeEdit from './TaskEdit';
+import TaskItem from '../Task/TaskItem';
+import NewTaskItem from '../Task/NewTaskItem';
+import AddNewTaskButton from '../Task/AddNewTaskButton';
+import TypeEdit from '../Task/TaskEdit';
 import TypeEditButton from './TypeEditButton';
 
 /*

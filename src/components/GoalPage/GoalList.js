@@ -4,9 +4,9 @@ import axios from 'axios';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 
-import GoalType from './GoalType';
-import AddNewSectionButton from './AddNewSectionButton';
-import AddNewSectionInput from './AddNewSectionInput';
+import GoalType from './Type/GoalType';
+import AddNewSectionButton from './Type/AddNewSectionButton';
+import AddNewSectionInput from './Type/AddNewSectionInput';
 
 
 /*
