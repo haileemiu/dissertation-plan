@@ -38,7 +38,7 @@ const router = express.Router();
 // Handles retrieving goal types with goal tasks
 router.get('/', async (req, res) => {
   try {
-    const queryGoalTypes = 'SELECT * FROM goal_types WHERE user_id=$1;';
+    const queryGoalTypes = 'SELECT * FROM goal_types WHERE user_id=$1 ORDER BY id;';
     const types = await pool.query(queryGoalTypes, [req.user.id]);
 
     const typesRows = types.rows;

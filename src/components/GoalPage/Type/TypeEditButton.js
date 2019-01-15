@@ -7,12 +7,9 @@ import { ListItem } from '@material-ui/core';
 
 
 const styles = theme => ({
-  addButton: {
+  button: {
     margin: theme.spacing.unit,
     marginLeft: 75,
-  },
-  nested: {
-    paddingLeft: theme.spacing.unit * 4,
   },
 
 });
@@ -29,19 +26,16 @@ class TypeEditButton extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <ListItem className={classes.nested}>
-        <Button
-          size="small"
-          variant="contained"
-          color="primary"
-          className={classes.button}
-          onClick={this.handleEditClick}
-          type="submit"
-          value="goalType"
-        >
-          Edit Section
-        </Button>
-      </ListItem>
+      <Button
+        size="small"
+        variant="contained"
+        color="primary"
+        className={classes.button}
+        onClick={this.handleEditClick}
+        type="submit"
+      >
+        Edit section
+      </Button>
     );
   }
 }
