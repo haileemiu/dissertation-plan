@@ -88,6 +88,15 @@ router.put('/:id/edit', (req, res) => {
     });
 });
 
-// router.put('/:id/uncheck')
+router.put('/:id/uncheck', (req, res) => {
+  const queryToUncheckAllOneType = 'UPDATE goal_tasks SET completed=false WHERE type_id=$1;';
+
+  pool.query(queryToUncheckAllOneType, [req.params.id])
+    .then(() => { res.sendStatus(200); })
+    .catch((error) => {
+      console.log('Error in unchecking goals:', error);
+      res.sendStatus(500);
+    });
+});
 
 module.exports = router;

@@ -12,8 +12,12 @@ const styles = theme => ({
   },
 });
 
+/*
+Child component of GoalType
+*/
 class UncheckAllButton extends Component {
-  state = {}
+  state = {
+  }
 
   uncheckAllTasksInType = () => {
     // Axios to set all task with type id to false
@@ -22,8 +26,10 @@ class UncheckAllButton extends Component {
       .catch(this.uncheckAllTasksInTypeError);
   }
 
+  // WIP
   uncheckAllTasksInTypeSuccess = () => {
     this.props.getGoalList();
+    // this.props.uncheckAllStateChange();
   }
 
   uncheckAllTasksInTypeError = (err) => {
@@ -53,6 +59,7 @@ UncheckAllButton.propTypes = {
   classes: PropTypes.shape().isRequired,
   type: PropTypes.shape().isRequired,
   getGoalList: PropTypes.func.isRequired,
+  uncheckAllStateChange: PropTypes.isRequired,
 };
 
 export default withStyles(styles)(UncheckAllButton);
