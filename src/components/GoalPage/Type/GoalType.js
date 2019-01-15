@@ -16,6 +16,7 @@ import NewTaskItem from '../Task/NewTaskItem';
 import AddNewTaskButton from '../Task/AddNewTaskButton';
 import TypeEdit from './TypeEdit';
 import TypeEditButton from './TypeEditButton';
+import UncheckAllButton from './UncheckAllButton';
 
 /*
 Child component of GoalList
@@ -67,6 +68,12 @@ class GoalType extends Component {
             {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)}
 
             <ListItem>
+              {/* WIP: Uncheck all button */}
+              <UncheckAllButton
+                type={type}
+                getGoalList={this.props.getGoalList}
+              />
+
               {/* Toggle between edit section/type button and input */}
               {this.state.isEditingType
                 ? <TypeEdit type={type} toggleIsEditingType={this.toggleIsEditingType} getGoalList={this.props.getGoalList} />
