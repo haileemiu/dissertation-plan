@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { ListItem, TextField, Button } from '@material-ui/core';
@@ -24,22 +25,51 @@ const styles = theme => ({
   },
 });
 
+/*
+Child component of GoalType
+Sibling component of TypeEditButton
+*/
 class TypeEdit extends Component {
-  state = {}
+  state = {
+    goalType: this.props.type.title,
+  }
+
+  // Handles storing the input text
+  onInputChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
+  // On click, handles editing goal type
+  editType = (event) => {
+    event.preventDefault();
+
+    axios.put(`/api/goals/types/${this.props.type.id}`, { title: this.state.goalType })
+      .then(this.editTypeSuccess)
+      .catch(this.editTypeError);
+  }
+
+  editTypeSuccess = () => {
+    this.props.getGoalList();
+    this.props.toggleIsEditingType();
+  }
+
+  editTypeError = (err) => {
+    console.log('Error in editing goal type:', err); // TO DO: alert user
+  }
 
   render() {
     const { classes } = this.props;
 
     return (
       <ListItem className={classes.nested}>
-        <form onSubmit={this.editTask} className={classes.container}>
+        <form onSubmit={this.editType} className={classes.container}>
           <TextField
             fullWidth
             className={classes.textField}
             margin="normal"
             // variant="outlined"
-            name="name" // needed for state change
-            value={this.state.name} // needed for event.target.value
+            name="goalType" // needed for state change
+            value={this.state.goalType} // needed for event.target.value
             onChange={this.onInputChange}
           />
           <Button
@@ -48,7 +78,7 @@ class TypeEdit extends Component {
             color="primary"
             className={classes.button}
             type="submit"
-            value="Add New"
+            // value="goalType"
           >
             Submit
           </Button>
@@ -58,7 +88,7 @@ class TypeEdit extends Component {
             color="secondary"
             className={classes.button}
             type="button"
-            onClick={this.props.toggleIsEditing}
+            onClick={this.props.toggleIsEditingType}
           >
             Cancel
           </Button>
@@ -71,6 +101,9 @@ class TypeEdit extends Component {
 
 TypeEdit.propTypes = {
   classes: PropTypes.shape().isRequired,
+  type: PropTypes.shape().isRequired,
+  toggleIsEditingType: PropTypes.func.isRequired,
+  getGoalList: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(TypeEdit);

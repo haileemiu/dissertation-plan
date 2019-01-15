@@ -33,7 +33,7 @@ router.put('/:id/edit', (req, res) => {
   const queryText = 'UPDATE goal_tasks SET title=$1 where id=$2;';
 
   pool.query(queryText, [req.body.name, req.params.id])
-    .then(() => { res.sendStatus(201); })
+    .then(() => { res.sendStatus(200); })
     .catch((error) => {
       console.log('Error in editing goal:', error);
       res.sendStatus(500);

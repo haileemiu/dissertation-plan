@@ -20,8 +20,6 @@ Child component of GoalType
 Sibling component of NewTaskItem
 */
 class AddNewTaskButton extends Component {
-  state = {}
-
   handleAddClick = () => {
     this.props.onAddClick();
   }

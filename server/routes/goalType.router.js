@@ -77,4 +77,15 @@ router.post('/', (req, res) => {
     });
 });
 
+router.put('/:id', (req, res) => {
+  const queryEditType = 'UPDATE goal_types SET title=$1 WHERE id=$2;';
+
+  pool.query(queryEditType, [req.body.title, req.params.id])
+    .then(() => { res.sendStatus(200); })
+    .catch((error) => {
+      console.log('Error in editing goal type:', error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;

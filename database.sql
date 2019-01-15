@@ -23,14 +23,14 @@ CREATE TABLE person (
 -- 	completed_on DATE DEFAULT NOW()
 -- );
 
-CREATE TABLE goal_list (
-  id SERIAL PRIMARY KEY,
-  user_id INT NOT NULL REFERENCES person,
-  name VARCHAR NOT NULL,
-  completed BOOLEAN DEFAULT false
-);
+-- CREATE TABLE goal_list (
+--   id SERIAL PRIMARY KEY,
+--   user_id INT NOT NULL REFERENCES person,
+--   name VARCHAR NOT NULL,
+--   completed BOOLEAN DEFAULT false
+-- );
 
-CREATE TABLE goal_type (
+CREATE TABLE goal_types (
   id SERIAL PRIMARY KEY,
   user_id INT NOT NULL REFERENCES person,
   title VARCHAR NOT NULL
@@ -39,18 +39,18 @@ CREATE TABLE goal_type (
 CREATE TABLE goal_tasks (
   id SERIAL PRIMARY KEY,
   title VARCHAR NOT NULL,
-  type_id INT REFERENCES goal_type,
+  type_id INT REFERENCES goal_types,
   completed BOOLEAN DEFAULT false
 );
 
 -- dissertation_plan table that saves each users dissertation plan
 -- a default list will be created and added to this table when a user creates an account
-CREATE TABLE dissertation_plan (
-	id SERIAL PRIMARY KEY,
-	user_id INT NOT NULL REFERENCES person,
-	name VARCHAR NOT NULL,
-	completed BOOLEAN DEFAULT false
-);
+-- CREATE TABLE dissertation_plan (
+-- 	id SERIAL PRIMARY KEY,
+-- 	user_id INT NOT NULL REFERENCES person,
+-- 	name VARCHAR NOT NULL,
+-- 	completed BOOLEAN DEFAULT false
+-- );
 
 -- For the section headings
 CREATE TABLE dissertation_sections (

@@ -38,6 +38,10 @@ class GoalType extends Component {
     this.setState(prevState => ({ isAdding: !prevState.isAdding }));
   }
 
+  toggleIsEditingType = () => {
+    this.setState(prevState => ({ isEditingType: !prevState.isEditingType }));
+  }
+
   render() {
     const { type } = this.props;
 
@@ -66,10 +70,11 @@ class GoalType extends Component {
             {this.state.isAdding
               ? <NewTaskItem onAddClick={this.onAddClick} typeId={type.id} getGoalList={this.props.getGoalList} />
               : <AddNewTaskButton onAddClick={this.onAddClick} />}
+            
             {/* WIP: edit section */}
             {this.state.isEditingType
-              ? <TypeEdit />
-              : <TypeEditButton />}
+              ? <TypeEdit type={type} toggleIsEditingType={this.toggleIsEditingType} getGoalList={this.props.getGoalList} />
+              : <TypeEditButton type={type} toggleIsEditingType={this.toggleIsEditingType} />}
 
           </List>
         </Collapse>
