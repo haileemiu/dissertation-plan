@@ -17,7 +17,7 @@ class UncheckAllButton extends Component {
 
   uncheckAllTasksInType = () => {
     // Axios to set all task with type id to false
-    axios.put(`/api/goals/types/${this.props.type.id}`)
+    axios.put(`/api/goals/types/${this.props.type.id}/uncheck`)
       .then(this.uncheckAllTasksInTypeSuccess)
       .catch(this.uncheckAllTasksInTypeError);
   }

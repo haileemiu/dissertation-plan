@@ -77,7 +77,7 @@ router.post('/', (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id/edit', (req, res) => {
   const queryEditType = 'UPDATE goal_types SET title=$1 WHERE id=$2;';
 
   pool.query(queryEditType, [req.body.title, req.params.id])
@@ -87,5 +87,7 @@ router.put('/:id', (req, res) => {
       res.sendStatus(500);
     });
 });
+
+// router.put('/:id/uncheck')
 
 module.exports = router;

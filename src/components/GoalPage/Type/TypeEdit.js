@@ -43,7 +43,7 @@ class TypeEdit extends Component {
   editType = (event) => {
     event.preventDefault();
 
-    axios.put(`/api/goals/types/${this.props.type.id}`, { title: this.state.goalType })
+    axios.put(`/api/goals/types/${this.props.type.id}/edit`, { title: this.state.goalType })
       .then(this.editTypeSuccess)
       .catch(this.editTypeError);
   }
