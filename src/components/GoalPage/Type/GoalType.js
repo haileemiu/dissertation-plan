@@ -11,18 +11,21 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
 import Divider from '@material-ui/core/Divider';
 
-import TaskItem from './TaskItem';
-import NewTaskItem from './NewTaskItem';
-import AddNewTaskButton from './AddNewTaskButton';
+import TaskItem from '../Task/TaskItem';
+import NewTaskItem from '../Task/NewTaskItem';
+import AddNewTaskButton from '../Task/AddNewTaskButton';
+import TypeEdit from './TypeEdit';
+import TypeEditButton from './TypeEditButton';
 
 /*
-This is the child component of GoalList
-And the parent component of TaskItem and NewTaskItem
+Child component of GoalList
+Parent component of TaskItem and NewTaskItem
 */
 class GoalType extends Component {
   state = {
     isOpen: false, // Variable for collapsing all sections nested list
     isAdding: false, // Variable for toggling add new step
+    isEditingType: false,
   };
 
   // Handles collapse on click of any where in the heading
@@ -33,6 +36,10 @@ class GoalType extends Component {
   // Toggle isAdding
   onAddClick = () => {
     this.setState(prevState => ({ isAdding: !prevState.isAdding }));
+  }
+
+  toggleIsEditingType = () => {
+    this.setState(prevState => ({ isEditingType: !prevState.isEditingType }));
   }
 
   render() {
@@ -59,9 +66,17 @@ class GoalType extends Component {
             {/* List each task */}
             {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)}
 
-            {/* Add a new task */}
-            {this.state.isAdding ? <NewTaskItem onAddClick={this.onAddClick} typeId={type.id} getGoalList={this.props.getGoalList} /> : <AddNewTaskButton onAddClick={this.onAddClick} />}
-      
+            <ListItem>
+              {/* Toggle between edit section/type button and input */}
+              {this.state.isEditingType
+                ? <TypeEdit type={type} toggleIsEditingType={this.toggleIsEditingType} getGoalList={this.props.getGoalList} />
+                : <TypeEditButton type={type} toggleIsEditingType={this.toggleIsEditingType} />}
+
+              {/* Toggle between Add a new task */}
+              {this.state.isAdding
+                ? <NewTaskItem onAddClick={this.onAddClick} typeId={type.id} getGoalList={this.props.getGoalList} />
+                : <AddNewTaskButton onAddClick={this.onAddClick} />}
+            </ListItem>
           </List>
         </Collapse>
 

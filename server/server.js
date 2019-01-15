@@ -10,7 +10,8 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
-const goalsRouter = require('./routes/goals.router');
+const goalTypeRouter = require('./routes/goalType.router');
+const goalTaskRouter = require('./routes/goalTask.router');
 const historyRouter = require('./routes/history.router');
 const dissertationRouter = require('./routes/dissertation.router');
 const passwordResetRouter = require('./routes/password-reset.router'); // WIP
@@ -29,7 +30,8 @@ app.use(passport.session());
 // Routes
 app.use('/api/user', userRouter);
 app.use('/api/password-reset', passwordResetRouter); // WIP
-app.use('/api/goals', goalsRouter);
+app.use('/api/goals/types', goalTypeRouter);
+app.use('/api/goals/tasks', goalTaskRouter);
 app.use('/api/history', historyRouter);
 app.use('/api/dissertation', dissertationRouter);
 // app.use('/api/tests', require('./routes/test.router'));

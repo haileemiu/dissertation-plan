@@ -5,23 +5,18 @@ import { ListItem, Button } from '@material-ui/core';
 
 /* Material UI styling */
 const styles = theme => ({
-  addButton: {
+  button: {
     margin: theme.spacing.unit,
     marginLeft: 75,
-  },
-  nested: {
-    paddingLeft: theme.spacing.unit * 4,
   },
 
 });
 
 /*
-This is a child component of GoalType
-And a sibling component of NewTaskItem
+Child component of GoalType
+Sibling component of NewTaskItem
 */
 class AddNewTaskButton extends Component {
-  state = {}
-
   handleAddClick = () => {
     this.props.onAddClick();
   }
@@ -30,16 +25,16 @@ class AddNewTaskButton extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <ListItem className={classes.nested}>
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={this.handleAddClick}
-            className={classes.addButton}
-          >
-            Add
-          </Button>
-        </ListItem>
+        <Button
+          size="small"
+          color="primary"
+          variant="contained"
+          type="submit"
+          onClick={this.handleAddClick}
+          className={classes.button}
+        >
+          + Add an item
+        </Button>
       </div>
     );
   }

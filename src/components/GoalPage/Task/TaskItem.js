@@ -36,7 +36,9 @@ class TaskItem extends Component {
       <ListItem button className={classes.nested}>
         {/* If isEditing is false, render StepText */}
         {/* If isEditing is true, render EditStep */}
-        {this.state.isEditing ? <TaskEdit task={task} toggleIsEditing={this.toggleIsEditing} getGoalList={this.props.getGoalList} /> : <TaskText task={task} toggleIsEditing={this.toggleIsEditing} getGoalList={this.props.getGoalList} />}
+        {this.state.isEditing
+          ? <TaskEdit task={task} toggleIsEditing={this.toggleIsEditing} getGoalList={this.props.getGoalList} />
+          : <TaskText task={task} toggleIsEditing={this.toggleIsEditing} getGoalList={this.props.getGoalList} />}
       </ListItem>
     );
   }

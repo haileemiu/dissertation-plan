@@ -48,7 +48,7 @@ class NewSectionStep extends Component {
   // On click, handles sending new step
   addNewStep = (event) => {
     event.preventDefault();
-    this.setState({ isAdding: true });
+    // this.setState({ isAdding: true });
     // this.props.sectionId is being passed from the Section component
     axios.post('/api/dissertation/', { id: this.props.sectionId, name: this.state.name })
       .then(this.addNewStepSuccess)

@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import axios from 'axios';
 
 import ListItem from '@material-ui/core/ListItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-
-/* Material UI styling */
 const styles = theme => ({
   nested: {
     paddingLeft: theme.spacing.unit * 4,
@@ -20,7 +18,6 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    maxWidth: 1000,
   },
   button: {
     margin: theme.spacing.unit,
@@ -32,12 +29,12 @@ const styles = theme => ({
 });
 
 /*
-This is the child component of GoalType
-And sibling component of TaskItem
+This is a child component of TaskItem
+And a sibling component of TaskText
 */
-class NewTaskItem extends Component {
+class TaskEdit extends Component {
   state = {
-    name: '', // name is for the item text content
+    name: this.props.task.title, // displays the current value to be edited
   }
 
   // Handles storing the input text
@@ -45,29 +42,24 @@ class NewTaskItem extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  // On click, handles sending new task
-  addNewTask = (event) => {
+  // On click, handles editing task
+  editTask = (event) => {
     event.preventDefault();
-    this.setState({ isAdding: true });
-    // this.props.typeId is being passed from the GoalType component
-    axios.post('/api/goals/', { id: this.props.typeId, name: this.state.name })
-      .then(this.addNewTaskSuccess)
-      .catch(this.addNewTaskError);
+
+    axios.put(`/api/goals/tasks/${this.props.task.id}/edit`, { name: this.state.name })
+      .then(this.editTaskSuccess)
+      .catch(this.editTaskError);
   }
 
-  // On Success of addNewTask
-  addNewTaskSuccess = () => {
+  // On Success of editTask
+  editTaskSuccess = () => {
     this.props.getGoalList(); // Reload the page with new step
-    this.props.onAddClick();
+    this.props.toggleIsEditing(); // Visually switch back to StepText
   }
 
-  // On Error of addNewTask
-  addNewTaskError = (err) => {
-    console.log('Error in adding step:', err); // TO DO: alert the user
-  }
-
-  cancelAdding = () => {
-    this.props.onAddClick(); // calls the function in parent (GoalType) that toggles views
+  // On Error of editTask
+  editTaskError = (err) => {
+    console.log('Error in editing task:', err); // TO DO: alert user
   }
 
   render() {
@@ -76,49 +68,47 @@ class NewTaskItem extends Component {
     return (
       // Renders a list item with a form and button inside
       <ListItem className={classes.nested}>
-        <form onSubmit={this.addNewTask} className={classes.container}>
+        <form onSubmit={this.editTask} className={classes.container}>
           <TextField
             fullWidth
-            label="New Task"
             className={classes.textField}
             margin="normal"
             // variant="outlined"
-            type="text"
-            name="name"
-            value={this.state.name}
+            name="name" // needed for state change
+            value={this.state.name} // needed for event.target.value
             onChange={this.onInputChange}
           />
           <Button
             size="small"
             variant="contained"
+            color="primary"
             className={classes.button}
             type="submit"
             value="Add New"
           >
-            Add
+            Submit
           </Button>
-
           <Button
             size="small"
             variant="contained"
+            color="secondary"
             className={classes.button}
             type="button"
-            value="Cancel"
-            onClick={this.cancelAdding}
+            onClick={this.props.toggleIsEditing}
           >
             Cancel
           </Button>
         </form>
+
       </ListItem>
     );
   }
 }
-
-NewTaskItem.propTypes = {
+TaskEdit.propTypes = {
   classes: PropTypes.shape().isRequired,
-  typeId: PropTypes.number.isRequired,
+  task: PropTypes.shape().isRequired,
+  toggleIsEditing: PropTypes.func.isRequired,
   getGoalList: PropTypes.func.isRequired,
-  onAddClick: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(NewTaskItem);
+export default withStyles(styles)(TaskEdit);
