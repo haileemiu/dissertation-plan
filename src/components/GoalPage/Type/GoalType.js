@@ -27,7 +27,6 @@ class GoalType extends Component {
     isOpen: false, // Variable for collapsing all sections nested list
     isAdding: false, // Variable for toggling add new step
     isEditingType: false,
-    uncheckAll: false,
   };
 
   // Handles collapse on click of any where in the heading
@@ -42,10 +41,6 @@ class GoalType extends Component {
 
   toggleIsEditingType = () => {
     this.setState(prevState => ({ isEditingType: !prevState.isEditingType }));
-  }
-
-  uncheckAllStateChange = () => {
-    this.setState(prevState => ({ uncheckAll: !prevState.uncheckAll }));
   }
 
   render() {
@@ -77,7 +72,6 @@ class GoalType extends Component {
               <UncheckAllButton
                 type={type}
                 getGoalList={this.props.getGoalList}
-                uncheckAllStateChange={this.uncheckAllStateChange}
               />
 
               {/* Toggle between edit section/type button and input */}

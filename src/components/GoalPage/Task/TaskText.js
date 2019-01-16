@@ -35,11 +35,12 @@ class TaskText extends Component {
       .catch(this.handleChangeError);
   }
 
-  onChangeSuccess = () => {
+  handleChangeSuccess = () => {
     this.props.getGoalList();
+    // TO DO: what to do on success?
   }
 
-  onChangeError = (err) => {
+  handleChangeError = (err) => {
     console.log('Error in marking complete:', err); // TODO: alert user
   }
 
@@ -51,15 +52,17 @@ class TaskText extends Component {
 
   // Delete click
   handleDeleteClick = () => {
+    // Warning alert before delete
     Swal({
       title: 'Are you sure you want to delete this?',
       type: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#d33',
+      confirmButtonColor: 'white',
       cancelButtonColor: '#3085d6',
       confirmButtonText: 'Delete',
     }).then((result) => {
       if (result.value) {
+        // Delete task
         axios.delete(`/api/goals/tasks/${this.props.task.id}`)
           .then(this.handleDeleteClickSuccess)
           .catch(this.handleDeleteClickError);
@@ -75,6 +78,11 @@ class TaskText extends Component {
     console.log('Error in deleting:', err); // TO DO: alert user
   }
 
+  // componentDidUpdate = (prevProps) => {
+  //   if (this.props.task.completed === false) {
+  //     this.onChange
+  //   }
+  // }
 
   render() {
     const { classes, task } = this.props;
@@ -87,23 +95,25 @@ class TaskText extends Component {
           {/* Checkbox */}
           <Checkbox
             type="checkbox"
-            defaultChecked={task.completed} // defaultChecked is necessary
+            // defaultChecked={task.completed} // defaultChecked is necessary
             onChange={this.onChange}
-            value="true"
+            checked={task.completed}
           />
         </ListItemIcon>
 
-        {/* Text of task */}
+        {/* Text of task in a Material UI component (ListItemText) */}
         <ListItemText inset primary={task.title} />
+
         <EditIcon
           className={classes.icon}
           onClick={this.handleEditClick}
         />
+
         <DeleteIcon
           className={classes.icon}
           onClick={this.handleDeleteClick}
         />
-    </>
+      </>
     );
   }
 }

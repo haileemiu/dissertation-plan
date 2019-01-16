@@ -88,6 +88,9 @@ router.put('/:id/edit', (req, res) => {
     });
 });
 
+// WIP
+// Uncheck all of 1 type
+// TO DO Need to only switch the true to false
 router.put('/:id/uncheck', (req, res) => {
   const queryToUncheckAllOneType = 'UPDATE goal_tasks SET completed=false WHERE type_id=$1;';
 
