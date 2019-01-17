@@ -74,7 +74,7 @@ class GoalType extends Component {
                 getGoalList={this.props.getGoalList}
               />
 
-              {/* Toggle between edit section/type button and input */}
+              {/* Toggle between Edit section/type button and input */}
               {this.state.isEditingType
                 ? <TypeEdit type={type} toggleIsEditingType={this.toggleIsEditingType} getGoalList={this.props.getGoalList} />
                 : <TypeEditButton type={type} toggleIsEditingType={this.toggleIsEditingType} />}
