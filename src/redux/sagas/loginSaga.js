@@ -7,7 +7,7 @@ function* loginUser(action) {
     yield put({ type: 'CLEAR_LOGIN_ERROR' });
 
     const body = {
-      username: action.payload.username,
+      usernameOrEmail: action.payload.usernameOrEmail, // WIP
       password: action.payload.password,
     };
     // So user does not have to re-login with every new view
@@ -16,7 +16,7 @@ function* loginUser(action) {
       withCredentials: true,
     };
 
-    yield axios.post('api/user/login', body, config);
+    yield axios.post('api/user/login', body, config); // WIP possible
 
     yield put({ type: 'FETCH_USER' });
   } catch (error) {

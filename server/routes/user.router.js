@@ -51,7 +51,7 @@ router.post('/register', async (req, res) => {
         RETURNING id;`);
 
     // console.log(insertResult);
-    // // Creates the default dissertation_steps
+    // Creates the default dissertation_steps
     await pool.query(`
       INSERT INTO dissertation_steps (name, section_id) VALUES
       ('Become acquainted with library and librarian', ${insertResult.rows[0].id}),
@@ -107,7 +107,7 @@ router.post('/register', async (req, res) => {
 // userStrategy.authenticate('local') is middleware that we run on this route
 // this middleware will run our POST if successful
 // this middleware will send a 404 if not successful
-router.post('/login', userStrategy.authenticate('local'), (req, res) => {
+router.post('/login', userStrategy.authenticate('local'), (req, res) => { // WIP possible
   res.sendStatus(200);
 });
 
