@@ -33,7 +33,7 @@ class SectionStep extends Component {
 
     return (
       // Holds the individual step
-      <ListItem button className={classes.nested}>
+      <ListItem button className={classes.nested} disableTouchRipple>
         {/* If isEditing is false, render StepText */}
         {/* If isEditing is true, render EditStep */}
         {this.state.isEditing ? <StepEdit step={step} toggleIsEditing={this.toggleIsEditing} getDissertationPlan={this.props.getDissertationPlan} /> : <StepText step={step} toggleIsEditing={this.toggleIsEditing} getDissertationPlan={this.props.getDissertationPlan} />}
