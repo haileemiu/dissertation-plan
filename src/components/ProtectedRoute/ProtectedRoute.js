@@ -5,9 +5,9 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 
-//A Custom Wrapper Component -- This will keep our code DRY.
-//Responsible for watching redux state, and returning an appropriate component
-//API for this component is the same as a regular route
+// A Custom Wrapper Component -- This will keep our code DRY.
+// Responsible for watching redux state, and returning an appropriate component
+// API for this component is the same as a regular route
 class ProtectedRoute extends Component {
   render() {
     const ComponentToProtect = this.props.component;
@@ -21,8 +21,8 @@ class ProtectedRoute extends Component {
           this.props.user.id ?
             <ComponentToProtect /> :
             this.props.loginMode === 'login' ?
-            <LoginPage /> :
-            <RegisterPage />
+              <LoginPage /> :
+              <RegisterPage />
         )}
       />
     )

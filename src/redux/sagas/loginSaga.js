@@ -7,7 +7,7 @@ function* loginUser(action) {
     yield put({ type: 'CLEAR_LOGIN_ERROR' });
 
     const body = {
-      username: action.payload.username,
+      email: action.payload.email,
       password: action.payload.password,
     };
     // So user does not have to re-login with every new view

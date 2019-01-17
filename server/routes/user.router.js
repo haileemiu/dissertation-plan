@@ -51,7 +51,7 @@ router.post('/register', async (req, res) => {
         RETURNING id;`);
 
     // console.log(insertResult);
-    // // Creates the default dissertation_steps
+    // Creates the default dissertation_steps
     await pool.query(`
       INSERT INTO dissertation_steps (name, section_id) VALUES
       ('Become acquainted with library and librarian', ${insertResult.rows[0].id}),

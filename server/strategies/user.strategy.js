@@ -8,7 +8,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  pool.query('SELECT id, username FROM person WHERE id = $1', [id]).then((result) => {
+  pool.query('SELECT id, email FROM person WHERE id = $1', [id]).then((result) => {
     // Handle Errors
     const user = result && result.rows && result.rows[0];
 
@@ -28,25 +28,25 @@ passport.deserializeUser((id, done) => {
 // Does actual work of logging in
 passport.use('local', new LocalStrategy({
   passReqToCallback: true,
-  usernameField: 'username',
-}, ((req, username, password, done) => {
-    pool.query('SELECT * FROM person WHERE username = $1', [username])
-      .then((result) => {
-        const user = result && result.rows && result.rows[0];
-        if (user && encryptLib.comparePassword(password, user.password)) {
-          // all good! Passwords match!
-          done(null, user);
-        } else if (user) {
-          // not good! Passwords don't match!
-          done(null, false, { message: 'Incorrect credentials.' });
-        } else {
-          // not good! No user with that name
-          done(null, false);
-        }
-      }).catch((err) => {
-        console.log('error', err);
-        done(null, {});
-      });
-  })));
+  usernameField: 'email',
+}, ((req, email, password, done) => {
+  pool.query('SELECT * FROM person WHERE email = $1', [email])
+    .then((result) => {
+      const user = result && result.rows && result.rows[0];
+      if (user && encryptLib.comparePassword(password, user.password)) {
+        // all good! Passwords match!
+        done(null, user);
+      } else if (user) {
+        // not good! Passwords don't match!
+        done(null, false, { message: 'Incorrect credentials.' });
+      } else {
+        // not good! No user with that name
+        done(null, false);
+      }
+    }).catch((err) => {
+      console.log('error', err);
+      done(null, {});
+    });
+})));
 
 module.exports = passport;
