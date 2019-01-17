@@ -74,7 +74,8 @@ class NewTaskItem extends Component {
 
     return (
       // Renders a list item with a form and button inside
-      <ListItem className={classes.nested}>
+      // <ListItem className={classes.nested}> // NOTE: removed because causing li in li console error
+      <div>
         <form onSubmit={this.addNewTask} className={classes.container}>
           <TextField
             fullWidth
@@ -108,7 +109,8 @@ class NewTaskItem extends Component {
             Cancel
           </Button>
         </form>
-      </ListItem>
+      </div>
+      // </ListItem>
     );
   }
 }

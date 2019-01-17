@@ -61,7 +61,8 @@ class TypeEdit extends Component {
     const { classes } = this.props;
 
     return (
-      <ListItem className={classes.nested}>
+      // <ListItem className={classes.nested}> NOTE: removed because causing li in li console error
+      <>
         <form onSubmit={this.editType} className={classes.container}>
           <TextField
             fullWidth
@@ -78,7 +79,7 @@ class TypeEdit extends Component {
             color="primary"
             className={classes.button}
             type="submit"
-            // value="goalType"
+          // value="goalType"
           >
             Submit
           </Button>
@@ -93,8 +94,8 @@ class TypeEdit extends Component {
             Cancel
           </Button>
         </form>
-
-      </ListItem>
+      </>
+      // </ListItem>
     );
   }
 }
