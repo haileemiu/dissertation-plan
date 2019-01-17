@@ -49,7 +49,7 @@ class Section extends Component {
 
           {/* Section Name Text */}
           <ListItemText inset primary={section.name} />
-          {section.open ? <ExpandLess /> : <ExpandMore />}
+          {this.state.isOpen ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
 
         {/* Area inside the nested list where steps will be listed out */}

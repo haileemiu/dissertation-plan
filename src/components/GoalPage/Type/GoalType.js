@@ -57,7 +57,7 @@ class GoalType extends Component {
 
           {/* Section Name Text */}
           <ListItemText inset primary={type.title} />
-          {type.open ? <ExpandLess /> : <ExpandMore />}
+          {this.state.isOpen ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
 
         {/* Area inside the nested list where steps will be listed out */}
