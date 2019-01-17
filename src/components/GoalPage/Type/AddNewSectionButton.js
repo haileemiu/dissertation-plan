@@ -35,7 +35,7 @@ class AddNewSectionButton extends Component {
 }
 
 AddNewSectionButton.propTypes = {
-  toggleAddSection: PropTypes.shape().isRequired,
+  toggleAddSection: PropTypes.func.isRequired,
 };
 
 export default AddNewSectionButton;

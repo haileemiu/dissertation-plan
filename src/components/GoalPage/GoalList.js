@@ -34,6 +34,7 @@ class GoalList extends Component {
     this.setState({ goalList: response.data });
   }
 
+
   // On Error of getGoalList
   getGoalListError = (err) => {
     console.log('Error in retrieving goal types:', err);

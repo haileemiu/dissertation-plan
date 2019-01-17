@@ -77,13 +77,24 @@ router.post('/', (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id/edit', (req, res) => {
   const queryEditType = 'UPDATE goal_types SET title=$1 WHERE id=$2;';
 
   pool.query(queryEditType, [req.body.title, req.params.id])
     .then(() => { res.sendStatus(200); })
     .catch((error) => {
       console.log('Error in editing goal type:', error);
+      res.sendStatus(500);
+    });
+});
+
+router.put('/:id/uncheck', (req, res) => {
+  const queryToUncheckAllOneType = 'UPDATE goal_tasks SET completed=false WHERE type_id=$1;';
+
+  pool.query(queryToUncheckAllOneType, [req.params.id])
+    .then(() => { res.sendStatus(200); })
+    .catch((error) => {
+      console.log('Error in unchecking goals:', error);
       res.sendStatus(500);
     });
 });
