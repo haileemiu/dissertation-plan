@@ -37,7 +37,6 @@ class TaskText extends Component {
 
   handleChangeSuccess = () => {
     this.props.getGoalList();
-    // TO DO: what to do on success?
   }
 
   handleChangeError = (err) => {
@@ -78,11 +77,6 @@ class TaskText extends Component {
     console.log('Error in deleting:', err); // TO DO: alert user
   }
 
-  // componentDidUpdate = (prevProps) => {
-  //   if (this.props.task.completed === false) {
-  //     this.onChange
-  //   }
-  // }
 
   render() {
     const { classes, task } = this.props;
@@ -95,7 +89,6 @@ class TaskText extends Component {
           {/* Checkbox */}
           <Checkbox
             type="checkbox"
-            // defaultChecked={task.completed} // defaultChecked is necessary
             onChange={this.onChange}
             checked={task.completed}
           />

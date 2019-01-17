@@ -17,38 +17,28 @@ const styles = theme => ({
 Child component of GoalType
 */
 class UncheckAllButton extends Component {
-  state = {
-  }
+  state = {}
 
-  // WIP
   uncheckAllTasksInType = () => {
-    // Set all tasks with that type/section id to false
-    axios.put(`/api/goals/types/${this.props.type.id}/uncheck`)
-      .then(this.uncheckAllTasksInTypeSuccess)
-      .catch(this.uncheckAllTasksInTypeError);
-  }
-    // // TEST
-    // console.log('this.props.type:', this.props.type);
-    // // Warning alert before uncheck all of that type/section
-    // Swal({
-    //   title: 'Are you sure you want to uncheck all in this section?',
-    //   type: 'warning',
-    //   showCancelButton: true,
-    //   confirmButtonColor: '#d33',
-    //   cancelButtonColor: '#3085d6',
-    //   confirmButtonText: 'Yes, clear checks',
-    // }).then((result) => {
-    //   if (result.value) {
+    // Warning alert before uncheck all of that type/section
+    Swal({
+      title: 'Are you sure you want to uncheck all in this section?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, clear checks',
+    }).then((result) => {
+      if (result.value) {
+        // Set all tasks with that type/section id to false
+        axios.put(`/api/goals/types/${this.props.type.id}/uncheck`)
+          .then(this.uncheckAllTasksInTypeSuccess)
+          .catch(this.uncheckAllTasksInTypeError);
+      }
+    });
+  };
 
-  //     }
-  //   });
-  // };
-
-  // WIP
   uncheckAllTasksInTypeSuccess = () => {
-    console.log('click uncheck success')
-    // need to change the .checked state accordingly
-    // call a function that changes the state
     this.props.getGoalList();
   }
 
@@ -59,7 +49,7 @@ class UncheckAllButton extends Component {
 
   render() {
     const { classes, type } = this.props;
-    
+
     return (
       <Button
         size="small"
