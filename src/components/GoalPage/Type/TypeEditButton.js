@@ -20,18 +20,17 @@ Child component of GoalType
 Sibling of TypeEdit
 */
 class TypeEditButton extends Component {
-  handleEditClick = () => {
-    // this.props.toggleIsEditingType(); // May not need anymore WIP
+  handleEditClick = (type) => {
     Swal({
-      title: 'test',
+      title: 'Edit section title',
       input: 'text',
-      // inputs: [],
-      preConfirm: (value) => {
-        if (!value) {
-          Swal.showValidationError('Shouldn\'t be empty');
+      inputValue: String(type.title),
+      preConfirm: (inputValue) => {
+        if (!inputValue) {
+          Swal.showValidationMessage('Shouldn\'t be empty');
         } else {
           // Request to update type/section
-          axios.put(`/api/goals/types/${this.props.type.id}/edit`, { title: value })
+          axios.put(`/api/goals/types/${this.props.type.id}/edit`, { title: inputValue })
             .then(this.editTypeSuccess)
             .catch(this.editTypeError);
         }
@@ -50,14 +49,14 @@ class TypeEditButton extends Component {
 
 
   render() {
-    const { classes } = this.props;
+    const { classes, type } = this.props;
     return (
       <Button
         size="small"
         variant="contained"
         color="primary"
         className={classes.button}
-        onClick={this.handleEditClick}
+        onClick={() => this.handleEditClick(type)}
         type="submit"
       >
         Edit section
@@ -68,7 +67,7 @@ class TypeEditButton extends Component {
 
 TypeEditButton.propTypes = {
   classes: PropTypes.shape().isRequired,
-  toggleIsEditingType: PropTypes.func.isRequired,
+  // toggleIsEditingType: PropTypes.func.isRequired,
   type: PropTypes.shape().isRequired,
   getGoalList: PropTypes.func.isRequired,
 };
