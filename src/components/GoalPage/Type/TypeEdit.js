@@ -3,6 +3,7 @@ import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { ListItem, TextField, Button } from '@material-ui/core';
+import swal from 'sweetalert';
 
 const styles = theme => ({
   nested: {
@@ -26,6 +27,7 @@ const styles = theme => ({
 });
 
 /*
+This component holds the form that shows when a user clicks the "Edit Section" button.
 Child component of GoalType
 Sibling component of TypeEditButton
 */
@@ -39,13 +41,31 @@ class TypeEdit extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  // On click, handles editing goal type
+  // On click of button, handles editing goal type/section
   editType = (event) => {
     event.preventDefault();
 
-    axios.put(`/api/goals/types/${this.props.type.id}/edit`, { title: this.state.goalType })
-      .then(this.editTypeSuccess)
-      .catch(this.editTypeError);
+    swal.withForm({
+      title: 'Cool Swal-Forms example',
+      text: 'Any text that you consider useful for the form',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'Get form data!',
+      closeOnConfirm: true,
+      formFields: [
+        { id: 'goalType', placeholder: 'section', required: true },
+      ],
+    }, function (isConfirm) {
+      // Request to update type/section
+      axios.put(`/api/goals/types/${this.props.type.id}/edit`, { title: this.state.goalType })
+        .then(this.editTypeSuccess)
+        .catch(this.editTypeError);
+
+
+      console.log(this.swalForm) // { name: 'user name', nickname: 'what the user sends' }
+    })
+
+
   }
 
   editTypeSuccess = () => {
@@ -56,6 +76,7 @@ class TypeEdit extends Component {
   editTypeError = (err) => {
     console.log('Error in editing goal type:', err); // TO DO: alert user
   }
+
 
   render() {
     const { classes } = this.props;

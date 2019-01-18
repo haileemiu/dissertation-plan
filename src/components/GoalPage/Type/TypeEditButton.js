@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
+import Swal from 'sweetalert2';
 import Button from '@material-ui/core/Button';
 
 
@@ -14,12 +14,25 @@ const styles = theme => ({
 });
 
 /*
+This component hold the button for editing a type/section
 Child component of GoalType
 Sibling of TypeEdit
 */
 class TypeEditButton extends Component {
   handleEditClick = () => {
-    this.props.toggleIsEditingType();
+    // this.props.toggleIsEditingType(); // May not need anymore WIP
+    Swal({
+      title: 'test',
+      input: 'text',
+      // inputs: [],
+      preConfirm: (value) => {
+        if (!value) {
+          Swal.showValidationError('Shouldn\'t be empty');
+        }
+      },
+    }).then((result) => {
+      console.log(result);
+    });
   }
 
   render() {
