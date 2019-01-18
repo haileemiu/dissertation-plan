@@ -25,6 +25,7 @@ class TypeEditButton extends Component {
       title: 'Edit section title',
       input: 'text',
       inputValue: String(type.title),
+      showCancelButton: true,
       preConfirm: (inputValue) => {
         if (!inputValue) {
           Swal.showValidationMessage('Shouldn\'t be empty');
