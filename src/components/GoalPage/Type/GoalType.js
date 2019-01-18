@@ -15,7 +15,6 @@ import TaskItem from '../Task/TaskItem';
 import NewTaskItem from '../Task/NewTaskItem';
 import AddNewTaskButton from '../Task/AddNewTaskButton';
 import TypeEdit from './TypeEdit';
-import TypeEditButton from './TypeEditButton';
 import UncheckAllButton from './UncheckAllButton';
 
 /*
@@ -26,7 +25,6 @@ class GoalType extends Component {
   state = {
     isOpen: false, // Variable for collapsing all sections nested list
     isAdding: false, // Variable for toggling add new step
-    isEditingType: false, // Variable for toggle editing
   };
 
   // Handles collapse on click of any where in the heading
@@ -37,10 +35,6 @@ class GoalType extends Component {
   // Toggle isAdding
   onAddClick = () => {
     this.setState(prevState => ({ isAdding: !prevState.isAdding }));
-  }
-
-  toggleIsEditingType = () => {
-    this.setState(prevState => ({ isEditingType: !prevState.isEditingType }));
   }
 
   render() {
@@ -74,10 +68,8 @@ class GoalType extends Component {
                 getGoalList={this.props.getGoalList}
               />
 
-              {/* Toggle between Edit section/type button and input */}
-              {this.state.isEditingType
-                ? <TypeEdit type={type} toggleIsEditingType={this.toggleIsEditingType} getGoalList={this.props.getGoalList} />
-                : <TypeEditButton type={type} toggleIsEditingType={this.toggleIsEditingType} />}
+              {/* Edit section/type button and input */}
+              <TypeEdit type={type} toggleIsEditingType={this.toggleIsEditingType} getGoalList={this.props.getGoalList} />
 
               {/* Toggle between Add a new task */}
               {this.state.isAdding

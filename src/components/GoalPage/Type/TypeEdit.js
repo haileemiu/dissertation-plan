@@ -1,110 +1,72 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-import { ListItem, TextField, Button } from '@material-ui/core';
+import Swal from 'sweetalert2';
+import Button from '@material-ui/core/Button';
+
 
 const styles = theme => ({
-  nested: {
-    paddingLeft: theme.spacing.unit * 4,
-  },
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-  },
   button: {
     margin: theme.spacing.unit,
-  },
-  icon: {
-    margin: theme.spacing.unit,
-    fontSize: 25,
+    marginLeft: 75,
   },
 });
 
 /*
+This component holds the button and dialog box for editing a type/section
 Child component of GoalType
-Sibling component of TypeEditButton
 */
-class TypeEdit extends Component {
-  state = {
-    goalType: this.props.type.title,
-  }
-
-  // Handles storing the input text
-  onInputChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
-  // On click, handles editing goal type
-  editType = (event) => {
-    event.preventDefault();
-
-    axios.put(`/api/goals/types/${this.props.type.id}/edit`, { title: this.state.goalType })
-      .then(this.editTypeSuccess)
-      .catch(this.editTypeError);
+class TypeEditButton extends Component {
+  handleEditClick = (type) => {
+    Swal({
+      title: 'Edit section title',
+      input: 'text',
+      inputValue: String(type.title),
+      showCancelButton: true,
+      preConfirm: (inputValue) => {
+        if (!inputValue) {
+          Swal.showValidationMessage('Shouldn\'t be empty');
+        } else {
+          // Request to update type/section
+          axios.put(`/api/goals/types/${this.props.type.id}/edit`, { title: inputValue })
+            .then(this.editTypeSuccess)
+            .catch(this.editTypeError);
+        }
+      },
+    });
   }
 
   editTypeSuccess = () => {
     this.props.getGoalList();
-    this.props.toggleIsEditingType();
   }
 
   editTypeError = (err) => {
     console.log('Error in editing goal type:', err); // TO DO: alert user
   }
 
-  render() {
-    const { classes } = this.props;
 
+  render() {
+    const { classes, type } = this.props;
     return (
-      // <ListItem className={classes.nested}> NOTE: removed because causing li in li console error
-      <>
-        <form onSubmit={this.editType} className={classes.container}>
-          <TextField
-            fullWidth
-            className={classes.textField}
-            margin="normal"
-            // variant="outlined"
-            name="goalType" // needed for state change
-            value={this.state.goalType} // needed for event.target.value
-            onChange={this.onInputChange}
-          />
-          <Button
-            size="small"
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            type="submit"
-          // value="goalType"
-          >
-            Submit
-          </Button>
-          <Button
-            size="small"
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            type="button"
-            onClick={this.props.toggleIsEditingType}
-          >
-            Cancel
-          </Button>
-        </form>
-      </>
-      // </ListItem>
+      <Button
+        size="small"
+        variant="contained"
+        color="primary"
+        className={classes.button}
+        onClick={() => this.handleEditClick(type)}
+        type="submit"
+      >
+        Edit section
+      </Button>
     );
   }
 }
 
-TypeEdit.propTypes = {
+TypeEditButton.propTypes = {
   classes: PropTypes.shape().isRequired,
   type: PropTypes.shape().isRequired,
-  toggleIsEditingType: PropTypes.func.isRequired,
   getGoalList: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(TypeEdit);
+export default withStyles(styles)(TypeEditButton);
