@@ -2,6 +2,7 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const pool = require('../modules/pool');
+const encryptLib = require('../modules/encryption');
 
 
 const router = express.Router();
@@ -16,15 +17,15 @@ const transporter = nodemailer.createTransport({
 });
 
 // Generate random strings
-const generatePasswordResetCode = () => {
+const generateRandomString = () => {
   const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
   const stringLength = 8;
-  let passwordResetCode = '';
+  let randomString = '';
   for (let i = 0; i < stringLength; i++) {
     const randomNumber = Math.floor(Math.random() * chars.length);
-    passwordResetCode += chars.substring(randomNumber, randomNumber + 1);
+    randomString += chars.substring(randomNumber, randomNumber + 1);
   }
-  return passwordResetCode;
+  return randomString;
 };
 
 router.get('/', async (req, res) => {
@@ -38,14 +39,30 @@ router.get('/', async (req, res) => {
 
     // If email exists, send code email
     if (doesEmailExist) {
-      const code = await generatePasswordResetCode();
+      /* IF WE GO THE SEND CODE ROUTE
+      // const code = await generateRandomString();
 
+      // // Sets up email to be sent
+      // const mailConfig = {
+      //   from: process.env.ADMIN_EMAIL,
+      //   to: req.query.email,
+      //   subject: 'Taina Password Reset',
+      //   html: `<p><b>${code}</b></p>`,
+      // };
+      */
+
+      // WIP
+      // Create a temp_key with a timeout
+      const tempKeyToEncrypt = generateRandomString();
+      const tempKeyToSend = encryptLib.encryptPassword(tempKeyToEncrypt);
+      const queryTempKeyCreate = 'UPDATE person SET temp_key=$1, temp_key_timeout=current_date+1 WHERE email=$2;';
+      pool.query(queryTempKeyCreate, [tempKeyToSend, req.query.email]);
       // Sets up email to be sent
       const mailConfig = {
         from: process.env.ADMIN_EMAIL,
         to: req.query.email,
         subject: 'Taina Password Reset',
-        html: `<p><b>${code}</b></p>`,
+        html: `<p><b>link</b></p>`,
       };
 
       await transporter.sendMail(mailConfig);
