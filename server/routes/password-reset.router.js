@@ -24,16 +24,31 @@ router.get('/', async (req, res) => {
 
     // Holds true or false as an answer
     doesEmailExist = doesEmailExist.rows[0].exists;
-    console.log('doesEmailExist:', doesEmailExist);
 
-    const mailConfig = {
-      from: process.env.ADMIN_EMAIL,
-      to: req.query.email,
-      subject: 'Taina Password Reset',
-      html: '<p><b>reset</b></p>',
-    };
+    // If email exists, send code email
+    if (doesEmailExist) {
+      // Sets up email to be sent
+      const mailConfig = {
+        from: process.env.ADMIN_EMAIL,
+        to: req.query.email,
+        subject: 'Taina Password Reset',
+        html: '<p><b>reset</b></p>',
+      };
 
-    await transporter.sendMail(mailConfig);
+      await transporter.sendMail(mailConfig);
+
+      // If email does not exist, send info email
+    } else {
+      // Sets up email to be sent
+      const mailConfig = {
+        from: process.env.ADMIN_EMAIL,
+        to: req.query.email,
+        subject: 'Taina Email not found',
+        html: '<p><b>not found</b></p>',
+      };
+
+      await transporter.sendMail(mailConfig);
+    }
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
