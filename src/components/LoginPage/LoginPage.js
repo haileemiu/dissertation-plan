@@ -83,7 +83,7 @@ class LoginPage extends Component {
         </center>
 
         {/* WIP */}
-        <a href="http://localhost:3000/url#/password-reset">Forgot password?</a>
+        <a href="http://localhost:3000/url#/forgot-password">Forgot password?</a>
       </div>
     );
   }

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class PasswordReset extends Component {
+class ForgotPassword extends Component {
   state = {
     email: '',
   }
@@ -15,18 +15,17 @@ class PasswordReset extends Component {
   // 1) Checks if email exists
   submitEmail = (event) => {
     event.preventDefault();
-    axios.get(`/api/password-reset?email=${this.state.email}`)
+    axios.get(`/api/forgot-password?email=${this.state.email}`)
       .then(this.submitEmailSuccess)
       .catch(this.submitEmailError);
   }
 
   submitEmailSuccess = () => {
     this.setState({ email: '' });
-    alert('If your email is in our database, you will get a password reset link in your inbox');
   };
 
   submitEmailError = () => {
-    alert('Something went wrong');
+    alert('Something went wrong. Please try again');
   }
 
   render() {
@@ -52,4 +51,4 @@ class PasswordReset extends Component {
 }
 
 
-export default PasswordReset;
+export default ForgotPassword;
