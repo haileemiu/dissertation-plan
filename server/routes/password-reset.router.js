@@ -15,11 +15,22 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// Generate random strings
+const generatePasswordResetCode = () => {
+  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+  const stringLength = 8;
+  let passwordResetCode = '';
+  for (let i = 0; i < stringLength; i++) {
+    const randomNumber = Math.floor(Math.random() * chars.length);
+    passwordResetCode += chars.substring(randomNumber, randomNumber + 1);
+  }
+  return passwordResetCode;
+};
+
 router.get('/', async (req, res) => {
   try {
     // Checks to see if that email exists in the database
     const queryEmailExists = 'SELECT EXISTS (SELECT person.email FROM person WHERE email = $1);';
-
     let doesEmailExist = await pool.query(queryEmailExists, [req.query.email]);
 
     // Holds true or false as an answer
@@ -27,12 +38,14 @@ router.get('/', async (req, res) => {
 
     // If email exists, send code email
     if (doesEmailExist) {
+      const code = await generatePasswordResetCode();
+
       // Sets up email to be sent
       const mailConfig = {
         from: process.env.ADMIN_EMAIL,
         to: req.query.email,
         subject: 'Taina Password Reset',
-        html: '<p><b>reset</b></p>',
+        html: `<p><b>${code}</b></p>`,
       };
 
       await transporter.sendMail(mailConfig);
@@ -48,6 +61,7 @@ router.get('/', async (req, res) => {
       };
 
       await transporter.sendMail(mailConfig);
+      res.sendStatus(200);
     }
   } catch (err) {
     console.log(err);
