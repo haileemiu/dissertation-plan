@@ -1,12 +1,3 @@
-CREATE TABLE person (
-    id SERIAL PRIMARY KEY,
-    email VARCHAR (1000) UNIQUE NOT NULL,
-    username VARCHAR (80) UNIQUE NOT NULL,
-    password VARCHAR (1000) NOT NULL,
-    temp_key VARCHAR(1000),
-    temp_key_active BOOLEAN
-);
-
 -- For goal section headings
 CREATE TABLE goal_types (
   id SERIAL PRIMARY KEY,

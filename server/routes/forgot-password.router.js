@@ -1,3 +1,4 @@
+// Path: /api/forgot-password
 // WIP
 const express = require('express');
 const nodemailer = require('nodemailer');
@@ -16,7 +17,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Generate random strings
+// Generate random strings to be used for temp_key
 const generateRandomString = () => {
   const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
   const stringLength = 8;
@@ -28,6 +29,8 @@ const generateRandomString = () => {
   return randomString;
 };
 
+// 1) Checks to see if email exists in the database
+// 2) Either sends a link to reset password OR send an email informing user that email is not registered
 router.get('/', async (req, res) => {
   try {
     // Checks to see if that email exists in the database
@@ -52,14 +55,15 @@ router.get('/', async (req, res) => {
       */
 
       // WIP
-      // Create a temp_key with a timeout
+      // Create a temp_key
+      // and set active to true
       const tempKeyToEncrypt = generateRandomString();
       const tempKeyToSend = encryptLib.encryptPassword(tempKeyToEncrypt);
-      const queryTempKeyCreate = 'UPDATE person SET temp_key=$1, temp_key_creation=now(), temp_key_active=true WHERE email=$2;';
+      const queryTempKeyCreate = 'UPDATE person SET temp_key=$1, temp_key_active=true WHERE email=$2;';
       // Updates the database with temp_key and timeout
       await pool.query(queryTempKeyCreate, [tempKeyToSend, req.query.email]);
       // Create link to send to user
-      const passwordResetLink = `${process.env.PUBLIC_URL}/#/password-reset/?email=` + encodeURIComponent(`${req.query.email}`) + `&key=` + encodeURIComponent(`${tempKeyToSend}`);
+      const passwordResetLink = `${process.env.PUBLIC_URL}/#/password-reset/?&key=` + encodeURIComponent(`${tempKeyToSend}`);
       // Sets up email to be sent
       const mailConfig = {
         from: process.env.ADMIN_EMAIL,

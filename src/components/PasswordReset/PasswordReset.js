@@ -11,10 +11,11 @@ import {
   // DialogTitle,
   // Typography,
 } from '@material-ui/core';
-import { timingSafeEqual } from 'crypto';
+
 
 const styles = () => ({});
 
+// This function breaks down the url to access the email and key
 function stringToParams(string) {
   const objectToSend = {};
   let paramArray;
@@ -32,7 +33,7 @@ function stringToParams(string) {
 
 class PasswordReset extends Component {
   state = {
-    email: stringToParams(window.location.href).email,
+    // email: stringToParams(window.location.href).email,
     password: '',
     confirmPassword: '',
     key: stringToParams(window.location.href).key,
@@ -41,6 +42,8 @@ class PasswordReset extends Component {
   };
 
   // WIP
+  // When the emailed link takes the user to the page,
+  // it will immediately check to see if the link is active.
   componentDidMount() {
     this.checkResetLink();
   }
@@ -55,10 +58,7 @@ class PasswordReset extends Component {
   }
 
   checkResetLinkSuccess = (response) => {
-    console.log('Response of active:', response.data);
-    // TO DO: render that stop inputs from showing
     this.setState({ activeKey: response.data });
-    console.log('state:', this.state.activeKey);
   }
 
   checkResetLinkError = (err) => {
@@ -75,12 +75,18 @@ class PasswordReset extends Component {
     event.preventDefault();
 
     if (this.state.password === this.state.confirmPassword) {
-      axios.put('/api/password-reset', { email: this.state.email, password: this.state.password })
-        .then(console.log('success'))
-        .catch((err) => {
-          console.log('Error in updating password:', err);
-        });
+      axios.put('/api/password-reset', { key: this.state.key, password: this.state.password })
+        .then(this.handleSubmitSuccess)
+        .catch(this.handleSubmitError);
     }
+  }
+
+  handleSubmitSuccess = () => {
+    console.log('Password changed'); // TO DO: user alert
+  }
+
+  handleSubmitError = (err) => {
+    console.log('Error in updating password:', err); // TO DO: user alert
   }
 
   handleCancel = () => {
@@ -92,6 +98,8 @@ class PasswordReset extends Component {
 
     return (
       <>
+        {/* Here is a ternary function that renders the password reset page if the temp_key is active */}
+        {/* and renders a message if the key is inactive */}
         {this.state.activeKey
           ? (
             <div className={classes.outFrame}>
@@ -100,7 +108,7 @@ class PasswordReset extends Component {
                   <span>Reset Password</span>
                 </div>
                 <div className={classes.subBackground}>
-                  <div className={classes.inputDiv}>
+                  {/* <div className={classes.inputDiv}>
                     <div className={classes.label}>
                       <label>Email</label>
                     </div>
@@ -114,7 +122,7 @@ class PasswordReset extends Component {
                       disabled
                       required
                     />
-                  </div>
+                  </div> */}
                   <div className={classes.inputDiv}>
                     <div className={classes.label}>
                       <label>Password</label>
