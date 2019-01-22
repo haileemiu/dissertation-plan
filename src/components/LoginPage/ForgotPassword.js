@@ -1,8 +1,8 @@
-// WIP
 import React, { Component } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2/dist/sweetalert2';
 
-class PasswordReset extends Component {
+class ForgotPassword extends Component {
   state = {
     email: '',
   }
@@ -12,21 +12,21 @@ class PasswordReset extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  // 1) Checks if email exists
+  // Checks if email exists
   submitEmail = (event) => {
     event.preventDefault();
-    axios.get(`/api/password-reset?email=${this.state.email}`)
+    Swal.fire('Email has been sent.');
+    axios.get(`/api/forgot-password?email=${this.state.email}`)
       .then(this.submitEmailSuccess)
       .catch(this.submitEmailError);
   }
 
   submitEmailSuccess = () => {
     this.setState({ email: '' });
-    alert('If your email is in our database, you will get a password reset link in your inbox');
   };
 
   submitEmailError = () => {
-    alert('Something went wrong');
+    alert('Something went wrong. Please try again');
   }
 
   render() {
@@ -52,4 +52,4 @@ class PasswordReset extends Component {
 }
 
 
-export default PasswordReset;
+export default ForgotPassword;

@@ -14,7 +14,8 @@ const goalTypeRouter = require('./routes/goalType.router');
 const goalTaskRouter = require('./routes/goalTask.router');
 const historyRouter = require('./routes/history.router');
 const dissertationRouter = require('./routes/dissertation.router');
-const passwordResetRouter = require('./routes/password-reset.router'); // WIP
+const passwordResetRouter = require('./routes/password-reset.router');
+const forgotPasswordRouter = require('./routes/forgot-password.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -32,6 +33,9 @@ app.use('/api/user', userRouter);
 app.use('/api/password-reset', passwordResetRouter); // WIP
 app.use('/api/goals/types', goalTypeRouter);
 app.use('/api/goals/tasks', goalTaskRouter);
+app.use('/api/forgot-password', forgotPasswordRouter);
+app.use('/api/password-reset', passwordResetRouter);
+app.use('/api/goals', goalsRouter);
 app.use('/api/history', historyRouter);
 app.use('/api/dissertation', dissertationRouter);
 // app.use('/api/tests', require('./routes/test.router'));

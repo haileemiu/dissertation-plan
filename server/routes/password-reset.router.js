@@ -1,60 +1,39 @@
-// WIP
+// Path: /api/password-reset
 const express = require('express');
-const nodemailer = require('nodemailer');
 const pool = require('../modules/pool');
-
+const encryptLib = require('../modules/encryption');
 
 const router = express.Router();
 
-// Transporter to send emails
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.ADMIN_EMAIL, // WIP TO DO UPDATE
-    pass: process.env.MAIL_PW,
-  },
+// This will check if the temp_key matches
+// if and temp_key_active=true
+router.get('/', (req, res) => {
+  const queryForLinkActive = 'SELECT temp_key, temp_key_active FROM person WHERE temp_key=$1;';
+
+  pool.query(queryForLinkActive, [req.query.key])
+    .then((response) => {
+      res.send(response.rows[0].temp_key_active); // Sends true or false
+    })
+    .catch((err) => {
+      console.log('Error:', err);
+      res.sendStatus(500);
+    });
 });
 
-router.get('/', async (req, res) => {
-  try {
-    // Checks to see if that email exists in the database
-    const queryEmailExists = 'SELECT EXISTS (SELECT person.email FROM person WHERE email = $1);';
+// Adds new password to database
+// Sets temp_key_active=false
+router.put('/', (req, res) => {
+  const { password, key } = req.body;
 
-    let doesEmailExist = await pool.query(queryEmailExists, [req.query.email]);
+  const encryptedPassword = encryptLib.encryptPassword(password);
+  const queryToResetPassword = 'UPDATE person SET password=$1, temp_key_active=false WHERE temp_key=$2;';
 
-    // Holds true or false as an answer
-    doesEmailExist = doesEmailExist.rows[0].exists;
-    console.log('doesEmailExist:', doesEmailExist);
-
-    const mailConfig = {
-      from: process.env.ADMIN_EMAIL,
-      to: req.query.email,
-      subject: 'Taina Password Reset',
-      html: '<p><b>reset</b></p>',
-    };
-
-    await transporter.sendMail(mailConfig);
-  } catch (err) {
-    console.log(err);
-    res.sendStatus(500);
-  }
+  pool.query(queryToResetPassword, [encryptedPassword, key])
+    .then(() => { res.sendStatus(200); })
+    .catch((error) => {
+      console.log('Error in updating password:', error);
+      res.sendStatus(500);
+    });
 });
-
-// SAVE PREVIOUS WORKING STATE
-// const queryEmailExists = 'SELECT EXISTS (SELECT person.email FROM person WHERE email = $1);';
-
-// router.get('/', (req, res) => {
-//   pool.query(queryEmailExists, [req.query.email])
-//     .then((response) => {
-//       console.log(response.rows); // WIP currently responds with [ { exists: false } ] or true correctly
-//       // TO DO:
-//       // trigger an email send
-//       res.sendStatus(200);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.sendStatus(500);
-//     });
-// });
 
 module.exports = router;
