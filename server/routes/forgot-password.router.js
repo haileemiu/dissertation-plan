@@ -59,7 +59,7 @@ router.get('/', async (req, res) => {
       // Updates the database with temp_key and timeout
       await pool.query(queryTempKeyCreate, [tempKeyToSend, req.query.email]);
       // Create link to send to user
-      const passwordResetLink = `${process.env.PUBLIC_URL}/#/reset-password/?email=` + encodeURIComponent(`${req.query.email}`) + `&key=` + encodeURIComponent(`${tempKeyToSend}`);
+      const passwordResetLink = `${process.env.PUBLIC_URL}/#/password-reset/?email=` + encodeURIComponent(`${req.query.email}`) + `&key=` + encodeURIComponent(`${tempKeyToSend}`);
       // Sets up email to be sent
       const mailConfig = {
         from: process.env.ADMIN_EMAIL,
