@@ -5,7 +5,8 @@ const encryptLib = require('../modules/encryption');
 
 const router = express.Router();
 
-// This will check if the temp_key and temp_key_active=true
+// This will check if the temp_key matches
+// if and temp_key_active=true
 router.get('/', (req, res) => {
   const queryForLinkActive = 'SELECT temp_key, temp_key_active FROM person WHERE temp_key=$1;';
 
@@ -19,9 +20,8 @@ router.get('/', (req, res) => {
     });
 });
 
-
 // Adds new password to database
-// Sets temp_key_active to false
+// Sets temp_key_active=false
 router.put('/', (req, res) => {
   const { password, key } = req.body;
 

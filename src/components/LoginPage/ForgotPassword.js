@@ -1,4 +1,3 @@
-// WIP
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -12,7 +11,7 @@ class ForgotPassword extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  // 1) Checks if email exists
+  // Checks if email exists
   submitEmail = (event) => {
     event.preventDefault();
     axios.get(`/api/forgot-password?email=${this.state.email}`)

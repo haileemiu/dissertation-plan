@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ForgotPassword from './ForgotPassword';
 
 class LoginPage extends Component {
   state = {
@@ -30,6 +31,8 @@ class LoginPage extends Component {
   }
 
   render() {
+    // Link for forgotten password
+    const forgotPasswordLink = process.env.PUBLIC_URL + "/url#/forgot-password";
     return (
       <div>
         {this.props.errors.loginMessage && (
@@ -77,13 +80,11 @@ class LoginPage extends Component {
           <button
             type="button"
             className="link-button"
-            onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }) }}>
+            onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }); }}>
             Register
           </button>
         </center>
-
-        {/* WIP */}
-        <a href="http://localhost:3000/url#/forgot-password">Forgot password?</a>
+        <a href={forgotPasswordLink}>Forgot password?</a>
       </div>
     );
   }

@@ -17,8 +17,8 @@ import AboutPage from '../About/About';
 import UserPage from '../UserPage/UserPage';
 import GoalPage from '../GoalPage/GoalPage';
 import DissertationPlan from '../DissertationPlan/DissertationPlan';
-import PasswordReset from '../PasswordReset/PasswordReset'; // WIP
-import ForgotPassword from '../LoginPage/ForgotPassword'; // WIP
+import PasswordReset from '../PasswordReset/PasswordReset';
+import ForgotPassword from '../LoginPage/ForgotPassword';
 import './App.css';
 
 class App extends Component {
@@ -56,7 +56,6 @@ class App extends Component {
               path="/dissertation"
               component={DissertationPlan}
             />
-            {/* WIP */}
             <Route
               exact
               path="/forgot-password"

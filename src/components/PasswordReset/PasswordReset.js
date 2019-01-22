@@ -41,14 +41,12 @@ class PasswordReset extends Component {
     // dialogOpen: false,
   };
 
-  // WIP
   // When the emailed link takes the user to the page,
   // it will immediately check to see if the link is active.
   componentDidMount() {
     this.checkResetLink();
   }
 
-  // WIP
   // This will check if the temp_key and temp_key_active=true
   checkResetLink = () => {
     console.log('this.state.key:', this.state.key);
