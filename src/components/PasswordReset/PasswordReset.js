@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
+import Swal from 'sweetalert2/dist/sweetalert2';
 
 import {
   Button,
@@ -80,7 +81,7 @@ class PasswordReset extends Component {
   }
 
   handleSubmitSuccess = () => {
-    console.log('Password changed'); // TO DO: user alert
+    Swal.fire('Your password has been reset.');
   }
 
   handleSubmitError = (err) => {

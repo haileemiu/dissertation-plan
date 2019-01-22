@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2/dist/sweetalert2';
 
 class ForgotPassword extends Component {
   state = {
@@ -14,6 +15,7 @@ class ForgotPassword extends Component {
   // Checks if email exists
   submitEmail = (event) => {
     event.preventDefault();
+    Swal.fire('Email has been sent.');
     axios.get(`/api/forgot-password?email=${this.state.email}`)
       .then(this.submitEmailSuccess)
       .catch(this.submitEmailError);
