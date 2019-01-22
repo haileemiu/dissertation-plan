@@ -11,6 +11,7 @@ import {
   // DialogTitle,
   // Typography,
 } from '@material-ui/core';
+import { timingSafeEqual } from 'crypto';
 
 const styles = () => ({});
 
@@ -35,6 +36,7 @@ class PasswordReset extends Component {
     password: '',
     confirmPassword: '',
     key: stringToParams(window.location.href).key,
+    activeKey: false,
     // dialogOpen: false,
   };
 
@@ -54,7 +56,9 @@ class PasswordReset extends Component {
 
   checkResetLinkSuccess = (response) => {
     console.log('Response of active:', response.data);
-    // render that stop inputs from showing
+    // TO DO: render that stop inputs from showing
+    this.setState({ activeKey: response.data });
+    console.log('state:', this.state.activeKey);
   }
 
   checkResetLinkError = (err) => {
@@ -87,62 +91,69 @@ class PasswordReset extends Component {
     const { classes } = this.props;
 
     return (
-      // <MuiThemeProvider theme={theme}>
-      <div className={classes.outFrame}>
-        <form onSubmit={this.handleSubmit} className={classes.cardFrame}>
-          <div className={classes.title}>
-            <span>Reset Password</span>
-          </div>
-          <div className={classes.subBackground}>
-            <div className={classes.inputDiv}>
-              <div className={classes.label}>
-                <label>Email</label>
-              </div>
-              <input
-                className={classes.textField}
-                type="text"
-                placeholder="Email Address"
-                name="Email Address"
-                value={this.state.email}
-                onChange={this.handleInputChangeFor('email')}
-                disabled
-                required
-              />
+      <>
+        {this.state.activeKey
+          ? (
+            <div className={classes.outFrame}>
+              <form onSubmit={this.handleSubmit} className={classes.cardFrame}>
+                <div className={classes.title}>
+                  <span>Reset Password</span>
+                </div>
+                <div className={classes.subBackground}>
+                  <div className={classes.inputDiv}>
+                    <div className={classes.label}>
+                      <label>Email</label>
+                    </div>
+                    <input
+                      className={classes.textField}
+                      type="text"
+                      placeholder="Email Address"
+                      name="Email Address"
+                      value={this.state.email}
+                      onChange={this.handleInputChangeFor('email')}
+                      disabled
+                      required
+                    />
+                  </div>
+                  <div className={classes.inputDiv}>
+                    <div className={classes.label}>
+                      <label>Password</label>
+                    </div>
+                    <input
+                      className={classes.textField}
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      value={this.state.password}
+                      onChange={this.handleInputChangeFor('password')}
+                      required
+                    />
+                  </div>
+                  <div className={classes.inputDiv}>
+                    <div className={classes.label}>
+                      <label>Confirm Password</label>
+                    </div>
+                    <input
+                      className={classes.textField}
+                      type="password"
+                      placeholder="Password"
+                      name="confirmPassword"
+                      value={this.state.confirmPassword}
+                      onChange={this.handleInputChangeFor('confirmPassword')}
+                      required
+                    />
+                  </div>
+                  <div className={classes.buttonDiv}>
+                    <Button onClick={this.login} variant="contained" type="submit" color="primary">Reset Password</Button>
+                  </div>
+                </div>
+              </form>
             </div>
-            <div className={classes.inputDiv}>
-              <div className={classes.label}>
-                <label>Password</label>
-              </div>
-              <input
-                className={classes.textField}
-                type="password"
-                placeholder="Password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-                required
-              />
-            </div>
-            <div className={classes.inputDiv}>
-              <div className={classes.label}>
-                <label>Confirm Password</label>
-              </div>
-              <input
-                className={classes.textField}
-                type="password"
-                placeholder="Password"
-                name="confirmPassword"
-                value={this.state.confirmPassword}
-                onChange={this.handleInputChangeFor('confirmPassword')}
-                required
-              />
-            </div>
-            <div className={classes.buttonDiv}>
-              <Button onClick={this.login} variant="contained" type="submit" color="primary">Reset Password</Button>
-            </div>
-          </div>
-        </form>
-      </div>
+          )
+          : <h1>Your Password Reset Link as expired.</h1>}
+      </>
+      /* // <MuiThemeProvider theme={theme}>
+      
       // <Dialog open={this.state.dialogOpen}>
       //   <DialogTitle>Password</DialogTitle>
       //   <DialogContent>
@@ -152,7 +163,7 @@ class PasswordReset extends Component {
       //     <Button color="primary" onClick={this.handleCancel}>Okay</Button>
       //   </DialogActions>
       // </Dialog>
-      // </MuiThemeProvider>
+      // </MuiThemeProvider> */
     );
   }
 }
