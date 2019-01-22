@@ -45,7 +45,9 @@ class DissertationList extends Component {
         {/* List is a Material UI component type */}
         <List
           component="nav"
-          subheader={<ListSubheader component="div">My Plan</ListSubheader>}
+          // subheader={<ListSubheader component="div">My Plan</ListSubheader>}
+          style={{ backgroundColor: 'rgba(242, 242, 242, 1)' }}
+          
         >
           {this.state.dissertationPlanList.map(section => <Section section={section} getDissertationPlan={this.getDissertationPlan} key={section.id} />)}
         </List>

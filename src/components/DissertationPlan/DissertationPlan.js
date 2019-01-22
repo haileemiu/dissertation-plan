@@ -7,7 +7,7 @@ import DissertationList from './DissertationList';
 /* Material UI styling */
 const styles = theme => ({
   root: {
-    width: '100%',
+    width: '50%',
     maxWidth: 1400,
     backgroundColor: theme.palette.background.paper,
     padding: 20,
