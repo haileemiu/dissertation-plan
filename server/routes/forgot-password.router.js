@@ -4,6 +4,7 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const pool = require('../modules/pool');
 const encryptLib = require('../modules/encryption');
+const uuidv1 = require('uuid/v1');
 
 
 const router = express.Router();
@@ -18,16 +19,16 @@ const transporter = nodemailer.createTransport({
 });
 
 // Generate random strings to be used for temp_key
-const generateRandomString = () => {
-  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
-  const stringLength = 8;
-  let randomString = '';
-  for (let i = 0; i < stringLength; i++) {
-    const randomNumber = Math.floor(Math.random() * chars.length);
-    randomString += chars.substring(randomNumber, randomNumber + 1);
-  }
-  return randomString;
-};
+// const generateRandomString = () => {
+//   const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+//   const stringLength = 8;
+//   let randomString = '';
+//   for (let i = 0; i < stringLength; i++) {
+//     const randomNumber = Math.floor(Math.random() * chars.length);
+//     randomString += chars.substring(randomNumber, randomNumber + 1);
+//   }
+//   return randomString;
+// };
 
 // 1) Checks to see if email exists in the database
 // 2) Either sends a link to reset password OR send an email informing user that email is not registered
@@ -57,13 +58,14 @@ router.get('/', async (req, res) => {
       // WIP
       // Create a temp_key
       // and set active to true
-      const tempKeyToEncrypt = generateRandomString();
-      const tempKeyToSend = encryptLib.encryptPassword(tempKeyToEncrypt);
+      const tempKey = uuidv1();
+      // const tempKeyToEncrypt = generateRandomString();
+      // const tempKeyToSend = encryptLib.encryptPassword(tempKeyToEncrypt);
       const queryTempKeyCreate = 'UPDATE person SET temp_key=$1, temp_key_active=true WHERE email=$2;';
       // Updates the database with temp_key and timeout
-      await pool.query(queryTempKeyCreate, [tempKeyToSend, req.query.email]);
+      await pool.query(queryTempKeyCreate, [tempKey, req.query.email]);
       // Create link to send to user
-      const passwordResetLink = `${process.env.PUBLIC_URL}/#/password-reset/?&key=` + encodeURIComponent(`${tempKeyToSend}`);
+      const passwordResetLink = `${process.env.PUBLIC_URL}/#/password-reset/?&key=` + encodeURIComponent(`${tempKey}`);
       // Sets up email to be sent
       const mailConfig = {
         from: process.env.ADMIN_EMAIL,
