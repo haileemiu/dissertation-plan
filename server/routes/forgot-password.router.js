@@ -55,7 +55,7 @@ router.get('/', async (req, res) => {
       // Create a temp_key with a timeout
       const tempKeyToEncrypt = generateRandomString();
       const tempKeyToSend = encryptLib.encryptPassword(tempKeyToEncrypt);
-      const queryTempKeyCreate = 'UPDATE person SET temp_key=$1, temp_key_timeout=current_date+1 WHERE email=$2;';
+      const queryTempKeyCreate = 'UPDATE person SET temp_key=$1, temp_key_creation=now(), temp_key_active=true WHERE email=$2;';
       // Updates the database with temp_key and timeout
       await pool.query(queryTempKeyCreate, [tempKeyToSend, req.query.email]);
       // Create link to send to user

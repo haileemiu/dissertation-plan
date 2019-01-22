@@ -5,11 +5,11 @@ import axios from 'axios';
 
 import {
   Button,
-  Dialog,
-  DialogContent,
-  DialogActions,
-  DialogTitle,
-  Typography,
+  // Dialog,
+  // DialogContent,
+  // DialogActions,
+  // DialogTitle,
+  // Typography,
 } from '@material-ui/core';
 
 const styles = () => ({});
@@ -34,8 +34,32 @@ class PasswordReset extends Component {
     email: stringToParams(window.location.href).email,
     password: '',
     confirmPassword: '',
+    key: stringToParams(window.location.href).key,
     // dialogOpen: false,
   };
+
+  // WIP
+  componentDidMount() {
+    this.checkResetLink();
+  }
+
+  // WIP
+  // This will check if the temp_key and temp_key_active=true
+  checkResetLink = () => {
+    console.log('this.state.key:', this.state.key);
+    axios.get(`/api/password-reset?key=${this.state.key}`)
+      .then(this.checkResetLinkSuccess)
+      .catch(this.checkResetLinkError);
+  }
+
+  checkResetLinkSuccess = (response) => {
+    console.log('Response of active:', response.data);
+    // render that stop inputs from showing
+  }
+
+  checkResetLinkError = (err) => {
+    console.log('Error in resetting password:', err); // TO DO: make as user alert
+  }
 
   handleInputChangeFor = propertyName => (event) => {
     this.setState({
@@ -52,15 +76,6 @@ class PasswordReset extends Component {
         .catch((err) => {
           console.log('Error in updating password:', err);
         });
-      //   this.props.dispatch({
-      //     type: 'REGISTER_INVITED',
-      //     payload: {
-      //       password: this.state.password,
-      //       ...stringToParams(this.props.location.search)
-      //     }
-      //   });
-      // } else {
-      //   this.setState({ dialogOpen: true });
     }
   }
 
@@ -76,7 +91,7 @@ class PasswordReset extends Component {
       <div className={classes.outFrame}>
         <form onSubmit={this.handleSubmit} className={classes.cardFrame}>
           <div className={classes.title}>
-            <span>Register</span>
+            <span>Reset Password</span>
           </div>
           <div className={classes.subBackground}>
             <div className={classes.inputDiv}>
