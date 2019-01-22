@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from "@material-ui/core/styles";
 
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -14,6 +15,11 @@ import Divider from '@material-ui/core/Divider';
 import SectionStep from './SectionStep';
 import NewSectionStep from './NewSectionStep';
 import AddNewButton from './AddNewButton';
+
+const styles = theme => ({
+
+
+});
 
 /*
 This is the child component of DissertationList
@@ -36,6 +42,7 @@ class Section extends Component {
   }
 
   render() {
+    // const { classes } = this.props;
     const { section } = this.props;
 
     return (
@@ -43,12 +50,12 @@ class Section extends Component {
         {/* Section Headings */}
         <Divider />
         <ListItem button onClick={this.onHeadingClick}>
-          <ListItemIcon>
+          {/* <ListItemIcon>
             <StarBorder />
-          </ListItemIcon>
+          </ListItemIcon> */}
 
           {/* Section Name Text */}
-          <ListItemText inset primary={section.name} />
+          <ListItemText inset primary={section.name} style={{ paddingLeft: '0%' }} />
           {this.state.isOpen ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
 
@@ -72,8 +79,9 @@ class Section extends Component {
 }
 
 Section.propTypes = {
+  classes: PropTypes.shape().isRequired,
   section: PropTypes.shape().isRequired,
   getDissertationPlan: PropTypes.func.isRequired,
 };
 
-export default Section;
+export default withStyles(styles)(Section);
