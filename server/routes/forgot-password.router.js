@@ -56,19 +56,39 @@ router.get('/', async (req, res) => {
         from: process.env.ADMIN_EMAIL,
         to: req.query.email,
         subject: 'Taina Password Reset',
-        html: `<p><a href=${passwordResetLink}>Reset Password</a></p>`,
+        html: `
+          <h2>Password assistance</h2>
+          
+          <p> Hi, <br />
+              It looks like you recently requested to change your Taina password. <br />
+              To set a new password, go to this link.  Your reset link will only be valid for 1 hour. <br />
+              <a href=${passwordResetLink}>Reset Password</a> <br />
+              If you do not wish to change your password, you can just ignore this email. <br />
+              Thanks!
+          </p>
+        `,
       };
 
       await transporter.sendMail(mailConfig);
 
       // If email does not exist, send info email
     } else {
+      const linkToPage = `${process.env.PUBLIC_URL}`;
       // Sets up email to be sent
       const mailConfig = {
         from: process.env.ADMIN_EMAIL,
         to: req.query.email,
         subject: 'Taina Email not found',
-        html: '<p><b>not found</b></p>',
+        html: `
+          <h2>Password assistance</h2>        
+          <p> Hi, <br />
+              It looks like you recently requested to change your Taina password.  However, we did not find this email address in the system. <br />
+              If you already have an account, please visit this link to try logging in or resetting your password with another possible email address. <br />
+              <a href=${linkToPage}>Taina App</a> <br />
+              If you were not trying to reset a password with us, we apologize for the inconvenience, and you can ignore this email. <br />
+              Thanks!
+          </p>
+        `,
       };
 
       await transporter.sendMail(mailConfig);
