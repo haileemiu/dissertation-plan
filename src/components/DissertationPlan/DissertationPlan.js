@@ -7,7 +7,6 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import { cyan } from '@material-ui/core/colors';
 import DissertationList from './DissertationList';
 import DissertationBanner from './DissertationBanner';
-// import banner from '../../images/banner-displan-1920.jpg';
 
 /* Material UI styling */
 const styles = theme => ({
@@ -19,12 +18,6 @@ const styles = theme => ({
     margin: 'auto',
     fontFamily: 'Avenir',
   },
-  // center: {
-  //   display: 'block',
-  //   marginLeft: 'auto',
-  //   marginRight: 'auto',
-  //   width: '100%',
-  // },
 });
 
 const theme = createMuiTheme({

@@ -22,7 +22,7 @@ const Nav = props => (
       {props.user.id && (
         <>
           <Link className="nav-link" to="/goal">
-            Goal Page
+            My Goals
           </Link>
 
 
@@ -34,9 +34,9 @@ const Nav = props => (
           <LogOutButton className="nav-link" />
         </>
       )}
-      <Link className="nav-link" to="/about">
+      {/* <Link className="nav-link" to="/about">
         About
-      </Link>
+      </Link> */}
 
     </div>
   </div>
