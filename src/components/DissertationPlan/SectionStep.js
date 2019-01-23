@@ -7,10 +7,9 @@ import StepEdit from './StepEdit';
 
 /* Material UI styling */
 const styles = theme => ({
-  nested: {
+  sectionStep: {
+    backgroundColor: 'rgba(249, 249, 249, 1)',
     paddingLeft: theme.spacing.unit,
-    // borderStyle: 'solid', 
-
   },
 });
 
@@ -32,7 +31,7 @@ class SectionStep extends Component {
 
     return (
       // Holds the individual step
-      <ListItem button className={classes.nested} disableTouchRipple style={{ backgroundColor: 'rgba(249, 249, 249, 1)' }}>
+      <ListItem button disableTouchRipple className={classes.sectionStep}>
         {/* If isEditing is false, render StepText */}
         {/* If isEditing is true, render EditStep */}
         {this.state.isEditing
