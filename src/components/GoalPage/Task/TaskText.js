@@ -8,7 +8,10 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
+import CircleCheckedFilled from '@material-ui/icons/CheckCircle';
+import CircleUnchecked from '@material-ui/icons/RadioButtonUnchecked';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import cyan from '@material-ui/core/colors/cyan';
 
 
 /* Material UI styling */
@@ -20,6 +23,13 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     fontSize: 25,
   },
+  root: {
+    color: cyan['A400'],
+    '&$checked': {
+      color: cyan['A400'],
+    },
+  },
+  checked: {},
 });
 
 /*
@@ -91,6 +101,12 @@ class TaskText extends Component {
             type="checkbox"
             onChange={this.onChange}
             checked={task.completed}
+            classes={{
+              root: classes.root,
+              checked: classes.checked,
+            }}
+            icon={<CircleUnchecked />}
+            checkedIcon={<CircleCheckedFilled />}
           />
         </ListItemIcon>
 
