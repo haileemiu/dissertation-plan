@@ -50,13 +50,14 @@ class Section extends Component {
         {/* Section Headings */}
         <Divider />
         <ListItem button onClick={this.onHeadingClick}>
+          {this.state.isOpen ? <ExpandLess /> : <ExpandMore />}
           {/* <ListItemIcon>
             <StarBorder />
           </ListItemIcon> */}
 
           {/* Section Name Text */}
           <ListItemText inset primary={section.name} style={{ paddingLeft: '0%' }} />
-          {this.state.isOpen ? <ExpandLess /> : <ExpandMore />}
+
         </ListItem>
 
         {/* Area inside the nested list where steps will be listed out */}
