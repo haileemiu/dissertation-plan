@@ -9,6 +9,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import cyan from '@material-ui/core/colors/cyan';
+// import green from '@material-ui/core/colors/green';
 
 
 /* Material UI styling */
@@ -20,6 +22,13 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     fontSize: 25,
   },
+  root: {
+    color: cyan['A400'],
+    '&$checked': {
+      color: cyan['A400'],
+    },
+  },
+  checked: {},
 });
 
 /*
@@ -90,6 +99,10 @@ class StepText extends Component {
             defaultChecked={step.completed} // defaultChecked is necessary
             onChange={this.onChange}
             value="true"
+            classes={{
+              root: classes.root,
+              checked: classes.checked,
+            }}
           />
         </ListItemIcon>
 
@@ -103,7 +116,7 @@ class StepText extends Component {
           className={classes.icon}
           onClick={this.handleDeleteClick}
         />
-    </>
+      </>
     );
   }
 }
