@@ -13,6 +13,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     padding: 20,
     margin: 'auto',
+    fontFamily: 'Avenir',
   },
 });
 

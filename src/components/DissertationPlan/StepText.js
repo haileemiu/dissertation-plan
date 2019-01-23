@@ -92,7 +92,6 @@ class StepText extends Component {
       // Holds the individual step with edit icon and delete icon
       <>
         <ListItemIcon>
-
           {/* Checkbox */}
           <Checkbox
             type="checkbox"
