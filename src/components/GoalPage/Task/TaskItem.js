@@ -12,6 +12,7 @@ import TaskEdit from './TaskEdit';
 const styles = theme => ({
   nested: {
     paddingLeft: theme.spacing.unit * 4,
+    backgroundColor: 'rgba(249, 249, 249, 1)',
   },
 });
 
