@@ -10,8 +10,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import cyan from '@material-ui/core/colors/cyan';
-// import green from '@material-ui/core/colors/green';
-
 
 /* Material UI styling */
 const styles = theme => ({
