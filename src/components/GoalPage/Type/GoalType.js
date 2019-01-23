@@ -6,8 +6,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import List from '@material-ui/core/List';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
+// import ExpandLess from '@material-ui/icons/ExpandLess';
+// import ExpandMore from '@material-ui/icons/ExpandMore';
+import Add from '@material-ui/icons/Add';
+import Remove from '@material-ui/icons/Remove';
 import StarBorder from '@material-ui/icons/StarBorder';
 import Divider from '@material-ui/core/Divider';
 
@@ -45,13 +47,10 @@ class GoalType extends Component {
         {/* Goal Types */}
         <Divider />
         <ListItem button onClick={this.onHeadingClick}>
-          <ListItemIcon>
-            <StarBorder />
-          </ListItemIcon>
+          {this.state.isOpen ? <Remove /> : <Add />}
 
           {/* Section Name Text */}
           <ListItemText inset primary={type.title} />
-          {this.state.isOpen ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
 
         {/* Area inside the nested list where steps will be listed out */}
