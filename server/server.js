@@ -35,7 +35,6 @@ app.use('/api/goals/types', goalTypeRouter);
 app.use('/api/goals/tasks', goalTaskRouter);
 app.use('/api/forgot-password', forgotPasswordRouter);
 app.use('/api/password-reset', passwordResetRouter);
-
 app.use('/api/history', historyRouter);
 app.use('/api/dissertation', dissertationRouter);
 // app.use('/api/tests', require('./routes/test.router'));

@@ -30,7 +30,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className="center-image">
           <Nav />
           <Switch>
             <Redirect exact from="/" to="/home" />

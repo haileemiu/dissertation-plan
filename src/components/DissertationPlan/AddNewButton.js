@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { ListItem, Button } from '@material-ui/core';
+import cyan from '@material-ui/core/colors/cyan';
 
 /* Material UI styling */
 const styles = theme => ({
@@ -32,7 +33,7 @@ class AddNewButton extends Component {
       <div>
         <ListItem className={classes.nested}>
           <Button
-            color="primary"
+            color="primary" // from Mui Theme Provider on DissertationPlan component
             variant="contained"
             onClick={this.handleAddClick}
             className={classes.addButton}

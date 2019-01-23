@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
 import ListItem from '@material-ui/core/ListItem';
-
 import StepText from './StepText';
 import StepEdit from './StepEdit';
 
-
 /* Material UI styling */
 const styles = theme => ({
-  nested: {
-    paddingLeft: theme.spacing.unit * 4,
+  sectionStep: {
+    backgroundColor: 'rgba(249, 249, 249, 1)',
+    paddingLeft: theme.spacing.unit,
   },
 });
 
@@ -33,10 +31,12 @@ class SectionStep extends Component {
 
     return (
       // Holds the individual step
-      <ListItem button className={classes.nested} disableTouchRipple>
+      <ListItem button disableTouchRipple className={classes.sectionStep}>
         {/* If isEditing is false, render StepText */}
         {/* If isEditing is true, render EditStep */}
-        {this.state.isEditing ? <StepEdit step={step} toggleIsEditing={this.toggleIsEditing} getDissertationPlan={this.props.getDissertationPlan} /> : <StepText step={step} toggleIsEditing={this.toggleIsEditing} getDissertationPlan={this.props.getDissertationPlan} />}
+        {this.state.isEditing
+          ? <StepEdit step={step} toggleIsEditing={this.toggleIsEditing} getDissertationPlan={this.props.getDissertationPlan} />
+          : <StepText step={step} toggleIsEditing={this.toggleIsEditing} getDissertationPlan={this.props.getDissertationPlan} />}
       </ListItem>
     );
   }
