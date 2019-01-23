@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Swal from 'sweetalert2';
 
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
+import Edit from '@material-ui/icons/Edit';
+import Clear from '@material-ui/icons/Clear';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import CircleCheckedFilled from '@material-ui/icons/CheckCircle';
@@ -113,12 +113,12 @@ class TaskText extends Component {
         {/* Text of task in a Material UI component (ListItemText) */}
         <ListItemText inset primary={task.title} />
 
-        <EditIcon
+        <Edit
           className={classes.icon}
           onClick={this.handleEditClick}
         />
 
-        <DeleteIcon
+        <Clear
           className={classes.icon}
           onClick={this.handleDeleteClick}
         />
