@@ -1,7 +1,6 @@
 body {
-    font-family:
-    'Avenir-Book', 'Avenir Book', 'Avenir';
-      
+    font-family:'Avenir-Book', 'Avenir Book', 'Avenir';
+    color: #333333;
     /* 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
     margin: 0px;
 }

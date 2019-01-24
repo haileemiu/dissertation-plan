@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -13,6 +14,14 @@ import NewTaskItem from '../Task/NewTaskItem';
 import AddNewTaskButton from '../Task/AddNewTaskButton';
 import TypeEdit from './TypeEdit';
 import UncheckAllButton from './UncheckAllButton';
+
+/* Material UI styling */
+const styles = theme => ({
+  heading: {
+    backgroundColor: '#F2F2F2',
+    border: '#E3E3E3',
+  },
+});
 
 /*
 Child component of GoalList
@@ -35,13 +44,13 @@ class GoalType extends Component {
   }
 
   render() {
-    const { type } = this.props;
+    const { classes, type } = this.props;
 
     return (
       <>
         {/* Goal Types */}
         <Divider />
-        <ListItem button onClick={this.onHeadingClick} style={{ backgroundColor: '#E8E8E8' }}> 
+        <ListItem button onClick={this.onHeadingClick} className={classes.heading} > 
           {this.state.isOpen ? <Remove /> : <Add />}
 
           {/* Section Name Text */}
@@ -81,6 +90,7 @@ class GoalType extends Component {
 GoalType.propTypes = {
   type: PropTypes.shape().isRequired,
   getGoalList: PropTypes.func.isRequired,
+  classes: PropTypes.shape().isRequired,
 };
 
-export default GoalType;
+export default withStyles(styles)(GoalType);
