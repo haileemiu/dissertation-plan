@@ -8,7 +8,6 @@ import StepEdit from './StepEdit';
 /* Material UI styling */
 const styles = theme => ({
   sectionStep: {
-    backgroundColor: 'rgba(249, 249, 249, 1)',
     paddingLeft: theme.spacing.unit,
   },
 });

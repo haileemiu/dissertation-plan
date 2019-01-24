@@ -41,7 +41,7 @@ class GoalType extends Component {
       <>
         {/* Goal Types */}
         <Divider />
-        <ListItem button onClick={this.onHeadingClick}>
+        <ListItem button onClick={this.onHeadingClick} style={{ backgroundColor: '#E8E8E8' }}> 
           {this.state.isOpen ? <Remove /> : <Add />}
 
           {/* Section Name Text */}
@@ -50,7 +50,7 @@ class GoalType extends Component {
 
         {/* Area inside the nested list where steps will be listed out */}
         <Collapse in={this.state.isOpen} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding style={{ backgroundColor: 'rgba(249, 249, 249, 1)' }}>
+          <List component="div" disablePadding style={{ maxWidth: '95%' }}>
 
             {/* List each task */}
             {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)}
