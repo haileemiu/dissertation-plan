@@ -1,14 +1,15 @@
 {
-  "main.css": "https://taina-app.herokuapp.com/static/css/main.a964466e.chunk.css",
-  "main.js": "https://taina-app.herokuapp.com/static/js/main.08c9f57a.chunk.js",
-  "main.js.map": "https://taina-app.herokuapp.com/static/js/main.08c9f57a.chunk.js.map",
-  "static/js/1.a5ae5e6e.chunk.js": "https://taina-app.herokuapp.com/static/js/1.a5ae5e6e.chunk.js",
-  "static/js/1.a5ae5e6e.chunk.js.map": "https://taina-app.herokuapp.com/static/js/1.a5ae5e6e.chunk.js.map",
+  "main.css": "https://taina-app.herokuapp.com/static/css/main.63ce743f.chunk.css",
+  "main.js": "https://taina-app.herokuapp.com/static/js/main.b165a6a4.chunk.js",
+  "main.js.map": "https://taina-app.herokuapp.com/static/js/main.b165a6a4.chunk.js.map",
+  "static/js/1.d4d00c91.chunk.js": "https://taina-app.herokuapp.com/static/js/1.d4d00c91.chunk.js",
+  "static/js/1.d4d00c91.chunk.js.map": "https://taina-app.herokuapp.com/static/js/1.d4d00c91.chunk.js.map",
   "runtime~main.js": "https://taina-app.herokuapp.com/static/js/runtime~main.1e6e6fdf.js",
   "runtime~main.js.map": "https://taina-app.herokuapp.com/static/js/runtime~main.1e6e6fdf.js.map",
+  "static/css/main.63ce743f.chunk.css.map": "https://taina-app.herokuapp.com/static/css/main.63ce743f.chunk.css.map",
+  "static/media/banner-goals-1920.jpg": "https://taina-app.herokuapp.com/static/media/banner-goals-1920.06ea20d2.jpg",
   "static/media/banner-displan-1920.jpg": "https://taina-app.herokuapp.com/static/media/banner-displan-1920.baa0a61c.jpg",
-  "static/css/main.a964466e.chunk.css.map": "https://taina-app.herokuapp.com/static/css/main.a964466e.chunk.css.map",
   "index.html": "https://taina-app.herokuapp.com/index.html",
-  "precache-manifest.2876e41da137422c2f0cce667024e98f.js": "https://taina-app.herokuapp.com/precache-manifest.2876e41da137422c2f0cce667024e98f.js",
+  "precache-manifest.262a53076476e38c042407d143973faf.js": "https://taina-app.herokuapp.com/precache-manifest.262a53076476e38c042407d143973faf.js",
   "service-worker.js": "https://taina-app.herokuapp.com/service-worker.js"
 }
