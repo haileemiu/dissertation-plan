@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "http://localhost:5000/precache-manifest.2bca9ef7e8bea086d194984ff8c15c39.js"
+  "https://taina-app.herokuapp.com/precache-manifest.2876e41da137422c2f0cce667024e98f.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("http://localhost:5000/index.html", {
+workbox.routing.registerNavigationRoute("https://taina-app.herokuapp.com/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
