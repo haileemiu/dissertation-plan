@@ -11,7 +11,12 @@ import TaskEdit from './TaskEdit';
 /* Material UI styling */
 const styles = theme => ({
   nested: {
-    paddingLeft: theme.spacing.unit * 4,
+    padding: theme.spacing.unit,
+    border: '1px solid #E1E1E1',
+    borderRadius: '25px',
+    backgroundColor: 'rgba(249, 249, 249, 1)',
+    marginLeft: '15px',
+    marginBottom: '5px',
   },
 });
 

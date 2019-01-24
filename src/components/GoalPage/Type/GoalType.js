@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import List from '@material-ui/core/List';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
+import Add from '@material-ui/icons/Add';
+import Remove from '@material-ui/icons/Remove';
 import Divider from '@material-ui/core/Divider';
-
 import TaskItem from '../Task/TaskItem';
 import NewTaskItem from '../Task/NewTaskItem';
 import AddNewTaskButton from '../Task/AddNewTaskButton';
@@ -44,19 +41,16 @@ class GoalType extends Component {
       <>
         {/* Goal Types */}
         <Divider />
-        <ListItem button onClick={this.onHeadingClick}>
-          <ListItemIcon>
-            <StarBorder />
-          </ListItemIcon>
+        <ListItem button onClick={this.onHeadingClick} style={{ backgroundColor: '#E8E8E8' }}> 
+          {this.state.isOpen ? <Remove /> : <Add />}
 
           {/* Section Name Text */}
           <ListItemText inset primary={type.title} />
-          {this.state.isOpen ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
 
         {/* Area inside the nested list where steps will be listed out */}
         <Collapse in={this.state.isOpen} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
+          <List component="div" disablePadding style={{ maxWidth: '95%' }}>
 
             {/* List each task */}
             {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)}
