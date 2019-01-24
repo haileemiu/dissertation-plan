@@ -1,0 +1,14 @@
+{
+  "main.css": "http://localhost:5000/static/css/main.a964466e.chunk.css",
+  "main.js": "http://localhost:5000/static/js/main.306f40a2.chunk.js",
+  "main.js.map": "http://localhost:5000/static/js/main.306f40a2.chunk.js.map",
+  "static/js/1.a5ae5e6e.chunk.js": "http://localhost:5000/static/js/1.a5ae5e6e.chunk.js",
+  "static/js/1.a5ae5e6e.chunk.js.map": "http://localhost:5000/static/js/1.a5ae5e6e.chunk.js.map",
+  "runtime~main.js": "http://localhost:5000/static/js/runtime~main.107dd17e.js",
+  "runtime~main.js.map": "http://localhost:5000/static/js/runtime~main.107dd17e.js.map",
+  "static/media/banner-displan-1920.jpg": "http://localhost:5000/static/media/banner-displan-1920.baa0a61c.jpg",
+  "static/css/main.a964466e.chunk.css.map": "http://localhost:5000/static/css/main.a964466e.chunk.css.map",
+  "index.html": "http://localhost:5000/index.html",
+  "precache-manifest.2bca9ef7e8bea086d194984ff8c15c39.js": "http://localhost:5000/precache-manifest.2bca9ef7e8bea086d194984ff8c15c39.js",
+  "service-worker.js": "http://localhost:5000/service-worker.js"
+}
