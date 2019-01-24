@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
 import ListItem from '@material-ui/core/ListItem';
-
 import TaskText from './TaskText';
 import TaskEdit from './TaskEdit';
 
@@ -12,9 +10,9 @@ import TaskEdit from './TaskEdit';
 const styles = theme => ({
   nested: {
     padding: theme.spacing.unit,
-    border: '1px solid #E1E1E1',
+    border: '1px solid #E3E3E3',
     borderRadius: '25px',
-    backgroundColor: 'rgba(249, 249, 249, 1)',
+    backgroundColor: 'white',
     marginLeft: '15px',
     marginBottom: '5px',
   },
