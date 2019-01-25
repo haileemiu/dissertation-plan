@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import LogOutButton from '../LogOutButton/LogOutButton';
+import TainaLogo from '../../images/taina_logo.png';
 import './Nav.css';
 
 // These props simply come from mapStateToProps below. (not being passed from App.js)
@@ -10,7 +11,8 @@ const Nav = props => (
   <div className="nav">
     <Link to="/home">
       {/* Best to not have this NOT as an h1, because then it will the be the h1 on every page */}
-      <h2 className="nav-title">Taina App</h2>
+      {/* <h2 className="nav-title">Taina App</h2> */}
+      <img src={TainaLogo} alt="logo" className="logo" />
     </Link>
     <div className="nav-right">
       <Link className="nav-link" to="/home">
