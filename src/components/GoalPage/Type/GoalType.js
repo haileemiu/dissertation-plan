@@ -29,6 +29,9 @@ const styles = theme => ({
     backgroundColor: '#F2F2F2',
     border: '#E3E3E3',
   },
+  buttonsRight: {
+    justifyContent: 'flex-end',
+  },
 });
 
 /*
@@ -111,14 +114,12 @@ class GoalType extends Component {
             {/* List each task */}
             {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)}
 
-            <ListItem>
+            <ListItem className={classes.buttonsRight}>
               {/* Uncheck all button */}
               <UncheckAllButton
                 type={type}
                 getGoalList={this.props.getGoalList}
               />
-
-
 
               {/* Toggle between Add a new task */}
               {this.state.isAdding

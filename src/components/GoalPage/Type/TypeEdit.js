@@ -46,7 +46,6 @@ class TypeEditButton extends Component {
     console.log('Error in editing goal type:', err); // TO DO: alert user
   }
 
-
   render() {
     const { classes, type } = this.props;
     return (
@@ -58,8 +57,6 @@ class TypeEditButton extends Component {
         onClick={() => this.handleEditClick(type)}
         type="submit"
       />
-
-
     );
   }
 }
