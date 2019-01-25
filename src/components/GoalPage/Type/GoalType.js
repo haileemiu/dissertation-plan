@@ -87,7 +87,7 @@ class GoalType extends Component {
 
     return (
       <>
-        {/* Goal Types */}
+        {/* List each section header/type */}
         <Divider />
         <ListItem button onClick={this.onHeadingClick} className={classes.heading}>
           {/* Toggle between + and - sign when collapsed or open */}
@@ -96,7 +96,10 @@ class GoalType extends Component {
           {/* Section Name Text */}
           <ListItemText inset primary={type.title} />
 
-          {/* Delete Button */}
+          {/* Edit section/type button and input */}
+          <TypeEdit type={type} toggleIsEditingType={this.toggleIsEditingType} getGoalList={this.props.getGoalList} />
+
+          {/* Delete section/type button */}
           <Clear onClick={() => this.deleteGoalType(type.id)} />
 
         </ListItem>
@@ -115,8 +118,7 @@ class GoalType extends Component {
                 getGoalList={this.props.getGoalList}
               />
 
-              {/* Edit section/type button and input */}
-              <TypeEdit type={type} toggleIsEditingType={this.toggleIsEditingType} getGoalList={this.props.getGoalList} />
+
 
               {/* Toggle between Add a new task */}
               {this.state.isAdding

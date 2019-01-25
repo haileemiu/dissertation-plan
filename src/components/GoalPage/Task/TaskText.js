@@ -11,11 +11,11 @@ import {
 } from '@material-ui/core';
 import {
   Clear,
-  Edit,
 } from '@material-ui/icons';
 // CircleCheckedFilled & CircleUnchecked are from specific icon folders
 import CircleCheckedFilled from '@material-ui/icons/CheckCircle';
 import CircleUnchecked from '@material-ui/icons/RadioButtonUnchecked';
+import EditOutlined from '@material-ui/icons/EditOutlined';
 
 /* Material UI styling */
 const styles = theme => ({
@@ -116,7 +116,7 @@ class TaskText extends Component {
         {/* Text of task in a Material UI component (ListItemText) */}
         <ListItemText inset primary={task.title} />
 
-        <Edit
+        <EditOutlined
           className={classes.icon}
           onClick={this.handleEditClick}
         />

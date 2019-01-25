@@ -12,8 +12,9 @@ import {
 // From specific icon folders
 import CircleCheckedFilled from '@material-ui/icons/CheckCircle';
 import CircleUnchecked from '@material-ui/icons/RadioButtonUnchecked';
-import EditIcon from '@material-ui/icons/Edit';
+import EditOutlined from '@material-ui/icons/EditOutlined';
 import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteOutlined from '@material-ui/icons/DeleteOutlined';
 
 
 /* Material UI styling */
@@ -112,11 +113,11 @@ class StepText extends Component {
 
         {/* Text of step */}
         <ListItemText inset primary={step.name} />
-        <EditIcon
+        <EditOutlined
           className={classes.icon}
           onClick={this.handleEditClick}
         />
-        <DeleteIcon
+        <DeleteOutlined
           className={classes.icon}
           onClick={this.handleDeleteClick}
         />
