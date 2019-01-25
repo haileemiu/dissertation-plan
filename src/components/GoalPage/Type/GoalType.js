@@ -14,6 +14,7 @@ import NewTaskItem from '../Task/NewTaskItem';
 import AddNewTaskButton from '../Task/AddNewTaskButton';
 import TypeEdit from './TypeEdit';
 import UncheckAllButton from './UncheckAllButton';
+import axios from 'axios';
 
 /* Material UI styling */
 const styles = theme => ({
@@ -43,10 +44,25 @@ class GoalType extends Component {
     this.setState(prevState => ({ isAdding: !prevState.isAdding }));
   }
 
+  // WIP...
   // Handles deleting a section/goal type
-  deleteGoalType = () => {
-    console.log('clicked');
+  deleteGoalType = (typeId) => {
+    console.log('clicked', typeId);
+    axios.delete(`/api/goals/types/${typeId}`)
+      .then(this.deleteGoalTypeSuccess)
+      .catch(this.deleteGoalTypeError);
   }
+
+  deleteGoalTypeSuccess = (response) => {
+    console.log('Successfully deleted', response);
+
+    this.props.getGoalList(); // Call to re-render
+  }
+ 
+  deleteGoalTypeError = (err) => {
+    console.log('Error in deleting:', err); // TO DO: alert user
+  }
+
 
   render() {
     const { classes, type } = this.props;
@@ -63,7 +79,7 @@ class GoalType extends Component {
           <ListItemText inset primary={type.title} />
 
           {/* Delete Button */}
-          <Clear onClick={this.deleteGoalType} />
+          <Clear onClick={() => this.deleteGoalType(type.id)} />
 
         </ListItem>
 
