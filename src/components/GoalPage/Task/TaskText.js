@@ -11,10 +11,11 @@ import {
 } from '@material-ui/core';
 import {
   Clear,
-  CircleCheckedFilled,
-  CircleUnchecked,
   Edit,
 } from '@material-ui/icons';
+// CircleCheckedFilled & CircleUnchecked are from specific icon folders
+import CircleCheckedFilled from '@material-ui/icons/CheckCircle';
+import CircleUnchecked from '@material-ui/icons/RadioButtonUnchecked';
 
 /* Material UI styling */
 const styles = theme => ({
