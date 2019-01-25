@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import Swal from 'sweetalert2';
-import { Button } from '@material-ui/core';
+
+import EditOutlined from '@material-ui/icons/EditOutlined';
 
 
 const styles = theme => ({
@@ -45,20 +46,17 @@ class TypeEditButton extends Component {
     console.log('Error in editing goal type:', err); // TO DO: alert user
   }
 
-
   render() {
     const { classes, type } = this.props;
     return (
-      <Button
+      <EditOutlined
         size="small"
         variant="contained"
-        color="primary"
+        // color="primary"
         className={classes.button}
         onClick={() => this.handleEditClick(type)}
         type="submit"
-      >
-        Edit section
-      </Button>
+      />
     );
   }
 }

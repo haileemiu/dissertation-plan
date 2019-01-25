@@ -29,6 +29,9 @@ const styles = theme => ({
     backgroundColor: '#F2F2F2',
     border: '#E3E3E3',
   },
+  buttonsRight: {
+    justifyContent: 'flex-end',
+  },
 });
 
 /*
@@ -87,7 +90,7 @@ class GoalType extends Component {
 
     return (
       <>
-        {/* Goal Types */}
+        {/* List each section header/type */}
         <Divider />
         <ListItem button onClick={this.onHeadingClick} className={classes.heading}>
           {/* Toggle between + and - sign when collapsed or open */}
@@ -96,7 +99,10 @@ class GoalType extends Component {
           {/* Section Name Text */}
           <ListItemText inset primary={type.title} />
 
-          {/* Delete Button */}
+          {/* Edit section/type button and input */}
+          <TypeEdit type={type} toggleIsEditingType={this.toggleIsEditingType} getGoalList={this.props.getGoalList} />
+
+          {/* Delete section/type button */}
           <Clear onClick={() => this.deleteGoalType(type.id)} />
 
         </ListItem>
@@ -108,15 +114,12 @@ class GoalType extends Component {
             {/* List each task */}
             {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)}
 
-            <ListItem>
+            <ListItem className={classes.buttonsRight}>
               {/* Uncheck all button */}
               <UncheckAllButton
                 type={type}
                 getGoalList={this.props.getGoalList}
               />
-
-              {/* Edit section/type button and input */}
-              <TypeEdit type={type} toggleIsEditingType={this.toggleIsEditingType} getGoalList={this.props.getGoalList} />
 
               {/* Toggle between Add a new task */}
               {this.state.isAdding
