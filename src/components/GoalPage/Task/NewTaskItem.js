@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-
+import {
+  Button,
+  TextField,
+} from '@material-ui/core';
 
 /* Material UI styling */
 const styles = theme => ({

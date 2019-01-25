@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import ListSubheader from '@material-ui/core/ListSubheader';
-import List from '@material-ui/core/List';
+import {
+  List,
+  // ListSubheader,
+} from '@material-ui/core';
+
 import Section from './Section';
 
 /*
@@ -45,7 +48,7 @@ class DissertationList extends Component {
           component="nav"
           // subheader={<ListSubheader component="div">My Plan</ListSubheader>}
           style={{ backgroundColor: 'rgba(242, 242, 242, 1)' }}
-          
+
         >
           {this.state.dissertationPlanList.map(section => <Section section={section} getDissertationPlan={this.getDissertationPlan} key={section.id} />)}
         </List>

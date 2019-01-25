@@ -3,14 +3,20 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { withStyles } from '@material-ui/core/styles';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import List from '@material-ui/core/List';
-import Add from '@material-ui/icons/Add';
-import Remove from '@material-ui/icons/Remove';
-import Clear from '@material-ui/icons/Clear';
-import Divider from '@material-ui/core/Divider';
+import {
+  Collapse,
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+} from '@material-ui/core';
+import {
+  Add,
+  Clear,
+  Remove,
+} from '@material-ui/icons';
+
+
 import TaskItem from '../Task/TaskItem';
 import NewTaskItem from '../Task/NewTaskItem';
 import AddNewTaskButton from '../Task/AddNewTaskButton';

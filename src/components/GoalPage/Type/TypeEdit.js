@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import Swal from 'sweetalert2';
-import Button from '@material-ui/core/Button';
+import { Button } from '@material-ui/core';
 
 
 const styles = theme => ({

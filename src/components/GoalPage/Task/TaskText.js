@@ -3,16 +3,18 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Swal from 'sweetalert2';
-
-import Edit from '@material-ui/icons/Edit';
-import Clear from '@material-ui/icons/Clear';
-import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
-import CircleCheckedFilled from '@material-ui/icons/CheckCircle';
-import CircleUnchecked from '@material-ui/icons/RadioButtonUnchecked';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import cyan from '@material-ui/core/colors/cyan';
-
+import {
+  Checkbox,
+  ListItemIcon,
+  ListItemText,
+} from '@material-ui/core';
+import {
+  Clear,
+  CircleCheckedFilled,
+  CircleUnchecked,
+  Edit,
+} from '@material-ui/icons';
 
 /* Material UI styling */
 const styles = theme => ({

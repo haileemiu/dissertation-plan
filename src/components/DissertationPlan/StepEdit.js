@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
-import ListItem from '@material-ui/core/ListItem';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import {
+  Button,
+  ListItem,
+  TextField,
+} from '@material-ui/core';
 
 const styles = theme => ({
   nested: {
