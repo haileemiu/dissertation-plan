@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 import { withStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -14,7 +16,6 @@ import NewTaskItem from '../Task/NewTaskItem';
 import AddNewTaskButton from '../Task/AddNewTaskButton';
 import TypeEdit from './TypeEdit';
 import UncheckAllButton from './UncheckAllButton';
-import axios from 'axios';
 
 /* Material UI styling */
 const styles = theme => ({
@@ -47,18 +48,29 @@ class GoalType extends Component {
   // WIP...
   // Handles deleting a section/goal type
   deleteGoalType = (typeId) => {
-    console.log('clicked', typeId);
-    axios.delete(`/api/goals/types/${typeId}`)
-      .then(this.deleteGoalTypeSuccess)
-      .catch(this.deleteGoalTypeError);
-  }
+    // Warning alert before delete
+    Swal({
+      title: 'Are you sure you want to delete this entire section and all tasks it contains?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Delete',
+    }).then((result) => {
+      if (result.value) {
+        axios.delete(`/api/goals/types/${typeId}`)
+          .then(this.deleteGoalTypeSuccess)
+          .catch(this.deleteGoalTypeError);
+      }
+    });
+  };
 
   deleteGoalTypeSuccess = (response) => {
     console.log('Successfully deleted', response);
 
     this.props.getGoalList(); // Call to re-render
   }
- 
+
   deleteGoalTypeError = (err) => {
     console.log('Error in deleting:', err); // TO DO: alert user
   }
