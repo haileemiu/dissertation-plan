@@ -1,3 +1,4 @@
+// /api/goals/types
 const express = require('express');
 const pool = require('../modules/pool');
 
@@ -97,6 +98,25 @@ router.put('/:id/uncheck', (req, res) => {
       console.log('Error in unchecking goals:', error);
       res.sendStatus(500);
     });
+});
+
+// WIP
+// Possibly a more efficient and less error prone way to complete this
+router.delete('/:id', async (req, res) => {
+  try {
+    const queryToDeleteTasks = await `DELETE FROM goal_tasks WHERE type_id=${req.params.id}`;
+  
+    await pool.query(queryToDeleteTasks);
+  
+    const queryToDeleteTypes = await `DELETE FROM goal_types WHERE id=${req.params.id}`;
+
+    await pool.query(queryToDeleteTypes);
+
+    res.sendStatus(202); // code for delete
+  } catch (err) {
+    console.log('Error in deleting', err);
+    res.sendStatus(500);
+  }
 });
 
 module.exports = router;

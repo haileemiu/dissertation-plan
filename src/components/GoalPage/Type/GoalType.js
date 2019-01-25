@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 import { withStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import List from '@material-ui/core/List';
 import Add from '@material-ui/icons/Add';
 import Remove from '@material-ui/icons/Remove';
+import Clear from '@material-ui/icons/Clear';
 import Divider from '@material-ui/core/Divider';
 import TaskItem from '../Task/TaskItem';
 import NewTaskItem from '../Task/NewTaskItem';
@@ -43,6 +45,37 @@ class GoalType extends Component {
     this.setState(prevState => ({ isAdding: !prevState.isAdding }));
   }
 
+  // WIP...
+  // Handles deleting a section/goal type
+  deleteGoalType = (typeId) => {
+    // Warning alert before delete
+    Swal({
+      title: 'Are you sure you want to delete this entire section and all tasks it contains?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Delete',
+    }).then((result) => {
+      if (result.value) {
+        axios.delete(`/api/goals/types/${typeId}`)
+          .then(this.deleteGoalTypeSuccess)
+          .catch(this.deleteGoalTypeError);
+      }
+    });
+  };
+
+  deleteGoalTypeSuccess = (response) => {
+    console.log('Successfully deleted', response);
+
+    this.props.getGoalList(); // Call to re-render
+  }
+
+  deleteGoalTypeError = (err) => {
+    console.log('Error in deleting:', err); // TO DO: alert user
+  }
+
+
   render() {
     const { classes, type } = this.props;
 
@@ -50,11 +83,16 @@ class GoalType extends Component {
       <>
         {/* Goal Types */}
         <Divider />
-        <ListItem button onClick={this.onHeadingClick} className={classes.heading} > 
+        <ListItem button onClick={this.onHeadingClick} className={classes.heading}>
+          {/* Toggle between + and - sign when collapsed or open */}
           {this.state.isOpen ? <Remove /> : <Add />}
 
           {/* Section Name Text */}
           <ListItemText inset primary={type.title} />
+
+          {/* Delete Button */}
+          <Clear onClick={() => this.deleteGoalType(type.id)} />
+
         </ListItem>
 
         {/* Area inside the nested list where steps will be listed out */}

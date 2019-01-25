@@ -63,11 +63,11 @@ class TaskText extends Component {
   handleDeleteClick = () => {
     // Warning alert before delete
     Swal({
-      title: 'Are you sure you want to delete this?',
+      title: 'Are you sure you want to delete this item?',
       type: 'warning',
       showCancelButton: true,
-      confirmButtonColor: 'white',
-      cancelButtonColor: '#3085d6',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
       confirmButtonText: 'Delete',
     }).then((result) => {
       if (result.value) {

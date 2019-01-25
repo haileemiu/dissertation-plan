@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { ListItem, Button } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 /* Material UI styling */
 const styles = theme => ({

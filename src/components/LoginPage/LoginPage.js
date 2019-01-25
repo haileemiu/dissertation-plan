@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ForgotPassword from './ForgotPassword';
 
 class LoginPage extends Component {
   state = {
