@@ -14,6 +14,7 @@ import NewTaskItem from '../Task/NewTaskItem';
 import AddNewTaskButton from '../Task/AddNewTaskButton';
 import TypeEdit from './TypeEdit';
 import UncheckAllButton from './UncheckAllButton';
+import Clear from '@material-ui/icons/Clear';
 
 /* Material UI styling */
 const styles = theme => ({
@@ -43,6 +44,11 @@ class GoalType extends Component {
     this.setState(prevState => ({ isAdding: !prevState.isAdding }));
   }
 
+  // Handles deleting a section/goal type
+  deleteGoalType = () => {
+    console.log('clicked');
+  }
+
   render() {
     const { classes, type } = this.props;
 
@@ -50,11 +56,15 @@ class GoalType extends Component {
       <>
         {/* Goal Types */}
         <Divider />
-        <ListItem button onClick={this.onHeadingClick} className={classes.heading} > 
+        <ListItem button onClick={this.onHeadingClick} className={classes.heading}>
           {this.state.isOpen ? <Remove /> : <Add />}
 
           {/* Section Name Text */}
           <ListItemText inset primary={type.title} />
+
+          {/* Delete Button */}
+          <Clear onClick={this.deleteGoalType} />
+
         </ListItem>
 
         {/* Area inside the nested list where steps will be listed out */}
