@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import List from '@material-ui/core/List';
 import Add from '@material-ui/icons/Add';
 import Remove from '@material-ui/icons/Remove';
+import Clear from '@material-ui/icons/Clear';
 import Divider from '@material-ui/core/Divider';
 import TaskItem from '../Task/TaskItem';
 import NewTaskItem from '../Task/NewTaskItem';
 import AddNewTaskButton from '../Task/AddNewTaskButton';
 import TypeEdit from './TypeEdit';
 import UncheckAllButton from './UncheckAllButton';
-import Clear from '@material-ui/icons/Clear';
 
 /* Material UI styling */
 const styles = theme => ({
@@ -57,6 +56,7 @@ class GoalType extends Component {
         {/* Goal Types */}
         <Divider />
         <ListItem button onClick={this.onHeadingClick} className={classes.heading}>
+          {/* Toggle between + and - sign when collapsed or open */}
           {this.state.isOpen ? <Remove /> : <Add />}
 
           {/* Section Name Text */}

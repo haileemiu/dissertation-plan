@@ -5,9 +5,7 @@ import {
   Divider,
   ListItem,
   ListItemText,
-  ListItemIcon,
 } from '@material-ui/core';
-import { Add } from '@material-ui/icons';
 
 
 const styles = theme => ({
