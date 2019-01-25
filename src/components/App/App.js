@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   HashRouter as Router,
   Route,
@@ -6,13 +7,9 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import { connect } from 'react-redux';
-
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 import AboutPage from '../About/About';
 import UserPage from '../UserPage/UserPage';
 import GoalPage from '../GoalPage/GoalPage';

@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
-import ListItem from '@material-ui/core/ListItem';
-
-import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
-import List from '@material-ui/core/List';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
-
-import Divider from '@material-ui/core/Divider';
+import {
+  Collapse,
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+} from '@material-ui/core';
+import {
+  ExpandLess,
+  ExpandMore,
+} from '@material-ui/icons/';
 
 import SectionStep from './SectionStep';
 import NewSectionStep from './NewSectionStep';
 import AddNewButton from './AddNewButton';
 
 const styles = theme => ({
-
 
 });
 
