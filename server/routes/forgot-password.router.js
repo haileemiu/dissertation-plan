@@ -96,7 +96,7 @@ router.get('/', async (req, res) => {
       res.sendStatus(200);
     }
   } catch (err) {
-    console.log(err);
+    console.log('Error in forgot-password router:', err);
     res.sendStatus(500);
   }
 });
