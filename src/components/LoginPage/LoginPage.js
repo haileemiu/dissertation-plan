@@ -31,7 +31,7 @@ class LoginPage extends Component {
 
   render() {
     // Link for forgotten password
-    const forgotPasswordLink = process.env.PUBLIC_URL + "/url#/forgot-password";
+    const forgotPasswordLink = process.env.PUBLIC_URL + "/api/forgot-password";
     return (
       <div>
         {this.props.errors.loginMessage && (
