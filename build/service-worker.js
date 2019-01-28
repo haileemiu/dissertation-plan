@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "https://taina-app.herokuapp.com/precache-manifest.f52339bb521bb2c3066f186bf3cf0c9a.js"
+  "https://taina-app.herokuapp.com/precache-manifest.1d93bc3de61b1e9673c73c10522a6f2d.js"
 );
 
 workbox.clientsClaim();
