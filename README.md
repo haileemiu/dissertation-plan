@@ -1,3 +1,18 @@
+
+## Things to change when you get the actual url:
+- package.json
+    - homepage
+- heroku 
+    - settings > Reveal Config Vars > PUBLIC_URL
+
+## Things to change when you get real email:
+- heroku
+    - settings > Reveal Config Vars > ADMIN_EMAIL and MAIL_PW
+
+---
+
+# DIRECTIONS THAT CAME WITH THE BASE REPO FROM PRIME DIGITAL ACADEMY
+
 # Express/Passport with React
 This version uses React to control the login requests and redirection in coordination with client-side routing.
 
