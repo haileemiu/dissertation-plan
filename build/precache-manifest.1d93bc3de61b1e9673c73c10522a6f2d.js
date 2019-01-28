@@ -16,19 +16,19 @@ self.__precacheManifest = [
     "url": "https://taina-app.herokuapp.com/static/js/runtime~main.1e6e6fdf.js"
   },
   {
-    "revision": "26db8aedaf1b9fa40d6b",
-    "url": "https://taina-app.herokuapp.com/static/js/main.26db8aed.chunk.js"
+    "revision": "1de707bb675bd5a3f181",
+    "url": "https://taina-app.herokuapp.com/static/js/main.1de707bb.chunk.js"
   },
   {
     "revision": "605e3ca5397620e9c889",
     "url": "https://taina-app.herokuapp.com/static/js/1.605e3ca5.chunk.js"
   },
   {
-    "revision": "26db8aedaf1b9fa40d6b",
+    "revision": "1de707bb675bd5a3f181",
     "url": "https://taina-app.herokuapp.com/static/css/main.b89112b2.chunk.css"
   },
   {
-    "revision": "442928a8182cece9ed5a70897e80eaf6",
+    "revision": "2ba076316b85de3055f12707832d1b14",
     "url": "https://taina-app.herokuapp.com/index.html"
   }
 ];
