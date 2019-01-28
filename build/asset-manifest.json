@@ -1,7 +1,7 @@
 {
   "main.css": "https://taina-app.herokuapp.com/static/css/main.b89112b2.chunk.css",
-  "main.js": "https://taina-app.herokuapp.com/static/js/main.9fe1f66b.chunk.js",
-  "main.js.map": "https://taina-app.herokuapp.com/static/js/main.9fe1f66b.chunk.js.map",
+  "main.js": "https://taina-app.herokuapp.com/static/js/main.a53bb3ba.chunk.js",
+  "main.js.map": "https://taina-app.herokuapp.com/static/js/main.a53bb3ba.chunk.js.map",
   "static/js/1.9e94b1b1.chunk.js": "https://taina-app.herokuapp.com/static/js/1.9e94b1b1.chunk.js",
   "static/js/1.9e94b1b1.chunk.js.map": "https://taina-app.herokuapp.com/static/js/1.9e94b1b1.chunk.js.map",
   "runtime~main.js": "https://taina-app.herokuapp.com/static/js/runtime~main.1e6e6fdf.js",
@@ -11,6 +11,6 @@
   "static/media/banner-displan-1920.jpg": "https://taina-app.herokuapp.com/static/media/banner-displan-1920.baa0a61c.jpg",
   "static/media/banner-goals-1920.jpg": "https://taina-app.herokuapp.com/static/media/banner-goals-1920.06ea20d2.jpg",
   "index.html": "https://taina-app.herokuapp.com/index.html",
-  "precache-manifest.abf5fdefab838dfdae66a7125fb2b492.js": "https://taina-app.herokuapp.com/precache-manifest.abf5fdefab838dfdae66a7125fb2b492.js",
+  "precache-manifest.1a72ea3b47f0d5c2d15ab408bb4cddd6.js": "https://taina-app.herokuapp.com/precache-manifest.1a72ea3b47f0d5c2d15ab408bb4cddd6.js",
   "service-worker.js": "https://taina-app.herokuapp.com/service-worker.js"
 }

@@ -25,8 +25,8 @@ class ForgotPassword extends Component {
     this.setState({ email: '' });
   };
 
-  submitEmailError = () => {
-    alert('Something went wrong. Please try again');
+  submitEmailError = (err) => {
+    console.log('Error in sending email:', err); // TO DO: user alert
   }
 
   render() {
