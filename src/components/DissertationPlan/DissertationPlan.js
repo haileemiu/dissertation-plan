@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createMuiTheme } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import { cyan } from '@material-ui/core/colors';
+import { teal } from '@material-ui/core/colors';
 
 import DissertationList from './DissertationList';
 import DissertationBanner from './DissertationBanner';
@@ -21,7 +21,7 @@ const styles = theme => ({
 
 const theme = createMuiTheme({
   palette: {
-    primary: cyan,
+    primary: teal,
   },
 });
 
@@ -32,8 +32,8 @@ const DissertationPlan = props => (
     <div className={props.classes.root}>
       <MuiThemeProvider theme={theme}>
         <div style={{ textAlign: 'center' }}>
-          <h2>Your path is unique.</h2>
-          <h3>Customize your dissertation plan to reflect your process.</h3>
+          <p style={{ fontSize: '28px' }}>Your path is unique.</p>
+          <p style={{ fontSize: '22px' }}>Customize your dissertation plan to reflect your process.</p>
         </div>
         <DissertationList />
       </MuiThemeProvider>

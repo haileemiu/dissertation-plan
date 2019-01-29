@@ -8,8 +8,9 @@ const LogOutButton = props => (
     // styling is being passed from nav and/or user page
     className={props.className}
     onClick={() => props.dispatch({ type: 'LOGOUT' })}
+    style={{ border: 'solid' }}
   >
-    Log Out
+    Sign Out
   </button>
 );
 

@@ -5,10 +5,10 @@ import Swal from 'sweetalert2';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Collapse,
-  Divider,
   List,
   ListItem,
   ListItemText,
+  Typography,
 } from '@material-ui/core';
 import {
   Add,
@@ -26,8 +26,8 @@ import UncheckAllButton from './UncheckAllButton';
 /* Material UI styling */
 const styles = theme => ({
   heading: {
-    backgroundColor: '#F2F2F2',
-    border: '#E3E3E3',
+    backgroundColor: '#E3E3E3',
+    border: '1px solid #cccccc',
   },
   buttonsRight: {
     justifyContent: 'flex-end',
@@ -91,13 +91,21 @@ class GoalType extends Component {
     return (
       <>
         {/* List each section header/type */}
-        <Divider />
-        <ListItem button onClick={this.onHeadingClick} className={classes.heading}>
+        
+        <ListItem
+          button
+          onClick={this.onHeadingClick}
+          className={classes.heading}
+        >
           {/* Toggle between + and - sign when collapsed or open */}
           {this.state.isOpen ? <Remove /> : <Add />}
 
           {/* Section Name Text */}
-          <ListItemText inset primary={type.title} />
+          <ListItemText
+            inset
+            disableTypography
+            primary={<Typography style={{ fontFamily: 'Avenir', fontSize: '20px' }}>{type.title}</Typography>}
+          />
 
           {/* Edit section/type button and input */}
           <TypeEdit type={type} toggleIsEditingType={this.toggleIsEditingType} getGoalList={this.props.getGoalList} />
@@ -109,8 +117,8 @@ class GoalType extends Component {
 
         {/* Area inside the nested list where steps will be listed out */}
         <Collapse in={this.state.isOpen} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding style={{ maxWidth: '95%' }}>
-
+          <List component="div" disablePadding style={{ border: '1px solid #cccccc' }}>
+          
             {/* List each task */}
             {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)}
 

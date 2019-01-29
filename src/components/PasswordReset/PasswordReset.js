@@ -6,11 +6,6 @@ import Swal from 'sweetalert2/dist/sweetalert2';
 
 import {
   Button,
-  // Dialog,
-  // DialogContent,
-  // DialogActions,
-  // DialogTitle,
-  // Typography,
 } from '@material-ui/core';
 
 
@@ -158,18 +153,6 @@ class PasswordReset extends Component {
           )
           : <h1>Your Password Reset Link has expired.</h1>}
       </>
-      /* // <MuiThemeProvider theme={theme}>
-      
-      // <Dialog open={this.state.dialogOpen}>
-      //   <DialogTitle>Password</DialogTitle>
-      //   <DialogContent>
-      //     <Typography component="p">Your password doesn't match.</Typography>
-      //   </DialogContent>
-      //   <DialogActions>
-      //     <Button color="primary" onClick={this.handleCancel}>Okay</Button>
-      //   </DialogActions>
-      // </Dialog>
-      // </MuiThemeProvider> */
     );
   }
 }

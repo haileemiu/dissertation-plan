@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-// import ListSubheader from '@material-ui/core/ListSubheader';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 
 import GoalType from './Type/GoalType';
@@ -49,9 +49,8 @@ class GoalList extends Component {
     return (
       <div>
         <List
-          component="nav"
+          // component="nav"
           // subheader={<ListSubheader component="div">My Goals</ListSubheader>}
-          style={{ backgroundColor: 'rgba(242, 242, 242, 1)' }}
         >
           {/* List out the Goal Type headers */}
           {this.state.goalList.map(type => (

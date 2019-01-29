@@ -3,11 +3,12 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Swal from 'sweetalert2';
-import cyan from '@material-ui/core/colors/cyan';
+import teal from '@material-ui/core/colors/teal';
 import {
   Checkbox,
   ListItemIcon,
   ListItemText,
+  Typography,
 } from '@material-ui/core';
 import {
   Clear,
@@ -27,9 +28,9 @@ const styles = theme => ({
     fontSize: 25,
   },
   root: {
-    color: cyan['A400'],
+    color: teal['A400'],
     '&$checked': {
-      color: cyan['A400'],
+      color: teal['A400'],
     },
   },
   checked: {},
@@ -108,13 +109,17 @@ class TaskText extends Component {
               root: classes.root,
               checked: classes.checked,
             }}
-            icon={<CircleUnchecked />}
-            checkedIcon={<CircleCheckedFilled />}
+            icon={<CircleUnchecked style={{ fontSize: '40px' }} />}
+            checkedIcon={<CircleCheckedFilled style={{ fontSize: '40px' }} />}
           />
         </ListItemIcon>
 
         {/* Text of task in a Material UI component (ListItemText) */}
-        <ListItemText inset primary={task.title} />
+        <ListItemText
+          inset
+          disableTypography
+          primary={<Typography style={{ fontFamily: 'Avenir', fontSize: '18px' }}>{task.title}</Typography>}
+        />
 
         <EditOutlined
           className={classes.icon}

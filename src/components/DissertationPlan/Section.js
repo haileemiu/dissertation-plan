@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Collapse,
-  Divider,
   List,
   ListItem,
   ListItemText,
+  Typography,
 } from '@material-ui/core';
 import {
   ExpandLess,
@@ -18,7 +18,10 @@ import NewSectionStep from './NewSectionStep';
 import AddNewButton from './AddNewButton';
 
 const styles = theme => ({
-
+  heading: {
+    backgroundColor: '#E3E3E3',
+    border: '1px solid #cccccc',
+  },
 });
 
 /*
@@ -43,26 +46,29 @@ class Section extends Component {
 
   render() {
     // const { classes } = this.props;
-    const { section } = this.props;
+    const { classes, section } = this.props;
 
     return (
       <>
         {/* Section Headings */}
-        <Divider />
-        <ListItem button onClick={this.onHeadingClick}>
+        <ListItem button onClick={this.onHeadingClick} className={classes.heading}>
           {this.state.isOpen ? <ExpandLess /> : <ExpandMore />}
           {/* <ListItemIcon>
             <StarBorder />
           </ListItemIcon> */}
 
           {/* Section Name Text */}
-          <ListItemText inset primary={section.name} style={{ paddingLeft: '0%' }} />
-
+          <ListItemText
+            inset
+            // style={{ paddingLeft: '0%' }}
+            disableTypography
+            primary={<Typography style={{ fontFamily: 'Avenir', fontSize: '20px' }}>{section.name}</Typography>}
+          />
         </ListItem>
 
         {/* Area inside the nested list where steps will be listed out */}
         <Collapse in={this.state.isOpen} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
+          <List component="div" disablePadding style={{ border: '1px solid #E3E3E3' }}>
 
             {/* List each step */}
             {section.step.map(step => <SectionStep step={step} key={step.id} getDissertationPlan={this.props.getDissertationPlan} />)}

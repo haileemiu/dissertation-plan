@@ -31,7 +31,7 @@ class SectionStep extends Component {
 
     return (
       // Holds the individual step
-      <ListItem button disableTouchRipple className={classes.sectionStep}>
+      <ListItem button disableTouchRipple className={classes.sectionStep} style={{ border: '1px solid #E3E3E3' }}>
         {/* If isEditing is false, render StepText */}
         {/* If isEditing is true, render EditStep */}
         {this.state.isEditing

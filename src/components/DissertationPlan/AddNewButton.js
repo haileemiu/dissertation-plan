@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { ListItem, Button } from '@material-ui/core';
+import AddCircle from '@material-ui/icons/AddCircle';
 
 /* Material UI styling */
 const styles = theme => ({
   addButton: {
     margin: theme.spacing.unit,
-    marginLeft: 75,
+    fontSize: '40px',
   },
   nested: {
     paddingLeft: theme.spacing.unit * 4,
+    justifyContent: 'flex-end',
   },
 
 });
@@ -31,14 +33,13 @@ class AddNewButton extends Component {
     return (
       <div>
         <ListItem className={classes.nested}>
-          <Button
+          <AddCircle
             color="primary" // from Mui Theme Provider on DissertationPlan component
             variant="contained"
             onClick={this.handleAddClick}
             className={classes.addButton}
-          >
-            Add
-          </Button>
+          />
+
         </ListItem>
       </div>
     );
