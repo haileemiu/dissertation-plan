@@ -33,7 +33,7 @@ class AddNewSectionButton extends Component {
     return (
       <div>
         <ListItem onClick={this.clickAddSection} className={classes.addSection}>
-          <ListItemText inset primary={<Typography style={{ fontFamily: 'Avenir', fontSize: '20px' }}>+ Add Section</Typography>}/>
+          <ListItemText inset primary={<Typography style={{ fontFamily: 'Avenir', fontSize: '20px' }}>+ Add Section</Typography>} />
         </ListItem>
       </div>
     );

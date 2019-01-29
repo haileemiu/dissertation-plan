@@ -15,7 +15,8 @@ const styles = theme => ({
     borderRadius: '25px',
     backgroundColor: '#F2F2F2',
     marginLeft: '15px',
-    marginBottom: '5px',
+    marginBottom: '3px',
+    marginTop: '3px',
     width: '95%',
   },
 });
