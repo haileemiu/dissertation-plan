@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import {
-  Divider,
   ListItem,
   ListItemText,
+  Typography,
 } from '@material-ui/core';
 
 
 const styles = theme => ({
-  rightText: {
+
+  addSection: {
     textAlign: 'right',
+    backgroundColor: '#E3E3E3',
+    border: '1px solid #cccccc',
   },
 });
 
@@ -29,14 +32,9 @@ class AddNewSectionButton extends Component {
     const { classes } = this.props;
     return (
       <div>
-
-        <ListItem onClick={this.clickAddSection} className={classes.rightText}>
-          {/* <ListItemIcon>
-            <Add />
-          </ListItemIcon> */}
-          <ListItemText inset primary="+ Add Section" />
+        <ListItem onClick={this.clickAddSection} className={classes.addSection}>
+          <ListItemText inset primary={<Typography style={{ fontFamily: 'Avenir', fontSize: '20px' }}>+ Add Section</Typography>}/>
         </ListItem>
-        <Divider />
       </div>
     );
   }

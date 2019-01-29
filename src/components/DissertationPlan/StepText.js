@@ -14,7 +14,6 @@ import {
 import CircleCheckedFilled from '@material-ui/icons/CheckCircle';
 import CircleUnchecked from '@material-ui/icons/RadioButtonUnchecked';
 import EditOutlined from '@material-ui/icons/EditOutlined';
-import DeleteIcon from '@material-ui/icons/Delete';
 import DeleteOutlined from '@material-ui/icons/DeleteOutlined';
 
 
