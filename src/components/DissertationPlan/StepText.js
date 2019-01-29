@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Swal from 'sweetalert2';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import cyan from '@material-ui/core/colors/cyan';
+import teal from '@material-ui/core/colors/teal';
 import {
   ListItemText,
   Checkbox,
+  Typography,
 } from '@material-ui/core';
 // From specific icon folders
 import CircleCheckedFilled from '@material-ui/icons/CheckCircle';
@@ -27,9 +28,9 @@ const styles = theme => ({
     fontSize: 25,
   },
   root: {
-    color: cyan['A400'],
+    color: teal['A400'],
     '&$checked': {
-      color: cyan['A400'],
+      color: teal['A400'],
     },
   },
   checked: {},
@@ -112,7 +113,13 @@ class StepText extends Component {
         </ListItemIcon>
 
         {/* Text of step */}
-        <ListItemText inset primary={step.name} />
+        <ListItemText
+          inset
+          // primary={step.name}
+          disableTypography
+          primary={<Typography style={{ fontFamily: 'Avenir', fontSize: '18px' }}>{step.name}</Typography>}
+
+        />
         <EditOutlined
           className={classes.icon}
           onClick={this.handleEditClick}

@@ -13,7 +13,7 @@ const styles = theme => ({
     padding: theme.spacing.unit,
     border: '1px solid #E3E3E3',
     borderRadius: '25px',
-    backgroundColor: 'white',
+    backgroundColor: '#F2F2F2',
     marginLeft: '15px',
     marginBottom: '5px',
   },

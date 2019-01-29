@@ -51,7 +51,6 @@ class GoalList extends Component {
         <List
           component="nav"
           // subheader={<ListSubheader component="div">My Goals</ListSubheader>}
-          style={{ backgroundColor: 'rgba(242, 242, 242, 1)' }}
         >
           {/* List out the Goal Type headers */}
           {this.state.goalList.map(type => (

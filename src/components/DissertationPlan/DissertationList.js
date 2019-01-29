@@ -47,8 +47,6 @@ class DissertationList extends Component {
         <List
           component="nav"
           // subheader={<ListSubheader component="div">My Plan</ListSubheader>}
-          style={{ backgroundColor: 'rgba(242, 242, 242, 1)' }}
-
         >
           {this.state.dissertationPlanList.map(section => <Section section={section} getDissertationPlan={this.getDissertationPlan} key={section.id} />)}
         </List>

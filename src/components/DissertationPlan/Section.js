@@ -7,6 +7,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  Typography,
 } from '@material-ui/core';
 import {
   ExpandLess,
@@ -56,7 +57,13 @@ class Section extends Component {
           </ListItemIcon> */}
 
           {/* Section Name Text */}
-          <ListItemText inset primary={section.name} style={{ paddingLeft: '0%' }} />
+          <ListItemText
+            inset
+            // style={{ paddingLeft: '0%' }}
+            disableTypography
+            primary={<Typography style={{ fontFamily: 'Avenir', fontSize: '20px' }}>{section.name}</Typography>}
+          />
+   
 
         </ListItem>
 

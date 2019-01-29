@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, createMuiTheme } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import { cyan } from '@material-ui/core/colors';
+import { teal } from '@material-ui/core/colors';
 import GoalBanner from './GoalBanner';
 import GoalsList from './GoalList';
 
@@ -19,7 +19,7 @@ const styles = theme => ({
 
 const theme = createMuiTheme({
   palette: {
-    primary: cyan,
+    primary: teal,
   },
 });
 
