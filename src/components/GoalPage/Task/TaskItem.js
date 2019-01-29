@@ -16,6 +16,7 @@ const styles = theme => ({
     backgroundColor: '#F2F2F2',
     marginLeft: '15px',
     marginBottom: '5px',
+    width: '95%',
   },
 });
 

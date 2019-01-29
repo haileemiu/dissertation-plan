@@ -29,13 +29,14 @@ class AddNewSectionButton extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <Divider />
+
         <ListItem onClick={this.clickAddSection} className={classes.rightText}>
           {/* <ListItemIcon>
             <Add />
           </ListItemIcon> */}
           <ListItemText inset primary="+ Add Section" />
         </ListItem>
+        <Divider />
       </div>
     );
   }

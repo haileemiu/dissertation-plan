@@ -5,7 +5,6 @@ import Swal from 'sweetalert2';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Collapse,
-  Divider,
   List,
   ListItem,
   ListItemText,
@@ -28,7 +27,7 @@ import UncheckAllButton from './UncheckAllButton';
 const styles = theme => ({
   heading: {
     backgroundColor: '#E3E3E3',
-    // border: '#E3E3E3',
+    border: '1px solid #cccccc',
   },
   buttonsRight: {
     justifyContent: 'flex-end',
@@ -92,10 +91,11 @@ class GoalType extends Component {
     return (
       <>
         {/* List each section header/type */}
-        <Divider />
+        
         <ListItem
           button
           onClick={this.onHeadingClick}
+          className={classes.heading}
         >
           {/* Toggle between + and - sign when collapsed or open */}
           {this.state.isOpen ? <Remove /> : <Add />}
@@ -117,8 +117,8 @@ class GoalType extends Component {
 
         {/* Area inside the nested list where steps will be listed out */}
         <Collapse in={this.state.isOpen} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding style={{ maxWidth: '95%' }}>
-
+          <List component="div" disablePadding style={{ border: '1px solid #cccccc' }}>
+          
             {/* List each task */}
             {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)}
 
