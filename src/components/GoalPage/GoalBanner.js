@@ -6,7 +6,6 @@ import banner from '../../images/banner-goals-1920.jpg';
 const styles = theme => ({
   heroImage: {
     backgroundImage: `url(${banner})`,
-    backgroundColor: '#cccccc',
     height: '300px',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -20,6 +19,8 @@ const styles = theme => ({
     left: '50%',
     transform: 'translate(-50%, -50%)',
     color: 'white',
+    fontFamily: 'Avenir-Medium',
+    fontWeight: 500,
   },
 });
 
@@ -27,9 +28,9 @@ const GoalBanner = props => (
   <>
     <div className={props.classes.heroImage}>
       <div className={props.classes.heroText}>
-        <h1 style={{ fontSize: '50px' }}>
+        <p style={{ fontSize: '36px' }}>
           Weekly Goal-Setting Helps Keep You Accountable to Yourself
-        </h1>
+        </p>
         <h3>fdisaofjdisafdafdsafdsadf</h3>
       </div>
     </div>

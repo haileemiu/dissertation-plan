@@ -32,8 +32,8 @@ const DissertationPlan = props => (
     <div className={props.classes.root}>
       <MuiThemeProvider theme={theme}>
         <div style={{ textAlign: 'center' }}>
-          <h2>Your path is unique.</h2>
-          <h3>Customize your dissertation plan to reflect your process.</h3>
+          <p style={{ fontSize: '28px' }}>Your path is unique.</p>
+          <p style={{ fontSize: '22px' }}>Customize your dissertation plan to reflect your process.</p>
         </div>
         <DissertationList />
       </MuiThemeProvider>

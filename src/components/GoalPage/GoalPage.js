@@ -30,8 +30,8 @@ const GoalPage = props => (
     <div className={props.classes.root}>
       <MuiThemeProvider theme={theme}>
         <div style={{ textAlign: 'center' }}>
-          <h2>Set goals to maximize your productivity and balance your life</h2>
-          <h3>Customize your goals to best reflect your path.</h3>
+          <p style={{ fontSize: '28px' }}>Set goals to maximize your productivity and balance your life</p>
+          <p style={{ fontSize: '22px' }}>Customize your goals to best reflect your path.</p>
         </div>
         <GoalsList />
       </MuiThemeProvider>
