@@ -107,8 +107,8 @@ class StepText extends Component {
               root: classes.root,
               checked: classes.checked,
             }}
-            icon={<CircleUnchecked />}
-            checkedIcon={<CircleCheckedFilled />}
+            icon={<CircleUnchecked style={{ fontSize: '40px' }} />}
+            checkedIcon={<CircleCheckedFilled style={{ fontSize: '40px' }} />}
           />
         </ListItemIcon>
 
