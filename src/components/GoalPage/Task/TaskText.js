@@ -98,7 +98,7 @@ class TaskText extends Component {
     return (
       // Holds the individual task with edit icon and delete icon
       <>
-        <ListItemIcon >
+        <ListItemIcon>
 
           {/* Checkbox */}
           <Checkbox
@@ -110,7 +110,7 @@ class TaskText extends Component {
               checked: classes.checked,
             }}
             icon={<CircleUnchecked style={{ fontSize: '40px' }} />}
-            checkedIcon={<CircleCheckedFilled style={{ fontSize: '40px' }}/>}
+            checkedIcon={<CircleCheckedFilled style={{ fontSize: '40px' }} />}
           />
         </ListItemIcon>
 

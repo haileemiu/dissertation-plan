@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
+import teal from '@material-ui/core/colors/teal';
 
 /* Material UI styling */
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
+    textTransform: 'none',
+    backgroundColor: teal['300'],
+    borderRadius: '100px',
+    paddingLeft: '15px',
+    paddingRight: '15px',
   },
 
 });

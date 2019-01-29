@@ -4,11 +4,17 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
 import { Button } from '@material-ui/core';
+import teal from '@material-ui/core/colors/teal';
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit,
+    // margin: theme.spacing.unit,
     marginLeft: 75,
+    textTransform: 'none',
+    backgroundColor: teal['300'],
+    borderRadius: '100px',
+    paddingLeft: '15px',
+    paddingRight: '15px',
   },
 });
 
