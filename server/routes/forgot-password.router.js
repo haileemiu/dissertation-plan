@@ -1,9 +1,10 @@
 // Path: /api/forgot-password
 const express = require('express');
 const nodemailer = require('nodemailer');
-const pool = require('../modules/pool');
-const encryptLib = require('../modules/encryption');
 const uuidv1 = require('uuid/v1');
+const pool = require('../modules/pool');
+// const encryptLib = require('../modules/encryption');
+
 
 
 const router = express.Router();
@@ -95,7 +96,7 @@ router.get('/', async (req, res) => {
       res.sendStatus(200);
     }
   } catch (err) {
-    console.log(err);
+    console.log('Error in forgot-password router:', err);
     res.sendStatus(500);
   }
 });

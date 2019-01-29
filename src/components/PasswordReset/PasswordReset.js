@@ -45,7 +45,6 @@ class PasswordReset extends Component {
 
   // This will check if the temp_key and temp_key_active=true
   checkResetLink = () => {
-    console.log('this.state.key:', this.state.key);
     axios.get(`/api/password-reset?key=${this.state.key}`)
       .then(this.checkResetLinkSuccess)
       .catch(this.checkResetLinkError);
@@ -152,7 +151,7 @@ class PasswordReset extends Component {
               </form>
             </div>
           )
-          : <h1>Your Password Reset Link as expired.</h1>}
+          : <h1>Your Password Reset Link has expired.</h1>}
       </>
     );
   }

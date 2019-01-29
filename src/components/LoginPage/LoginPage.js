@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class LoginPage extends Component {
   state = {
@@ -31,7 +32,7 @@ class LoginPage extends Component {
 
   render() {
     // Link for forgotten password
-    const forgotPasswordLink = process.env.PUBLIC_URL + "/url#/forgot-password";
+    // const forgotPasswordLink = `${process.env.PUBLIC_URL}/api/forgot-password`;
     return (
       <div>
         {this.props.errors.loginMessage && (
@@ -84,7 +85,9 @@ class LoginPage extends Component {
             Register
           </button>
         </center>
-        <a href={forgotPasswordLink}>Forgot password?</a>
+        {/* <a href={forgotPasswordLink}>Forgot password?</a> */}
+        {/* <Link to={forgotPasswordLink}>Forgot?</Link> */}
+        <a href="#forgot-password">reset password</a>
       </div>
     );
   }
