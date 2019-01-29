@@ -16,7 +16,7 @@
     color: #f2f2f2;
     background-color: rgba(33, 106, 101, 1);
     text-align: center;
-    padding: 24px 10px;
+    padding: 20px 10px;
     text-decoration: none;
     font-size: 15px;
   
@@ -43,4 +43,16 @@
     height: 50px;
     width: 70px;
     margin: 10px;
+  }
+
+  .sign-out {
+    border-radius: 50px;
+    border: 2px solid #73AD21;
+    padding-top: 10px; 
+    padding-bottom: 10px; 
+    margin-top: 7px;
+    width: 130px;
+    /* height: 10px; */
+    /* text-align: auto; */
+
   }
