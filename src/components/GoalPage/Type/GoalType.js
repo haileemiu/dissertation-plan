@@ -9,8 +9,8 @@ import {
   Typography,
 } from '@material-ui/core';
 import {
-  Add,
-  Remove,
+  ExpandLess,
+  ExpandMore,
 } from '@material-ui/icons';
 
 import TaskItem from '../Task/TaskItem';
@@ -64,7 +64,7 @@ class GoalType extends Component {
           className={classes.heading}
         >
           {/* Toggle between + and - sign when collapsed or open */}
-          {this.state.isOpen ? <Remove /> : <Add />}
+          {this.state.isOpen ? <ExpandLess /> : <ExpandMore />}
 
           {/* Section Name Text */}
           <ListItemText
