@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { ListItem, Button } from '@material-ui/core';
+import { ListItem } from '@material-ui/core';
 import AddCircle from '@material-ui/icons/AddCircle';
 
 /* Material UI styling */

@@ -16,7 +16,6 @@ import {
   Remove,
 } from '@material-ui/icons';
 
-
 import TaskItem from '../Task/TaskItem';
 import NewTaskItem from '../Task/NewTaskItem';
 import AddNewTaskButton from '../Task/AddNewTaskButton';
@@ -65,6 +64,7 @@ class GoalType extends Component {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Delete',
+      reverseButtons: true,
     }).then((result) => {
       if (result.value) {
         axios.delete(`/api/goals/types/${typeId}`)

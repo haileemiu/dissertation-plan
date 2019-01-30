@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
-import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 
 import GoalType from './Type/GoalType';
