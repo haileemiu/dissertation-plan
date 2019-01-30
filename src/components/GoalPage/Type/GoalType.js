@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import Swal from 'sweetalert2';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Collapse,
@@ -36,7 +34,7 @@ const styles = theme => ({
 
 /*
 Child component of GoalList
-Parent component of TaskItem and NewTaskItem
+Parent component of TaskItem and NewTaskItem & GoalTypeDeleteDialog
 */
 class GoalType extends Component {
   state = {
@@ -53,38 +51,6 @@ class GoalType extends Component {
   onAddClick = () => {
     this.setState(prevState => ({ isAdding: !prevState.isAdding }));
   }
-
-
-  // Handles deleting a section/goal type
-  deleteGoalType = (typeId) => {
-    // Warning alert before delete
-    Swal({
-      title: 'Are you sure you want to delete this entire section and all tasks it contains?',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete',
-      reverseButtons: true,
-    }).then((result) => {
-      if (result.value) {
-        axios.delete(`/api/goals/types/${typeId}`)
-          .then(this.deleteGoalTypeSuccess)
-          .catch(this.deleteGoalTypeError);
-      }
-    });
-  };
-
-  deleteGoalTypeSuccess = (response) => {
-    console.log('Successfully deleted', response);
-
-    this.props.getGoalList(); // Call to re-render
-  }
-
-  deleteGoalTypeError = (err) => {
-    console.log('Error in deleting:', err); // TO DO: alert user
-  }
-
 
   render() {
     const { classes, type } = this.props;
@@ -111,9 +77,7 @@ class GoalType extends Component {
           {/* Edit section/type button and input */}
           <TypeEdit type={type} toggleIsEditingType={this.toggleIsEditingType} getGoalList={this.props.getGoalList} />
 
-          {/* WIP */}
           {/* Delete section/type button */}
-          {/* <Clear onClick={() => this.deleteGoalType(type.id)} /> */}
           <GoalTypeDeleteDialog type={type} getGoalList={this.props.getGoalList} />
 
         </ListItem>
