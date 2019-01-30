@@ -17,6 +17,7 @@ import {
 import CircleCheckedFilled from '@material-ui/icons/CheckCircle';
 import CircleUnchecked from '@material-ui/icons/RadioButtonUnchecked';
 import EditOutlined from '@material-ui/icons/EditOutlined';
+import TaskTextDeleteDialog from './TaskTextDeleteDialog';
 
 /* Material UI styling */
 const styles = theme => ({
@@ -63,35 +64,6 @@ class TaskText extends Component {
     this.props.toggleIsEditing();
   }
 
-  // Delete click
-  handleDeleteClick = () => {
-    // Warning alert before delete
-    Swal({
-      title: 'Are you sure you want to delete this item?',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete',
-    }).then((result) => {
-      if (result.value) {
-        // Delete task
-        axios.delete(`/api/goals/tasks/${this.props.task.id}`)
-          .then(this.handleDeleteClickSuccess)
-          .catch(this.handleDeleteClickError);
-      }
-    });
-  }
-
-  handleDeleteClickSuccess = () => {
-    this.props.getGoalList();
-  }
-
-  handleDeleteClickError = (err) => {
-    console.log('Error in deleting:', err); // TO DO: alert user
-  }
-
-
   render() {
     const { classes, task } = this.props;
 
@@ -126,10 +98,7 @@ class TaskText extends Component {
           onClick={this.handleEditClick}
         />
 
-        <Clear
-          className={classes.icon}
-          onClick={this.handleDeleteClick}
-        />
+        <TaskTextDeleteDialog task={task} getGoalList={this.props.getGoalList} />
       </>
     );
   }

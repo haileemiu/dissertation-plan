@@ -18,8 +18,7 @@ import NewTaskItem from '../Task/NewTaskItem';
 import AddNewTaskButton from '../Task/AddNewTaskButton';
 import TypeEdit from './TypeEdit';
 import UncheckAllButton from './UncheckAllButton';
-
-import GoalTypeDeleteDialog from './GoalTypeDeleteDialog'; // wip
+import GoalTypeDeleteDialog from './GoalTypeDeleteDialog';
 
 /* Material UI styling */
 const styles = theme => ({
