@@ -8,8 +8,8 @@ import teal from '@material-ui/core/colors/teal';
 
 const styles = theme => ({
   button: {
-    // margin: theme.spacing.unit,
-    marginLeft: 75,
+    margin: theme.spacing.unit,
+    // marginLeft: 75,
     textTransform: 'none',
     backgroundColor: teal['300'],
     borderRadius: '100px',
