@@ -22,7 +22,18 @@ const styles = theme => ({
 Child component of GoalType
 */
 class UncheckAllButton extends Component {
-  state = {}
+  state = {
+    tasksInList: false,
+  }
+
+  componentDidMount() {
+    console.log('this.props.type.task:', this.props.type.task);
+    if (this.props.type.task.length !== 0) {
+      this.setState({ tasksInList: true });
+    } else {
+      this.setState({ tasksInList: false });
+    }
+  }
 
   uncheckAllTasksInType = () => {
     // Warning alert before uncheck all of that type/section
@@ -56,17 +67,24 @@ class UncheckAllButton extends Component {
     const { classes, type } = this.props;
 
     return (
-      <Button
-        size="small"
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        onClick={this.uncheckAllTasksInType}
-        type="button"
-        value={type}
-      >
-        Uncheck All
+      <>
+        {this.state.tasksInList
+          ? (
+            <Button
+              size="small"
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={this.uncheckAllTasksInType}
+              type="button"
+              value={type}
+            >
+              Uncheck All
       </Button>
+          ) : null
+      }
+
+      </>
     );
   }
 }
