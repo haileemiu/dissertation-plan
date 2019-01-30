@@ -15,6 +15,7 @@ import CircleCheckedFilled from '@material-ui/icons/CheckCircle';
 import CircleUnchecked from '@material-ui/icons/RadioButtonUnchecked';
 import EditOutlined from '@material-ui/icons/EditOutlined';
 import DeleteOutlined from '@material-ui/icons/DeleteOutlined';
+import StepTextDialog from './StepTextDialog';
 
 
 /* Material UI styling */
@@ -62,33 +63,6 @@ class StepText extends Component {
     this.props.toggleIsEditing();
   }
 
-  // Delete click
-  handleDeleteClick = () => {
-    Swal({
-      title: 'Are you sure you want to delete this?',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Delete',
-    }).then((result) => {
-      if (result.value) {
-        axios.delete(`/api/dissertation/${this.props.step.id}`)
-          .then(this.handleDeleteClickSuccess)
-          .catch(this.handleDeleteClickError);
-      }
-    });
-  }
-
-  handleDeleteClickSuccess = () => {
-    this.props.getDissertationPlan();
-  }
-
-  handleDeleteClickError = (err) => {
-    console.log('Error in deleting:', err); // TO DO: alert user
-  }
-
-
   render() {
     const { classes, step } = this.props;
 
@@ -96,6 +70,7 @@ class StepText extends Component {
       // Holds the individual step with edit icon and delete icon
       <>
         <ListItemIcon>
+
           {/* Checkbox */}
           <Checkbox
             type="checkbox"
@@ -114,7 +89,7 @@ class StepText extends Component {
         {/* Text of step */}
         <ListItemText
           inset
-          // primary={step.name}
+
           disableTypography
           primary={<Typography style={{ fontFamily: 'Avenir', fontSize: '18px' }}>{step.name}</Typography>}
 
@@ -123,10 +98,9 @@ class StepText extends Component {
           className={classes.icon}
           onClick={this.handleEditClick}
         />
-        <DeleteOutlined
-          className={classes.icon}
-          onClick={this.handleDeleteClick}
-        />
+
+        {/* On click of delete, here is the component with the dialog box */}
+        <StepTextDialog step={step} getDissertationPlan={this.props.getDissertationPlan} />
       </>
     );
   }

@@ -22,6 +22,7 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit,
+    textTransform: 'none',
   },
   icon: {
     margin: theme.spacing.unit,

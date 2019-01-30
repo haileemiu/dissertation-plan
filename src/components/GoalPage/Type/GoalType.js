@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import Swal from 'sweetalert2';
 import { withStyles } from '@material-ui/core/styles';
 import {
   Collapse,
@@ -12,7 +10,6 @@ import {
 } from '@material-ui/core';
 import {
   Add,
-  Clear,
   Remove,
 } from '@material-ui/icons';
 
@@ -21,6 +18,7 @@ import NewTaskItem from '../Task/NewTaskItem';
 import AddNewTaskButton from '../Task/AddNewTaskButton';
 import TypeEdit from './TypeEdit';
 import UncheckAllButton from './UncheckAllButton';
+import GoalTypeDeleteDialog from './GoalTypeDeleteDialog';
 
 /* Material UI styling */
 const styles = theme => ({
@@ -35,7 +33,7 @@ const styles = theme => ({
 
 /*
 Child component of GoalList
-Parent component of TaskItem and NewTaskItem
+Parent component of TaskItem and NewTaskItem & GoalTypeDeleteDialog
 */
 class GoalType extends Component {
   state = {
@@ -53,45 +51,13 @@ class GoalType extends Component {
     this.setState(prevState => ({ isAdding: !prevState.isAdding }));
   }
 
-  // WIP...
-  // Handles deleting a section/goal type
-  deleteGoalType = (typeId) => {
-    // Warning alert before delete
-    Swal({
-      title: 'Are you sure you want to delete this entire section and all tasks it contains?',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Delete',
-      reverseButtons: true,
-    }).then((result) => {
-      if (result.value) {
-        axios.delete(`/api/goals/types/${typeId}`)
-          .then(this.deleteGoalTypeSuccess)
-          .catch(this.deleteGoalTypeError);
-      }
-    });
-  };
-
-  deleteGoalTypeSuccess = (response) => {
-    console.log('Successfully deleted', response);
-
-    this.props.getGoalList(); // Call to re-render
-  }
-
-  deleteGoalTypeError = (err) => {
-    console.log('Error in deleting:', err); // TO DO: alert user
-  }
-
-
   render() {
     const { classes, type } = this.props;
 
     return (
       <>
         {/* List each section header/type */}
-        
+
         <ListItem
           button
           onClick={this.onHeadingClick}
@@ -110,15 +76,15 @@ class GoalType extends Component {
           {/* Edit section/type button and input */}
           <TypeEdit type={type} toggleIsEditingType={this.toggleIsEditingType} getGoalList={this.props.getGoalList} />
 
-          {/* Delete section/type button */}
-          <Clear onClick={() => this.deleteGoalType(type.id)} />
+          {/* On click of delete, here is the component with the dialog box */}
+          <GoalTypeDeleteDialog type={type} getGoalList={this.props.getGoalList} />
 
         </ListItem>
 
         {/* Area inside the nested list where steps will be listed out */}
         <Collapse in={this.state.isOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding style={{ border: '1px solid #cccccc' }}>
-          
+
             {/* List each task */}
             {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)}
 
