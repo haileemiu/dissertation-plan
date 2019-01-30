@@ -34,12 +34,11 @@ class AddNewButton extends Component {
       <div>
         <ListItem className={classes.nested}>
           <AddCircle
-            color="primary" // from Mui Theme Provider on DissertationPlan component
+            color="primary"
             variant="contained"
             onClick={this.handleAddClick}
             className={classes.addButton}
           />
-
         </ListItem>
       </div>
     );

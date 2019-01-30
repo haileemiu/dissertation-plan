@@ -21,9 +21,11 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     maxWidth: 1000,
+
   },
   button: {
     margin: theme.spacing.unit,
+    textTransform: 'none',
   },
   icon: {
     margin: theme.spacing.unit,
@@ -82,7 +84,7 @@ class NewTaskItem extends Component {
             label="New Task"
             className={classes.textField}
             margin="normal"
-            // variant="outlined"
+            variant="outlined"
             type="text"
             name="name"
             value={this.state.name}
@@ -90,6 +92,7 @@ class NewTaskItem extends Component {
           />
           <Button
             size="small"
+            color="primary"
             variant="contained"
             className={classes.button}
             type="submit"
@@ -100,6 +103,7 @@ class NewTaskItem extends Component {
 
           <Button
             size="small"
+            color="secondary"
             variant="contained"
             className={classes.button}
             type="button"
