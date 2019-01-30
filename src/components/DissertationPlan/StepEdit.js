@@ -73,9 +73,10 @@ class StepEdit extends Component {
         <form onSubmit={this.editStep} className={classes.container}>
           <TextField
             fullWidth
+            label="Edit Step"
             className={classes.textField}
             margin="normal"
-            // variant="outlined"
+            variant="outlined"
             name="name" // needed for state change
             value={this.state.name} // needed for event.target.value
             onChange={this.onInputChange}

@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import EditOutlined from '@material-ui/icons/EditOutlined';
 import TextField from '@material-ui/core/TextField';
@@ -49,7 +48,6 @@ This component holds the button and dialog box for editing a type/section
 Child component of GoalType
 */
 class TypeEditButton extends Component {
-
   state = {
     open: false,
     section: '',

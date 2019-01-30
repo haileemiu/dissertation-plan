@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+import AddCircle from '@material-ui/icons/AddCircle';
 import teal from '@material-ui/core/colors/teal';
 
 /* Material UI styling */
@@ -14,7 +14,10 @@ const styles = theme => ({
     paddingLeft: '15px',
     paddingRight: '15px',
   },
-
+  addButton: {
+    margin: theme.spacing.unit,
+    fontSize: '40px',
+  },
 });
 
 /*
@@ -30,16 +33,12 @@ class AddNewTaskButton extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <Button
-          size="small"
+        <AddCircle
           color="primary"
           variant="contained"
-          type="submit"
           onClick={this.handleAddClick}
-          className={classes.button}
-        >
-          + Add an item
-        </Button>
+          className={classes.addButton}
+        />
       </div>
     );
   }

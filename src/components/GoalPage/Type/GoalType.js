@@ -9,8 +9,8 @@ import {
   Typography,
 } from '@material-ui/core';
 import {
-  Add,
-  Remove,
+  ExpandLess,
+  ExpandMore,
 } from '@material-ui/icons';
 
 import TaskItem from '../Task/TaskItem';
@@ -64,7 +64,7 @@ class GoalType extends Component {
           className={classes.heading}
         >
           {/* Toggle between + and - sign when collapsed or open */}
-          {this.state.isOpen ? <Remove /> : <Add />}
+          {this.state.isOpen ? <ExpandLess /> : <ExpandMore />}
 
           {/* Section Name Text */}
           <ListItemText
@@ -85,21 +85,25 @@ class GoalType extends Component {
         <Collapse in={this.state.isOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding style={{ border: '1px solid #cccccc' }}>
 
-            {/* List each task */}
-            {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)}
 
-            <ListItem className={classes.buttonsRight}>
-              {/* Uncheck all button */}
+            {/* Uncheck all button */}
+            <ListItem>
               <UncheckAllButton
                 type={type}
                 getGoalList={this.props.getGoalList}
               />
+            </ListItem>
 
-              {/* Toggle between Add a new task */}
+            {/* List each task */}
+            {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)}
+
+            {/* Toggle between Add a new task */}
+            <ListItem className={classes.buttonsRight}>
               {this.state.isAdding
                 ? <NewTaskItem onAddClick={this.onAddClick} typeId={type.id} getGoalList={this.props.getGoalList} />
                 : <AddNewTaskButton onAddClick={this.onAddClick} />}
             </ListItem>
+
           </List>
         </Collapse>
 

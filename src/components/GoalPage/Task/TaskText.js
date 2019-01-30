@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Swal from 'sweetalert2';
 import teal from '@material-ui/core/colors/teal';
 import {
   Checkbox,
@@ -10,9 +9,7 @@ import {
   ListItemText,
   Typography,
 } from '@material-ui/core';
-import {
-  Clear,
-} from '@material-ui/icons';
+
 // CircleCheckedFilled & CircleUnchecked are from specific icon folders
 import CircleCheckedFilled from '@material-ui/icons/CheckCircle';
 import CircleUnchecked from '@material-ui/icons/RadioButtonUnchecked';

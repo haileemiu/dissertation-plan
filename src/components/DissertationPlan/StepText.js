@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Swal from 'sweetalert2';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import teal from '@material-ui/core/colors/teal';
 import {
@@ -14,7 +13,6 @@ import {
 import CircleCheckedFilled from '@material-ui/icons/CheckCircle';
 import CircleUnchecked from '@material-ui/icons/RadioButtonUnchecked';
 import EditOutlined from '@material-ui/icons/EditOutlined';
-import DeleteOutlined from '@material-ui/icons/DeleteOutlined';
 import StepTextDialog from './StepTextDialog';
 
 
@@ -28,9 +26,9 @@ const styles = theme => ({
     fontSize: 25,
   },
   root: {
-    color: teal['A400'],
+    color: teal.A400,
     '&$checked': {
-      color: teal['A400'],
+      color: teal.A400,
     },
   },
   checked: {},

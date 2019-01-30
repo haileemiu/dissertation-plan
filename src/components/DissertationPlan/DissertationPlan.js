@@ -24,6 +24,9 @@ const theme = createMuiTheme({
     primary: teal,
     secondary: red,
   },
+  typography: {
+    useNextVariants: true,
+  },
 });
 
 /* This is the parent component for the dissertation plan list */
