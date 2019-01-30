@@ -25,6 +25,7 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit,
+    textTransform: 'none',
   },
   icon: {
     margin: theme.spacing.unit,
@@ -91,6 +92,7 @@ class NewSectionStep extends Component {
           />
           <Button
             size="small"
+            color="primary"
             variant="contained"
             className={classes.button}
             type="submit"
@@ -101,6 +103,7 @@ class NewSectionStep extends Component {
 
           <Button
             size="small"
+            color="secondary"
             variant="contained"
             className={classes.button}
             type="button"
