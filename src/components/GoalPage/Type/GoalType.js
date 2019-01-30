@@ -12,7 +12,6 @@ import {
 } from '@material-ui/core';
 import {
   Add,
-  Clear,
   Remove,
 } from '@material-ui/icons';
 
@@ -21,6 +20,8 @@ import NewTaskItem from '../Task/NewTaskItem';
 import AddNewTaskButton from '../Task/AddNewTaskButton';
 import TypeEdit from './TypeEdit';
 import UncheckAllButton from './UncheckAllButton';
+
+import GoalTypeDeleteDialog from './GoalTypeDeleteDialog'; // wip
 
 /* Material UI styling */
 const styles = theme => ({
@@ -53,7 +54,7 @@ class GoalType extends Component {
     this.setState(prevState => ({ isAdding: !prevState.isAdding }));
   }
 
-  // WIP...
+
   // Handles deleting a section/goal type
   deleteGoalType = (typeId) => {
     // Warning alert before delete
@@ -91,7 +92,7 @@ class GoalType extends Component {
     return (
       <>
         {/* List each section header/type */}
-        
+
         <ListItem
           button
           onClick={this.onHeadingClick}
@@ -110,15 +111,17 @@ class GoalType extends Component {
           {/* Edit section/type button and input */}
           <TypeEdit type={type} toggleIsEditingType={this.toggleIsEditingType} getGoalList={this.props.getGoalList} />
 
+          {/* WIP */}
           {/* Delete section/type button */}
-          <Clear onClick={() => this.deleteGoalType(type.id)} />
+          {/* <Clear onClick={() => this.deleteGoalType(type.id)} /> */}
+          <GoalTypeDeleteDialog type={type} getGoalList={this.props.getGoalList} />
 
         </ListItem>
 
         {/* Area inside the nested list where steps will be listed out */}
         <Collapse in={this.state.isOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding style={{ border: '1px solid #cccccc' }}>
-          
+
             {/* List each task */}
             {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)}
 
