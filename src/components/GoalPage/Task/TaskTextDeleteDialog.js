@@ -48,16 +48,13 @@ class AlertDialog extends React.Component {
 
   deleteGoalTask = (taskId) => {
     this.setState({ open: true });
-    console.log('clicked delete', taskId);
   }
 
   cancelDeleteAction = () => {
     this.setState({ open: false });
-    console.log('cancled');
   }
 
   confirmDeleteAction = () => {
-    console.log('confirmed');
     axios.delete(`/api/goals/tasks/${this.props.task.id}`)
       .then(this.deleteGoalTaskSuccess)
       .catch(this.deleteGoalTaskError);

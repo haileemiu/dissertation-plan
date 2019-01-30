@@ -76,7 +76,7 @@ class GoalType extends Component {
           {/* Edit section/type button and input */}
           <TypeEdit type={type} toggleIsEditingType={this.toggleIsEditingType} getGoalList={this.props.getGoalList} />
 
-          {/* Delete section/type button */}
+          {/* On click of delete, here is the component with the dialog box */}
           <GoalTypeDeleteDialog type={type} getGoalList={this.props.getGoalList} />
 
         </ListItem>

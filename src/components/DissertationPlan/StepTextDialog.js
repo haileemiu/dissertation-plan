@@ -46,7 +46,7 @@ class AlertDialog extends React.Component {
     open: false,
   };
 
-  deleteGoalType = (typeId) => {
+  deleteGoalTask = (stepId) => {
     this.setState({ open: true });
   }
 
@@ -54,27 +54,27 @@ class AlertDialog extends React.Component {
     this.setState({ open: false });
   }
 
-  confirmDeleteAction = (typeId) => {
-    axios.delete(`/api/goals/types/${typeId}`)
-      .then(this.deleteGoalTypeSuccess)
-      .catch(this.deleteGoalTypeError);
+  confirmDeleteAction = () => {
+    axios.delete(`/api/dissertation/${this.props.step.id}`)
+      .then(this.handleDeleteClickSuccess)
+      .catch(this.handleDeleteClickError);
 
     this.setState({ open: false }); // May need to move based on how handle if error in deleting
   }
 
-  deleteGoalTypeSuccess = () => {
-    this.props.getGoalList();
+  handleDeleteClickSuccess = () => {
+    this.props.getDissertationPlan();
   }
 
-  deleteGoalTypeError = (err) => {
+  handleDeleteClickError = (err) => {
     console.log('Error in deleting:', err); // TO DO: alert user
   }
 
   render() {
-    const { classes, type } = this.props;
+    const { classes, step } = this.props;
     return (
       <div>
-        <Clear variant="outlined" onClick={() => this.deleteGoalType(type.id)} />
+        <Clear variant="outlined" onClick={() => this.deleteGoalTask(step.id)} />
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -85,14 +85,14 @@ class AlertDialog extends React.Component {
           <div className={classes.dialogBox}>
             <DialogContent>
               <DialogContentText id="alert-dialog-description" style={{ color: '#333333' }}>
-                Are you sure you want to delete this entire section and all tasks it contains?
+                Are you sure you want to delete this?
               </DialogContentText>
             </DialogContent>
             <DialogActions style={{ justifyContent: 'center' }}>
               <Button onClick={this.cancelDeleteAction} className={classes.cancelButton}>
                 Cancel
               </Button>
-              <Button onClick={() => this.confirmDeleteAction(type.id)} autoFocus className={classes.deleteButton}>
+              <Button onClick={this.confirmDeleteAction} autoFocus className={classes.deleteButton}>
                 Delete
               </Button>
             </DialogActions>
@@ -104,8 +104,8 @@ class AlertDialog extends React.Component {
 }
 
 AlertDialog.propTypes = {
-  type: PropTypes.shape().isRequired,
-  getGoalList: PropTypes.func.isRequired,
+  step: PropTypes.shape().isRequired,
+  getDissertationPlan: PropTypes.func.isRequired,
   classes: PropTypes.shape().isRequired,
 };
 

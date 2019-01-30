@@ -98,6 +98,7 @@ class TaskText extends Component {
           onClick={this.handleEditClick}
         />
 
+        {/* On click of delete, here is the component with the dialog box */}
         <TaskTextDeleteDialog task={task} getGoalList={this.props.getGoalList} />
       </>
     );
