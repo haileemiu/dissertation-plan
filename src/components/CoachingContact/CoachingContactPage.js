@@ -9,7 +9,7 @@ import ContactForm from './ContactForm';
 /* Material UI styling */
 const styles = theme => ({
   root: {
-    width: '50%',
+    width: '75%',
     maxWidth: 1400,
     backgroundColor: theme.palette.background.paper,
     padding: 20,
