@@ -3,7 +3,6 @@ import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Button, Grid } from '@material-ui/core';
-// import Swal from 'sweetalert2/dist/sweetalert2';
 import axios from 'axios';
 
 const styles = theme => ({
@@ -13,14 +12,19 @@ const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-    // flexDirection: 'column',
   },
   textField: {
+    backgroundColor: theme.palette.common.white,
+    border: '1px solid #ced4da',
+    borderRadius: 4,
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: '400px',
   },
   messageRight: {
+    backgroundColor: theme.palette.common.white,
+    border: '1px solid #ced4da',
+    borderRadius: 4,
     display: 'flex',
     flexWrap: 'wrap',
     marginLeft: theme.spacing.unit,
@@ -28,11 +32,10 @@ const styles = theme => ({
     width: '400px',
   },
   buttonRight: {
-    // display: 'flex',
     flexWrap: 'wrap',
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    paddingRight: '100px',
+    paddingRight: '250px',
     textAlign: 'right',
   },
   button: {
@@ -40,10 +43,13 @@ const styles = theme => ({
     backgroundColor: '#58BCD2',
     color: 'white',
     borderRadius: '50px',
-
   },
+
 });
 
+/*
+Child of CoachingContactPage
+*/
 class ContactForm extends Component {
   state = {
     name: '',
@@ -101,7 +107,8 @@ class ContactForm extends Component {
       <div className={classes.root}>
         <Grid container spacing={24}>
           <form className={classes.container} noValidate autoComplete="off" onSubmit={this.sendMessage}>
-            <Grid item xs={6}>
+            <Grid item xs={6} style={{ textAlign: 'right' }}>
+
               <TextField
                 label="Name"
                 className={classes.textField}
@@ -161,9 +168,7 @@ class ContactForm extends Component {
                 rowsMax={18}
               />
             </Grid>
-            {/* <Grid item={12} className={classes.noteLeft}>
-              <div></div>
-            </Grid> */}
+
             <Grid item xs={12} className={classes.buttonRight}>
               We will <strong>never</strong> share your email address with anyone or send you spam.&nbsp;&nbsp;
               <Button
