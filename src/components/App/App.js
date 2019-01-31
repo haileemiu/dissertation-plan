@@ -16,6 +16,7 @@ import GoalPage from '../GoalPage/GoalPage';
 import DissertationPlan from '../DissertationPlan/DissertationPlan';
 import PasswordReset from '../PasswordReset/PasswordReset';
 import ForgotPassword from '../LoginPage/ForgotPassword';
+import CoachingContactPage from '../CoachingContact/CoachingContactPage';
 import './App.css';
 
 class App extends Component {
@@ -52,6 +53,11 @@ class App extends Component {
               exact
               path="/dissertation"
               component={DissertationPlan}
+            />
+            <ProtectedRoute
+              exact
+              path="/coaching"
+              component={CoachingContactPage}
             />
             <Route
               exact
