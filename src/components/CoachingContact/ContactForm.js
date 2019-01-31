@@ -26,6 +26,21 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     width: '400px',
   },
+  buttonRight: {
+    // display: 'flex',
+    flexWrap: 'wrap',
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    paddingRight: '100px',
+    textAlign: 'right',
+  },
+  button: {
+    textTransform: 'none',
+    backgroundColor: '#58BCD2',
+    color: 'white',
+    borderRadius: '50px',
+
+  },
 });
 
 class ContactForm extends Component {
@@ -119,12 +134,21 @@ class ContactForm extends Component {
                 rowsMax={18}
               />
             </Grid>
-            
-            <Button
-              type="submit"
-            >
-              Send Message
-            </Button>
+            {/* <Grid item={12} className={classes.noteLeft}>
+              <div></div>
+            </Grid> */}
+            <Grid item xs={12} className={classes.buttonRight}>
+              We will <strong>never</strong> share your email address with anyone or send you spam.&nbsp;&nbsp;
+              <Button
+                type="submit"
+                className={classes.button}
+                variant="contained"
+              >
+                Send message
+              </Button>
+
+            </Grid>
+
           </form>
         </Grid>
       </div>
