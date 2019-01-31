@@ -3,7 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Button, Grid } from '@material-ui/core';
-
+// import Swal from 'sweetalert2/dist/sweetalert2';
+import axios from 'axios';
 
 const styles = theme => ({
   root: {
@@ -61,11 +62,37 @@ class ContactForm extends Component {
   };
 
   // On send message button click
-  sendMessage = () => {
-    console.log('clicked');
-    console.log(this.state.name);
-    console.log(this.state.email);
-    this.setState({ name: '', email: '', study: '', stage: '', length: '', message: '' });
+  sendMessage = (event) => {
+    event.preventDefault();
+    // Swal.fire('Email has been sent.');
+
+    axios.post('/api/coaching/', {
+      name: this.state.name,
+      email: this.state.email,
+      study: this.state.study,
+      stage: this.state.stage,
+      length: this.state.length,
+      message: this.state.message,
+    })
+      .then(this.sendMessageSuccess)
+      .catch(this.sendMessageError);
+
+    this.setState({
+      name: '',
+      email: '',
+      study: '',
+      stage: '',
+      length: '',
+      message: '',
+    });
+  }
+
+  sendMessageSuccess = (response) => {
+    console.log(response); // To Do: add user alert
+  }
+
+  sendMessageError = (err) => {
+    console.log(err); // To Do: add user alert
   }
 
   render() {
