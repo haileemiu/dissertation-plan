@@ -46,7 +46,6 @@ class LoginPage extends Component {
           <h1>Login</h1>
           <div>
             <label htmlFor="email">
-            {/* WIP */}
               Email:
               <input
                 type="text"

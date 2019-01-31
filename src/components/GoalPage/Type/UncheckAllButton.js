@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import Swal from 'sweetalert2';
 import { Button } from '@material-ui/core';
 import teal from '@material-ui/core/colors/teal';
 import Dialog from '@material-ui/core/Dialog';
