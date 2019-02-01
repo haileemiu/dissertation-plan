@@ -9,9 +9,9 @@ const router = express.Router();
 
 // Transporter to send emails
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: 'gmail', // To Do: use SES as a service
   auth: {
-    user: process.env.ADMIN_EMAIL, // WIP TO DO UPDATE
+    user: process.env.ADMIN_EMAIL,
     pass: process.env.MAIL_PW,
   },
 });
@@ -29,18 +29,6 @@ router.get('/', async (req, res) => {
 
     // If email exists, send code email
     if (doesEmailExist) {
-      /* IF WE GO THE SEND CODE ROUTE
-      // const code = await generateRandomString();
-
-      // // Sets up email to be sent
-      // const mailConfig = {
-      //   from: process.env.ADMIN_EMAIL,
-      //   to: req.query.email,
-      //   subject: 'Taina Password Reset',
-      //   html: `<p><b>${code}</b></p>`,
-      // };
-      */
-
       // Create a temp_key using node uuid library
       // and sets temp_key_active to true
       const tempKey = uuidv1();
