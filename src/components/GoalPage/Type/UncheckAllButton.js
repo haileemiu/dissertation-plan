@@ -107,7 +107,7 @@ class UncheckAllButton extends Component {
             >
               Uncheck All
             </Button>
-          ) : null
+          ) : <div>You don&#39;t have any goals in this section yet.  Click the plus to add a goal.</div>
         }
 
         <Dialog
