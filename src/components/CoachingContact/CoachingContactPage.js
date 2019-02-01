@@ -5,10 +5,11 @@ import { withStyles, createMuiTheme } from '@material-ui/core/styles';
 import { teal, red } from '@material-ui/core/colors';
 import CoachingBanner from './CoachingBanner';
 import ContactForm from './ContactForm';
+import CoachingPageContent from './CoachingPageContent';
 
 /* Material UI styling */
 const styles = theme => ({
-  root: {
+  rootHeroImage: {
     width: '100%',
     backgroundColor: '#A4DDE6',
     padding: 20,
@@ -52,13 +53,14 @@ const CoachingContactPage = props => (
   <>
     <CoachingBanner />
     <MuiThemeProvider theme={theme}>
-      <div className={props.classes.root}>
+      <div className={props.classes.rootHeroImage}>
         <div style={{ textAlign: 'center' }}>
           <p style={{ fontSize: '28px' }}>We&apos;re ready to partner with you.</p>
           <p style={{ fontSize: '22px' }}>Send us a message and we&apos;ll get in touch with you about your coaching options.</p>
         </div>
         <ContactForm className={props.classes.heroText} />
       </div>
+      <CoachingPageContent />
     </MuiThemeProvider>
   </>
 );
