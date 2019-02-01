@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import { Button, Grid } from '@material-ui/core';
 
 const styles = theme => ({
   root: {
@@ -16,10 +16,23 @@ const styles = theme => ({
     flexGrow: 1,
     margin: 'auto',
   },
+  contactButton: {
+    textTransform: 'capitalize',
+    border: '2px solid #16BFD5',
+    color: '#16BFD5',
+    backgroundColor: 'white',
+    borderRadius: 25,
+    margin: 30,
+    '&:hover': {
+      backgroundColor: '#16BFD5',
+      color: 'white',
+    },
+  },
 
 });
 
 const CoachingPageContent = props => (
+
   <div className={props.classes.root}>
     {/* Coaches Section */}
     <p className={props.classes.sectionHeadings}>Our Coaches</p>
@@ -81,6 +94,17 @@ const CoachingPageContent = props => (
     >
       are you tired of not making progress? are you considering quitting your program or simply not finishing?
     </p>
+
+    {/* Button */}
+    <div style={{ textAlign: 'center' }}>
+      <Button
+        className={props.classes.contactButton}
+        variant="outlined"
+      >
+        contact us
+      </Button>
+    </div>
+
   </div>
 );
 
