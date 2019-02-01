@@ -5,8 +5,6 @@ const uuidv1 = require('uuid/v1');
 const pool = require('../modules/pool');
 // const encryptLib = require('../modules/encryption');
 
-
-
 const router = express.Router();
 
 // Transporter to send emails
