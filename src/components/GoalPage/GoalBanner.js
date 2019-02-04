@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import banner from '../../images/banner-goals-1920.jpg';
 
-const styles = theme => ({
+const styles = () => ({
   heroImage: {
     backgroundImage: `url(${banner})`,
     height: '300px',

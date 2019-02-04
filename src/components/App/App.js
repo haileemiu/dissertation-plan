@@ -6,6 +6,7 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Nav from '../Nav/Nav';
@@ -78,5 +79,9 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
 
 export default connect()(App);

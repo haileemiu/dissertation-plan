@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Button, Grid } from '@material-ui/core';
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     width: '75%',
     margin: 'auto',

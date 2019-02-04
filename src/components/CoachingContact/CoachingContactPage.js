@@ -8,7 +8,7 @@ import ContactForm from './ContactForm';
 import CoachingPageContent from './CoachingPageContent';
 
 /* Material UI styling */
-const styles = theme => ({
+const styles = () => ({
   rootHeroImage: {
     width: '100%',
     backgroundColor: '#A4DDE6',

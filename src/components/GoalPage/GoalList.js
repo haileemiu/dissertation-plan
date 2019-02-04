@@ -21,22 +21,14 @@ class GoalList extends Component {
     this.getGoalList();
   }
 
-  getGoalList = () => {
-    axios.get('/api/goals/types')
-      .then(this.getGoalListSuccess)
-      .catch(this.getGoalListError);
-  }
+  getGoalList = async () => {
+    try {
+      const response = await axios.get('/api/goals/types');
 
-  // On Success of getGoalList
-  getGoalListSuccess = (response) => {
-    this.setState({ goalList: response.data });
-  }
-
-
-  // On Error of getGoalList
-  getGoalListError = (err) => {
-    console.log('Error in retrieving goal types:', err);
-    // alert('Error in getting your saved sections'); // TO DO: make as user alert
+      this.setState({ goalList: response.data });
+    } catch (err) {
+      console.log('Error in retrieving goal types:', err);
+    }
   }
 
   toggleAddSection = () => {
@@ -46,10 +38,7 @@ class GoalList extends Component {
   render() {
     return (
       <div>
-        <List
-          // component="nav"
-          // subheader={<ListSubheader component="div">My Goals</ListSubheader>}
-        >
+        <List>
           {/* List out the Goal Type headers */}
           {this.state.goalList.map(type => (
             <GoalType

@@ -26,9 +26,9 @@ const styles = theme => ({
     fontSize: 25,
   },
   root: {
-    color: teal['A400'],
+    color: teal.A400,
     '&$checked': {
-      color: teal['A400'],
+      color: teal.A400,
     },
   },
   checked: {},

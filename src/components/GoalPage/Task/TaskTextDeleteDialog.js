@@ -12,7 +12,7 @@ import {
 } from '@material-ui/icons';
 
 /* Material UI styling */
-const styles = theme => ({
+const styles = () => ({
   deleteButton: {
     backgroundColor: '#4DB6AC',
     color: 'white',
@@ -46,7 +46,7 @@ class AlertDialog extends React.Component {
     open: false,
   };
 
-  deleteGoalTask = (taskId) => {
+  deleteGoalTask = () => {
     this.setState({ open: true });
   }
 

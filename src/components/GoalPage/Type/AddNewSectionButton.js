@@ -8,8 +8,7 @@ import {
 } from '@material-ui/core';
 
 
-const styles = theme => ({
-
+const styles = () => ({
   addSection: {
     textAlign: 'right',
     backgroundColor: '#E3E3E3',

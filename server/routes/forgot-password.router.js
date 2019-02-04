@@ -33,11 +33,11 @@ router.get('/', async (req, res) => {
       // and sets temp_key_active to true
       const tempKey = uuidv1();
       const queryTempKeyCreate = 'UPDATE person SET temp_key=$1, temp_key_active=true WHERE email=$2;';
-      
+
       await pool.query(queryTempKeyCreate, [tempKey, req.query.email]);
       // Create link to send to user
-      const passwordResetLink = `${process.env.PUBLIC_URL}/#/password-reset/?&key=` + encodeURIComponent(`${tempKey}`);
-      
+      const passwordResetLink = `${process.env.PUBLIC_URL}/#/password-reset/?&key=${encodeURIComponent(tempKey.toString())}`;
+
       // Sets up email to be sent
       const mailConfig = {
         from: process.env.ADMIN_EMAIL,

@@ -17,7 +17,7 @@ import SectionStep from './SectionStep';
 import NewSectionStep from './NewSectionStep';
 import AddNewButton from './AddNewButton';
 
-const styles = theme => ({
+const styles = () => ({
   heading: {
     backgroundColor: '#E3E3E3',
     border: '1px solid #cccccc',
