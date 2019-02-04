@@ -21,7 +21,7 @@ import UncheckAllButton from './UncheckAllButton';
 import GoalTypeDeleteDialog from './GoalTypeDeleteDialog';
 
 /* Material UI styling */
-const styles = theme => ({
+const styles = () => ({
   heading: {
     backgroundColor: '#E3E3E3',
     border: '1px solid #cccccc',
@@ -41,6 +41,13 @@ class GoalType extends Component {
     isAdding: false, // Variable for toggling add new step
   };
 
+  // shouldComponentUpdate(prevProps) {
+  //   if (this.props.type.task.length !== prevProps.type.task.length) {
+  //     this.fetchData(this.props.type.task.length);
+  //   }
+  //   this.checkForTasks();
+  // }
+
   // Handles collapse on click of any where in the heading
   onHeadingClick = () => {
     this.setState(prevState => ({ isOpen: !prevState.isOpen }));
@@ -49,6 +56,8 @@ class GoalType extends Component {
   // Toggle isAdding
   onAddClick = () => {
     this.setState(prevState => ({ isAdding: !prevState.isAdding }));
+
+    this.props.getGoalList();
   }
 
   render() {
@@ -87,17 +96,36 @@ class GoalType extends Component {
 
 
             {/* Uncheck all button */}
-            <ListItem>
+            {/* <ListItem>
               <UncheckAllButton
                 type={type}
                 getGoalList={this.props.getGoalList}
               />
+            </ListItem> */}
+
+            {/* WIP */}
+
+            <ListItem>
+              {this.props.type.task.length
+                ? (
+                  <UncheckAllButton
+                    type={type}
+                    getGoalList={this.props.getGoalList}
+                  />
+                ) : <div>You don&#39;t have any goals in this section yet.  Click the plus to add a goal.</div>
+              }
             </ListItem>
 
             {/* List each task */}
             {type.task.map(task => <TaskItem task={task} key={task.id} getGoalList={this.props.getGoalList} />)}
 
             {/* Toggle between Add a new task */}
+            {/* <ListItem className={classes.buttonsRight}>
+              {this.state.isAdding
+                ? <NewTaskItem onAddClick={this.onAddClick} typeId={type.id} getGoalList={this.props.getGoalList} />
+                : <AddNewTaskButton onAddClick={this.onAddClick} />}
+            </ListItem> */}
+            {/* WIP */}
             <ListItem className={classes.buttonsRight}>
               {this.state.isAdding
                 ? <NewTaskItem onAddClick={this.onAddClick} typeId={type.id} getGoalList={this.props.getGoalList} />

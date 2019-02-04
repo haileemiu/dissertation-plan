@@ -163,9 +163,9 @@ class ContactForm extends Component {
                 onChange={this.handleChange('message')}
                 margin="normal"
                 variant="outlined"
-                multiline={true}
                 rows={18}
                 rowsMax={18}
+                multiline
               />
             </Grid>
 

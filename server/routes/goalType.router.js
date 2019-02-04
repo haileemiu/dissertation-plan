@@ -105,9 +105,9 @@ router.put('/:id/uncheck', (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const queryToDeleteTasks = await `DELETE FROM goal_tasks WHERE type_id=${req.params.id}`;
-  
+
     await pool.query(queryToDeleteTasks);
-  
+
     const queryToDeleteTypes = await `DELETE FROM goal_types WHERE id=${req.params.id}`;
 
     await pool.query(queryToDeleteTypes);

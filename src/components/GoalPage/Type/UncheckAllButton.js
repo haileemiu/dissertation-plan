@@ -50,18 +50,7 @@ Child component of GoalType
 */
 class UncheckAllButton extends Component {
   state = {
-    tasksInList: false,
     open: false,
-  }
-
-  // Only show uncheck all button if there are tasks in the list
-  componentDidMount() {
-    console.log('this.props.type.task:', this.props.type.task);
-    if (this.props.type.task.length !== 0) {
-      this.setState({ tasksInList: true });
-    } else {
-      this.setState({ tasksInList: false });
-    }
   }
 
   uncheckAllTasksInType = () => {
@@ -94,22 +83,16 @@ class UncheckAllButton extends Component {
 
     return (
       <>
-        {this.state.tasksInList
-          ? (
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              onClick={() => this.uncheckAllTasksInType(type)}
-              type="button"
-              value={type}
-            >
-              Uncheck All
-            </Button>
-          ) : <div>You don&#39;t have any goals in this section yet.  Click the plus to add a goal.</div>
-        }
-
+        <Button
+          size="small"
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          type="button"
+          value={type}
+        >
+          Uncheck All
+        </Button>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}

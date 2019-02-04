@@ -16,5 +16,3 @@ const poolConfig = {
 const transport = nodemailer.createTransport(poolConfig);
 
 module.exports = transport;
-
-

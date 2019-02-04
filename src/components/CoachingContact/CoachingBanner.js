@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import banner from '../../images/banner-coachcontact-1366.jpg';
 
 
-const styles = theme => ({
+const styles = () => ({
   heroImage: {
     backgroundImage: `url(${banner})`,
     height: '300px',

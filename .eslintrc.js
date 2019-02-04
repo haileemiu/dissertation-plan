@@ -10,6 +10,6 @@ module.exports = {
         "react/jsx-one-expression-per-line": 0,
         "react/destructuring-assignment": 0,
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "no-alert":0
+        "max-len": 0
     }
 };
