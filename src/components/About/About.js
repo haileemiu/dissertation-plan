@@ -11,6 +11,9 @@ import PlanIcon from '../../images/iconplan.svg';
 import GoalsIcon from '../../images/icongoals.svg';
 import MessageIcon from '../../images/iconmessages.svg';
 import CoachIcon from '../../images/iconcoach.svg';
+import HelpOne from '../../images/home_help1_420.jpg';
+import HelpTwo from '../../images/home_help2_420.jpg';
+import HelpThree from '../../images/home_help3_420.jpg';
 
 const styles = () => ({
   heroImage: {
@@ -131,6 +134,27 @@ const AboutPage = (props) => {
             <li>Significant amount of time spent in front of a computer, away from peers and loved ones</li>
           </ul>
         </div>
+      </div>
+
+      {/* Help section */}
+      <div className={props.classes.offersSection}>
+        <div style={{ fontSize: '36px', textAlign: 'center', margin: 20 }}>There is help</div>
+        <Grid container spacing={24}>
+          <Grid item xs={4} className={props.classes.offersItems}>
+            <img src={HelpOne} alt="personalize" />
+            <p style={{ fontSize: '16px', fontWeight: 'bold' }}>A personalized dissertation plan as well as educational and self-care goals will help you feel more confident and in control.</p>
+          </Grid>
+
+          <Grid item xs={4} className={props.classes.offersItems}>
+            <img src={HelpTwo} alt="free from isolation" />
+            <p style={{ fontSize: '16px', fontWeight: 'bold' }}>Tearing down the walls of isolation and creating community reminds us that we are stronger in solidarity than we are alone.</p>
+          </Grid>
+
+          <Grid item xs={4} className={props.classes.offersItems}>
+            <img src={HelpThree} alt="coaching" />
+            <p style={{ fontSize: '16px', fontWeight: 'bold' }}>We believe individualized coaching should be about getting you back on track without being a financial burden.</p>
+          </Grid>
+        </Grid>
       </div>
     </>
   );
