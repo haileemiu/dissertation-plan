@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import banner from '../../images/home1-1366.jpg';
-import Login from '../LoginPage/LoginPage';
-
 
 const styles = () => ({
   heroImage: {
@@ -30,9 +28,8 @@ const DissertationBanner = props => (
   <>
     <div className={props.classes.heroImage}>
       <div className={props.classes.heroText}>
-        <h1 style={{ fontSize: '36px' }}>Doctoral students deserve to own their education</h1>
-        <h3>Taina is a web-based service offering tools for success, a community forum, and individualized coaching to support you on your educational journey</h3>
-        <Login />
+        <h1 style={{ fontSize: '36px' }}>Dissertation Liberation Coaches are Here for You</h1>
+        <h3>We believe coaching should be affordable and accessible for all students</h3>
       </div>
     </div>
   </>

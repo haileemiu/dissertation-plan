@@ -39,9 +39,9 @@ const Nav = props => (
           <LogOutButton className="nav-link sign-out" />
         </>
       )}
-      {/* <Link className="nav-link" to="/about">
+      <Link className="nav-link" to="/about">
         About
-      </Link> */}
+      </Link>
 
     </div>
   </div>
