@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { Link, Grid } from '@material-ui/core';
 import banner from '../../images/home1-1366.jpg';
+import DPPbanner from '../../images/home2-1920.jpg';
 import Login from '../LoginPage/LoginPage';
 import PlanIcon from '../../images/iconplan.svg';
 import GoalsIcon from '../../images/icongoals.svg';
@@ -34,10 +35,35 @@ const styles = () => ({
   offersSection: {
     marginLeft: 40,
     marginRight: 40,
+    marginTop: 50,
+    marginBottom: 70,
   },
   offersItems: {
     textAlign: 'center',
-  }
+  },
+  heroImageDPP: {
+    backgroundImage: `url(${DPPbanner})`,
+    height: '400px',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    position: 'relative',
+  },
+  heroTextDPP: {
+    textAlign: 'left',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    color: 'white',
+    fontFamily: 'Avenir-Medium',
+    fontWeight: 500,
+  },
+  '@global': {
+    li: {
+      margin: '10px 0',
+    },
+  },
 });
 
 const AboutPage = (props) => {
@@ -63,10 +89,8 @@ const AboutPage = (props) => {
 
       {/* Offerings Section */}
       <div className={props.classes.offersSection}>
-
         <div style={{ fontSize: '36px', textAlign: 'center', margin: 20 }}>What Taina offers students</div>
         <Grid container spacing={24}>
-
           <Grid item xs={3} className={props.classes.offersItems}>
             <img src={PlanIcon} alt="plan" />
             <p style={{ fontSize: '22px' }}>Customizable Dissertation Plan</p>
@@ -90,10 +114,23 @@ const AboutPage = (props) => {
             <p style={{ fontSize: '22px' }}>Affordable Coaching</p>
             <p style={{ fontSize: '16px' }}>Get guidance and answers from someone who has been in your shoes and get help taking control of your education.</p>
           </Grid>
-
         </Grid>
+      </div>
 
-
+      {/* Pain Points Section */}
+      <div className={props.classes.heroImageDPP}>
+        <div className={props.classes.heroTextDPP}>
+          <div style={{ fontSize: '36px', textAlign: 'center', margin: 20 }}>Doctoral Pain Points</div>
+          <ul style={{ fontSize: '18px', width: '200%' }}>
+            <li>Estimated drop-out rate of 50-60%</li>
+            <li>Likelihood of developing anxiety and depression 6 times as high as general population</li>
+            <li>Perceived stigma around asking for help or discussing your process with peers</li>
+            <li>Common worries such as "How do I conduct my research?" and "Is it normal to hire an editor?"</li>
+            <li>High competition for fellowships, grants, and publishings, increasing feelings of isolation</li>
+            <li>Feelings of being abandoned by busy staff, and shame in asking for help</li>
+            <li>Significant amount of time spent in front of a computer, away from peers and loved ones</li>
+          </ul>
+        </div>
       </div>
     </>
   );
