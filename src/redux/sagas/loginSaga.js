@@ -19,6 +19,7 @@ function* loginUser(action) {
     yield axios.post('api/user/login', body, config);
 
     yield put({ type: 'FETCH_USER' });
+
   } catch (error) {
     console.log('Error with user login:', error);
     if (error.response.status === 401) {

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { TextField, Button, InputBase } from '@material-ui/core';
+import { Button, InputBase, Link } from '@material-ui/core';
+// import RegisterPage from '../RegisterPage/RegisterPage';
 
 
 const styles = theme => ({
@@ -108,14 +109,16 @@ class LoginPage extends Component {
           </Button>
 
         </form>
-        <center>
+        {/* <center>
           <button
             type="button"
             className="link-button"
-            onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }); }}>
+            // onClick={() => { this.props.dispatch({ type: 'SET_TO_REGISTER_MODE' }); }}
+          >
             Register
           </button>
-        </center>
+        </center> */}
+        
         {/* <a href={forgotPasswordLink}>Forgot password?</a> */}
         {/* <Link to={forgotPasswordLink}>Forgot?</Link> */}
         {/* <a href="#forgot-password">reset password</a> */}

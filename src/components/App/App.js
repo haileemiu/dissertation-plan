@@ -18,6 +18,7 @@ import DissertationPlan from '../DissertationPlan/DissertationPlan';
 import PasswordReset from '../PasswordReset/PasswordReset';
 import ForgotPassword from '../LoginPage/ForgotPassword';
 import CoachingContactPage from '../CoachingContact/CoachingContactPage';
+import Register from '../RegisterPage/RegisterPage';
 import './App.css';
 
 class App extends Component {
@@ -69,6 +70,11 @@ class App extends Component {
               exact
               path="/password-reset"
               component={PasswordReset}
+            />
+            <Route
+              exact
+              path="/register"
+              component={Register}
             />
             {/* OTHERWISE (no path!) */}
             <Route render={() => <h1>404</h1>} />
