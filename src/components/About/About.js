@@ -14,6 +14,8 @@ import CoachIcon from '../../images/iconcoach.svg';
 import HelpOne from '../../images/home_help1_420.jpg';
 import HelpTwo from '../../images/home_help2_420.jpg';
 import HelpThree from '../../images/home_help3_420.jpg';
+import Contact from './Contact';
+import ContactHeroImage from '../../images/home3-1920.jpg';
 
 const styles = () => ({
   heroImage: {
@@ -66,6 +68,32 @@ const styles = () => ({
     li: {
       margin: '10px 0',
     },
+  },
+  heroTextContact: {
+    textAlign: 'center',
+    position: 'relative',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    color: 'white',
+    fontFamily: 'Avenir-Medium',
+    fontWeight: 500,
+  },
+
+  ContactHeroImage: {
+    width: '100%',
+    backgroundImage: `url(${ContactHeroImage})`,
+    padding: 20,
+    paddingBottom: '100px',
+    margin: 'auto',
+    fontFamily: 'Avenir',
+
+
+    height: 'auto',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    position: 'relative',
   },
 });
 
@@ -155,6 +183,10 @@ const AboutPage = (props) => {
             <p style={{ fontSize: '16px', fontWeight: 'bold' }}>We believe individualized coaching should be about getting you back on track without being a financial burden.</p>
           </Grid>
         </Grid>
+      </div>
+      <div className={props.classes.ContactHeroImage}>
+        <div style={{ color: 'white', textAlign: 'center', fontSize: '36px' }}>Contact Us</div>
+        <Contact className={props.classes.heroTextContact} />
       </div>
     </>
   );
