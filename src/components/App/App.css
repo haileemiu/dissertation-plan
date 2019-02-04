@@ -11,27 +11,40 @@ body {
 }
 
 .customForm {
-    background-color: #dbd5d5;
+    /* background-color: #dbd5d5;
     width: 30%;
     height: 250px;
     margin: 20px auto;
     padding: 25px;
-    border-radius: 2px;
+    border-radius: 2px; */
+    position: absolute
+    
 }
+/* 
+.customForm > div{
+    float:right;
+    margin:10px;
+  } */
 
-input {
+/* .inputs {
+    float:left;
+    margin: 10px;
+
+} */
+
+/* input {
     margin: 5px;
     margin-bottom: 10px;
-}
+} */
 
 .log-in, .log-out, .register {
-  background-color: #00acb0;
+  /* background-color: #00acb0;
   border-radius: 4px;
   color: #f8f8f8;
   min-height: 50px;
   min-width: 100px;
   outline:0;
-  cursor: pointer;
+  cursor: pointer; */
 }
 
 .log-in:hover, .log-out:hover, .register:hover {

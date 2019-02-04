@@ -8,7 +8,7 @@ import Login from '../LoginPage/LoginPage';
 const styles = () => ({
   heroImage: {
     backgroundImage: `url(${banner})`,
-    height: '300px',
+    height: '500px',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
