@@ -12,12 +12,12 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 import AboutPage from '../About/About';
-import UserPage from '../UserPage/UserPage';
 import GoalPage from '../GoalPage/GoalPage';
 import DissertationPlan from '../DissertationPlan/DissertationPlan';
 import PasswordReset from '../PasswordReset/PasswordReset';
 import ForgotPassword from '../LoginPage/ForgotPassword';
 import CoachingContactPage from '../CoachingContact/CoachingContactPage';
+import Register from '../RegisterPage/RegisterPage';
 import './App.css';
 
 class App extends Component {
@@ -32,7 +32,7 @@ class App extends Component {
         <div className="center-image">
           <Nav />
           <Switch>
-            <Redirect exact from="/" to="/home" />
+            <Redirect exact from="/" to="/about" />
             <Route
               exact
               path="/about"
@@ -40,11 +40,11 @@ class App extends Component {
             />
             {/* ProtectedRoute is a thing that Prime created */}
             {/* exact is the same as exact={true} */}
-            <ProtectedRoute
+            {/* <ProtectedRoute
               exact
               path="/home"
               component={UserPage}
-            />
+            /> */}
             <ProtectedRoute
               exact
               path="/goal"
@@ -70,8 +70,13 @@ class App extends Component {
               path="/password-reset"
               component={PasswordReset}
             />
+            <Route
+              exact
+              path="/register"
+              component={Register}
+            />
             {/* OTHERWISE (no path!) */}
-            <Route render={() => <h1>404</h1>} />
+            <Route render={() => <Redirect to="/about" />} />
           </Switch>
           <Footer />
         </div>
