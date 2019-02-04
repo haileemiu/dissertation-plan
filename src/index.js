@@ -14,9 +14,9 @@ const sagaMiddleware = createSagaMiddleware();
 
 // this line creates an array of all of redux middleware you want to use
 // if your in development mode, logger will be added to your project
-const middlewareList = process.env.NODE_ENV === 'development' ?
-  [sagaMiddleware, logger] :
-  [sagaMiddleware];
+const middlewareList = process.env.NODE_ENV === 'development'
+  ? [sagaMiddleware, logger]
+  : [sagaMiddleware];
 
 const store = createStore(
   reducer,

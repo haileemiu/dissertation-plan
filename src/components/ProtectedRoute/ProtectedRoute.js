@@ -1,41 +1,35 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
 
 
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
 // API for this component is the same as a regular route
-class ProtectedRoute extends Component {
-  render() {
-    const ComponentToProtect = this.props.component;
 
-    return (
-      <Route
-        // Whatever was passed to me, set to that.
-        exact={this.props.exact}
-        path={this.props.path}
-        render={() => (
-          this.props.user.id ?
-            <ComponentToProtect /> :
-            this.props.loginMode === 'login' ?
-              <LoginPage /> :
-              <RegisterPage />
-        )}
-      />
-    )
-  }
-}
+const ProtectedRoute = (props) => {
+  const ComponentToProtect = props.component;
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    loginMode: state.loginMode,
-  }
-}
+  return (
+    <Route
+      exact={props.exact}
+      path={props.path}
+      render={() => (props.user.id ? <ComponentToProtect /> : <Redirect to="/about" />)}
+    />
+  );
+};
 
-export default connect(mapStateToProps)(ProtectedRoute)
+ProtectedRoute.propTypes = {
+  component: PropTypes.func.isRequired,
+  exact: PropTypes.bool.isRequired,
+  path: PropTypes.string.isRequired,
+  user: PropTypes.shape().isRequired,
+};
 
+const mapStateToProps = state => ({
+  user: state.user,
+  loginMode: state.loginMode,
+});
 
+export default connect(mapStateToProps)(ProtectedRoute);

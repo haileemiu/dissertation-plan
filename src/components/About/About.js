@@ -31,7 +31,7 @@ const styles = () => ({
 
 const AboutPage = (props) => {
   if (props.user.id) {
-    return <Redirect to="/home" />;
+    return <Redirect to="/coaching" />;
   }
 
   return (
