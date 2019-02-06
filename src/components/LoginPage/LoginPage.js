@@ -99,7 +99,6 @@ class LoginPage extends Component {
             value={this.state.password}
             onChange={this.handleInputChangeFor('password')}
           />
-
           <Button
             className={classes.button}
             type="submit"
@@ -118,7 +117,7 @@ class LoginPage extends Component {
             Register
           </button>
         </center> */}
-        
+
         {/* <a href={forgotPasswordLink}>Forgot password?</a> */}
         {/* <Link to={forgotPasswordLink}>Forgot?</Link> */}
         {/* <a href="#forgot-password">reset password</a> */}
